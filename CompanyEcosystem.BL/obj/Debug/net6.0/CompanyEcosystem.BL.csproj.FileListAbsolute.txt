@@ -1,0 +1,15 @@
+D:\Visual Studio\CompanyEcosystem\CompanyEcosystem.BL\bin\Debug\net6.0\CompanyEcosystem.BL.deps.json
+D:\Visual Studio\CompanyEcosystem\CompanyEcosystem.BL\bin\Debug\net6.0\CompanyEcosystem.BL.dll
+D:\Visual Studio\CompanyEcosystem\CompanyEcosystem.BL\bin\Debug\net6.0\CompanyEcosystem.BL.pdb
+D:\Visual Studio\CompanyEcosystem\CompanyEcosystem.BL\bin\Debug\net6.0\CompanyEcosystem.DAL.dll
+D:\Visual Studio\CompanyEcosystem\CompanyEcosystem.BL\bin\Debug\net6.0\CompanyEcosystem.DAL.pdb
+D:\Visual Studio\CompanyEcosystem\CompanyEcosystem.BL\obj\Debug\net6.0\CompanyEcosystem.BL.csproj.AssemblyReference.cache
+D:\Visual Studio\CompanyEcosystem\CompanyEcosystem.BL\obj\Debug\net6.0\CompanyEcosystem.BL.GeneratedMSBuildEditorConfig.editorconfig
+D:\Visual Studio\CompanyEcosystem\CompanyEcosystem.BL\obj\Debug\net6.0\CompanyEcosystem.BL.AssemblyInfoInputs.cache
+D:\Visual Studio\CompanyEcosystem\CompanyEcosystem.BL\obj\Debug\net6.0\CompanyEcosystem.BL.AssemblyInfo.cs
+D:\Visual Studio\CompanyEcosystem\CompanyEcosystem.BL\obj\Debug\net6.0\CompanyEcosystem.BL.csproj.CoreCompileInputs.cache
+D:\Visual Studio\CompanyEcosystem\CompanyEcosystem.BL\obj\Debug\net6.0\CompanyEcosystem.BL.csproj.CopyComplete
+D:\Visual Studio\CompanyEcosystem\CompanyEcosystem.BL\obj\Debug\net6.0\CompanyEcosystem.BL.dll
+D:\Visual Studio\CompanyEcosystem\CompanyEcosystem.BL\obj\Debug\net6.0\refint\CompanyEcosystem.BL.dll
+D:\Visual Studio\CompanyEcosystem\CompanyEcosystem.BL\obj\Debug\net6.0\CompanyEcosystem.BL.pdb
+D:\Visual Studio\CompanyEcosystem\CompanyEcosystem.BL\obj\Debug\net6.0\ref\CompanyEcosystem.BL.dll

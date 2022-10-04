@@ -1,0 +1,14 @@
+D:\Visual Studio\CompanyEcosystem\CompanyEcosystem.DAL\bin\Debug\net6.0\CompanyEcosystem.DAL.deps.json
+D:\Visual Studio\CompanyEcosystem\CompanyEcosystem.DAL\bin\Debug\net6.0\CompanyEcosystem.DAL.runtimeconfig.json
+D:\Visual Studio\CompanyEcosystem\CompanyEcosystem.DAL\bin\Debug\net6.0\CompanyEcosystem.DAL.dll
+D:\Visual Studio\CompanyEcosystem\CompanyEcosystem.DAL\bin\Debug\net6.0\CompanyEcosystem.DAL.pdb
+D:\Visual Studio\CompanyEcosystem\CompanyEcosystem.DAL\obj\Debug\net6.0\CompanyEcosystem.DAL.csproj.AssemblyReference.cache
+D:\Visual Studio\CompanyEcosystem\CompanyEcosystem.DAL\obj\Debug\net6.0\CompanyEcosystem.DAL.GeneratedMSBuildEditorConfig.editorconfig
+D:\Visual Studio\CompanyEcosystem\CompanyEcosystem.DAL\obj\Debug\net6.0\CompanyEcosystem.DAL.AssemblyInfoInputs.cache
+D:\Visual Studio\CompanyEcosystem\CompanyEcosystem.DAL\obj\Debug\net6.0\CompanyEcosystem.DAL.AssemblyInfo.cs
+D:\Visual Studio\CompanyEcosystem\CompanyEcosystem.DAL\obj\Debug\net6.0\CompanyEcosystem.DAL.csproj.CoreCompileInputs.cache
+D:\Visual Studio\CompanyEcosystem\CompanyEcosystem.DAL\obj\Debug\net6.0\CompanyEcosystem.DAL.dll
+D:\Visual Studio\CompanyEcosystem\CompanyEcosystem.DAL\obj\Debug\net6.0\refint\CompanyEcosystem.DAL.dll
+D:\Visual Studio\CompanyEcosystem\CompanyEcosystem.DAL\obj\Debug\net6.0\CompanyEcosystem.DAL.pdb
+D:\Visual Studio\CompanyEcosystem\CompanyEcosystem.DAL\obj\Debug\net6.0\CompanyEcosystem.DAL.genruntimeconfig.cache
+D:\Visual Studio\CompanyEcosystem\CompanyEcosystem.DAL\obj\Debug\net6.0\ref\CompanyEcosystem.DAL.dll
