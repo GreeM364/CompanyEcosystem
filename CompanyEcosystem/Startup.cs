@@ -1,6 +1,8 @@
-﻿using CompanyEcosystem.BL;
-using Microsoft.OpenApi.Models;
+﻿using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
+using CompanyEcosystem.BL.Infrastructure;
+using CompanyEcosystem.BL.Interfaces;
+using CompanyEcosystem.BL.Services;
 
 namespace CompanyEcosystem.PL
 {
@@ -18,6 +20,7 @@ namespace CompanyEcosystem.PL
 
             service.AddControllers();
             service.AddBusinessLogicLayer(connectionString);
+
 
             service.AddSwaggerGen(c => c.SwaggerDoc("v1", new OpenApiInfo { Title = "My Api", Version = "v1" }));
         }
