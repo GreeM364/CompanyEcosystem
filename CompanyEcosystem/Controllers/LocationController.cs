@@ -20,27 +20,28 @@ namespace CompanyEcosystem.PL.Controllers
         [HttpGet]
         public IEnumerable<LocationViewModel> Get()
         {
-            IEnumerable<LocationDTO> locationDtos = LocationService.GetLocations();
+            IEnumerable<LocationDTO> locationDTOs = LocationService.GetLocations();
             var mapper = new MapperConfiguration(cfg => cfg.CreateMap<LocationDTO, LocationViewModel>()).CreateMapper();
-            var locations = mapper.Map<IEnumerable<LocationDTO>, List<LocationViewModel>>(locationDtos);
+            var locations = mapper.Map<IEnumerable<LocationDTO>, List<LocationViewModel>>(locationDTOs);
             
             return locations;
         }
 
         [HttpGet("{id}")]
-        public LocationViewModel Get(int id)
+        public LocationViewModel Get(int? id)
         {
             try
             {
                 LocationDTO locationDTO = LocationService.GetLocation(id);
-                var locationViewModel = new LocationViewModel { Id = locationDTO.Id };
+                var locationViewModel = new LocationViewModel { Id = locationDTO.Id, Title = locationDTO.Title, 
+                    Chief = locationDTO.Chief, WorkingStart = locationDTO.WorkingStart, WorkingEnd = locationDTO.WorkingEnd }; ;
 
                 return locationViewModel;
             }
             catch (ValidationException ex)
             {
                 return new LocationViewModel();
-                // TODO: переробити
+                // TODO: зробити відображення помилки 
             }
         }
     }

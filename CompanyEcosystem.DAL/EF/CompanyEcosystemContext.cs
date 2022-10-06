@@ -11,6 +11,7 @@ namespace CompanyEcosystem.DAL.EF
     public class CompanyEcosystemContext : DbContext
     {
         public DbSet<Location> Locations { get; set; }
+        public DbSet<Employee> Employees { get; set; }
         public CompanyEcosystemContext(DbContextOptions<CompanyEcosystemContext> connectionString)
             : base(connectionString)
         {

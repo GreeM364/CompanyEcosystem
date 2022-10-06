@@ -14,11 +14,16 @@ namespace CompanyEcosystem.BL.Services
 {
     public class ServiceLocation : ILocationService
     {
-        private IRepository<Location> Repository { get; set; }
+        private readonly IRepository<Location> Repository;
 
         public ServiceLocation(IRepository<Location> repository)
         {
             Repository = repository;
+        }
+        public IEnumerable<LocationDTO> GetLocations()
+        {
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Location, LocationDTO>()).CreateMapper();
+            return mapper.Map<IEnumerable<Location>, List<LocationDTO>>(Repository.GetAll());
         }
         public LocationDTO GetLocation(int? id)
         {
@@ -26,15 +31,10 @@ namespace CompanyEcosystem.BL.Services
                 throw new ValidationException("Location ID not set", "");
             var location = Repository.Get(id.Value);
             if (location == null)
-                throw new ValidationException("Phone not found", "");
+                throw new ValidationException("Location not found", "");
 
-            return new LocationDTO { Id = location.Id, Title = location.Title, Chief = location.Id, WorkingEnd = location.WorkingEnd, WorkingStart = location.WorkingEnd};
-        }
-
-        public IEnumerable<LocationDTO> GetLocations()
-        {
-            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Location, LocationDTO>()).CreateMapper();
-            return mapper.Map<IEnumerable<Location>, List<LocationDTO>>(Repository.GetAll());
+            return new LocationDTO { Id = location.Id, Title = location.Title, Chief = location.Chief, 
+                WorkingStart = location.WorkingStart, WorkingEnd = location.WorkingEnd};
         }
     }
 }
