@@ -1,11 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "dJw4dsBHTfjqfwi7DRtE6Qhp0c8V7w1sLS8EgsuIhFcAqDi4rB+Nh61sJ5dgAm0Xa3DbqaE+Gnh+xieWEYljJw==",
+  "dgSpecHash": "KWDN+iOG5JrFzQmcymilceZuX91mxCrQKJA0c/PEKIX0MJ5KCt1dp6RnCReKl+qavl0hDcYFKBDBIgn7ULmYJQ==",
   "success": true,
   "projectFilePath": "D:\\Visual Studio\\CompanyEcosystem\\CompanyEcosystem\\CompanyEcosystem.PL.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\DENYS\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
     "C:\\Users\\DENYS\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
+    "C:\\Users\\DENYS\\.nuget\\packages\\microsoft.aspnetcore.http.abstractions\\2.2.0\\microsoft.aspnetcore.http.abstractions.2.2.0.nupkg.sha512",
+    "C:\\Users\\DENYS\\.nuget\\packages\\microsoft.aspnetcore.http.features\\2.2.0\\microsoft.aspnetcore.http.features.2.2.0.nupkg.sha512",
     "C:\\Users\\DENYS\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\DENYS\\.nuget\\packages\\microsoft.data.sqlclient\\2.1.4\\microsoft.data.sqlclient.2.1.4.nupkg.sha512",
     "C:\\Users\\DENYS\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\2.1.1\\microsoft.data.sqlclient.sni.runtime.2.1.1.nupkg.sha512",
@@ -53,6 +55,7 @@
     "C:\\Users\\DENYS\\.nuget\\packages\\system.security.permissions\\4.7.0\\system.security.permissions.4.7.0.nupkg.sha512",
     "C:\\Users\\DENYS\\.nuget\\packages\\system.security.principal.windows\\4.7.0\\system.security.principal.windows.4.7.0.nupkg.sha512",
     "C:\\Users\\DENYS\\.nuget\\packages\\system.text.encoding.codepages\\4.7.0\\system.text.encoding.codepages.4.7.0.nupkg.sha512",
+    "C:\\Users\\DENYS\\.nuget\\packages\\system.text.encodings.web\\4.5.0\\system.text.encodings.web.4.5.0.nupkg.sha512",
     "C:\\Users\\DENYS\\.nuget\\packages\\system.windows.extensions\\4.7.0\\system.windows.extensions.4.7.0.nupkg.sha512"
   ],
   "logs": []

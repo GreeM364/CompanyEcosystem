@@ -11,7 +11,7 @@ namespace CompanyEcosystem.PL.Controllers
     [Route("[controller]")]
     public class LocationController : ControllerBase
     {
-        private ILocationService LocationService;
+        private readonly ILocationService LocationService;
         public LocationController(ILocationService locationService)
         {
             LocationService = locationService;

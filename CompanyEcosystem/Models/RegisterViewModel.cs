@@ -2,7 +2,7 @@
 
 namespace CompanyEcosystem.PL.Models
 {
-    public class EmployeeViewModel
+    public class RegisterViewModel
     {
         [Required(ErrorMessage = "Вкажіть електрону адресу")]
         public string Email { get; set; }

@@ -1,10 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "NS612dgzLGpx6RWQJ2evQpkiP1F5rVbGBon405OlLOy3InSfR27969J0iuFlqrTYWyjtIGgoMQF1VVAjrCqmLw==",
+  "dgSpecHash": "aeFYUdDHY+3a1mvYWJ7yKQfwFTnnI/EqEhL2/L/a/63zZYfZhu34LhHLFKklide6qLTncXRrQu4LShqOnqoxww==",
   "success": true,
   "projectFilePath": "D:\\Visual Studio\\CompanyEcosystem\\CompanyEcosystem.BL\\CompanyEcosystem.BL.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\DENYS\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
+    "C:\\Users\\DENYS\\.nuget\\packages\\microsoft.aspnetcore.http.abstractions\\2.2.0\\microsoft.aspnetcore.http.abstractions.2.2.0.nupkg.sha512",
+    "C:\\Users\\DENYS\\.nuget\\packages\\microsoft.aspnetcore.http.features\\2.2.0\\microsoft.aspnetcore.http.features.2.2.0.nupkg.sha512",
     "C:\\Users\\DENYS\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\DENYS\\.nuget\\packages\\microsoft.data.sqlclient\\2.1.4\\microsoft.data.sqlclient.2.1.4.nupkg.sha512",
     "C:\\Users\\DENYS\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\2.1.1\\microsoft.data.sqlclient.sni.runtime.2.1.1.nupkg.sha512",
@@ -44,6 +46,7 @@
     "C:\\Users\\DENYS\\.nuget\\packages\\system.security.permissions\\4.7.0\\system.security.permissions.4.7.0.nupkg.sha512",
     "C:\\Users\\DENYS\\.nuget\\packages\\system.security.principal.windows\\4.7.0\\system.security.principal.windows.4.7.0.nupkg.sha512",
     "C:\\Users\\DENYS\\.nuget\\packages\\system.text.encoding.codepages\\4.7.0\\system.text.encoding.codepages.4.7.0.nupkg.sha512",
+    "C:\\Users\\DENYS\\.nuget\\packages\\system.text.encodings.web\\4.5.0\\system.text.encodings.web.4.5.0.nupkg.sha512",
     "C:\\Users\\DENYS\\.nuget\\packages\\system.windows.extensions\\4.7.0\\system.windows.extensions.4.7.0.nupkg.sha512"
   ],
   "logs": []

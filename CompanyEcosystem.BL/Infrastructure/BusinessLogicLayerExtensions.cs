@@ -15,7 +15,8 @@ namespace CompanyEcosystem.BL.Infrastructure
         public static IServiceCollection AddBusinessLogicLayer(this IServiceCollection services, string connectionString)
         {
             services.AddDataAccessLayer(connectionString);
-            services.AddScoped<ILocationService, ServiceLocation>();
+            services.AddScoped<ILocationService, LocationService>();
+            services.AddScoped<IEmployeeService, EmployeeService>();
 
             return services;
         }

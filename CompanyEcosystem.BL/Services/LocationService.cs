@@ -12,11 +12,11 @@ using CompanyEcosystem.BL.Infrastructure;
 
 namespace CompanyEcosystem.BL.Services
 {
-    public class ServiceLocation : ILocationService
+    public class LocationService : ILocationService
     {
         private readonly IRepository<Location> Repository;
 
-        public ServiceLocation(IRepository<Location> repository)
+        public LocationService(IRepository<Location> repository)
         {
             Repository = repository;
         }

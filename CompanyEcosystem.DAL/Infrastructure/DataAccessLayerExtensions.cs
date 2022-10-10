@@ -17,6 +17,7 @@ namespace CompanyEcosystem.DAL.Infrastructure
         public static IServiceCollection AddDataAccessLayer(this IServiceCollection services, string connectionString)
         {
             services.AddDbContext<CompanyEcosystemContext>(options => options.UseSqlServer(connectionString));
+            
 
             services.AddScoped<IRepository<Location>, LocationRepository>();
             services.AddScoped<IRepository<Employee>, EmployeeRepository>();

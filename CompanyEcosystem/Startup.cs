@@ -1,8 +1,6 @@
 ﻿using Microsoft.OpenApi.Models;
-using Microsoft.EntityFrameworkCore;
 using CompanyEcosystem.BL.Infrastructure;
-using CompanyEcosystem.BL.Interfaces;
-using CompanyEcosystem.BL.Services;
+using Microsoft.AspNetCore.Http;
 
 namespace CompanyEcosystem.PL
 {
@@ -20,15 +18,13 @@ namespace CompanyEcosystem.PL
 
             service.AddControllers();
             service.AddBusinessLogicLayer(connectionString);
-
-
+            
             service.AddSwaggerGen(c => c.SwaggerDoc("v1", new OpenApiInfo { Title = "My Api", Version = "v1" }));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseSwagger();
-
             app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1"));
 
             if (env.IsDevelopment())
@@ -37,9 +33,13 @@ namespace CompanyEcosystem.PL
             }
 
             app.UseHttpsRedirection();
+            app.UseStaticFiles();
             app.UseRouting();
+
+            app.UseAuthentication();
             app.UseAuthorization();
 
+            app.UseMiddleware<JwtMiddleware>();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
