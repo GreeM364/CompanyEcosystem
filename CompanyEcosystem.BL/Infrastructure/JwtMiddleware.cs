@@ -2,10 +2,10 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using CompanyEcosystem.BL.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 
 namespace CompanyEcosystem.BL.Infrastructure
@@ -14,7 +14,7 @@ namespace CompanyEcosystem.BL.Infrastructure
     {
         private readonly RequestDelegate _next;
         private readonly IConfiguration _configuration;
-        //private readonly ILogger _logger;
+        private readonly ILogger<JwtMiddleware> _logger;
 
         public JwtMiddleware(RequestDelegate next, IConfiguration configuration)
         {
@@ -22,7 +22,7 @@ namespace CompanyEcosystem.BL.Infrastructure
             _configuration = configuration;
         }
 
-        public async Task Invoke(HttpContext context, IEmployeeService userService)
+        public async Task Invoke(HttpContext context, IAccountService userService)
         {
             var token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
 
@@ -32,12 +32,12 @@ namespace CompanyEcosystem.BL.Infrastructure
             await _next(context);
         }
 
-        public void AttachUserToContext(HttpContext context, IEmployeeService userService, string token)
+        public void AttachUserToContext(HttpContext context, IAccountService userService, string token)
         {
             try
             {
                 var tokenHandler = new JwtSecurityTokenHandler();
-                // min 16 characters
+                
                 var key = Encoding.ASCII.GetBytes(_configuration["Secret"]);
                 tokenHandler.ValidateToken(token, new TokenValidationParameters
                 {
@@ -53,9 +53,9 @@ namespace CompanyEcosystem.BL.Infrastructure
 
                 context.Items["User"] = userService.GetById(userId);
             }
-            catch
+            catch(Exception e)
             {
-                // todo: need to add logger
+                _logger.LogInformation(e.Message);
             }
         }
     }

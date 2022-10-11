@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 using CompanyEcosystem.BL.Interfaces;
 using CompanyEcosystem.BL.Services;
 using CompanyEcosystem.DAL.Infrastructure;
@@ -12,13 +13,16 @@ namespace CompanyEcosystem.BL.Infrastructure
 {
     public static class BusinessLogicLayerExtensions
     {
-        public static IServiceCollection AddBusinessLogicLayer(this IServiceCollection services, string connectionString)
+        public static IServiceCollection AddBusinessLogicLayer(this IServiceCollection service, string connectionString)
         {
-            services.AddDataAccessLayer(connectionString);
-            services.AddScoped<ILocationService, LocationService>();
-            services.AddScoped<IEmployeeService, EmployeeService>();
+            service.AddDataAccessLayer(connectionString);
 
-            return services;
+            service.AddAutoMapper(typeof(AutomapperBLProfile));
+
+            service.AddScoped<ILocationService, LocationService>();
+            service.AddScoped<IAccountService, AccountService>();
+
+            return service;
         }
     }
 }

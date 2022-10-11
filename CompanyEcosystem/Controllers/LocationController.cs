@@ -11,37 +11,58 @@ namespace CompanyEcosystem.PL.Controllers
     [Route("[controller]")]
     public class LocationController : ControllerBase
     {
-        private readonly ILocationService LocationService;
-        public LocationController(ILocationService locationService)
+        private readonly ILocationService _locationService;
+        private readonly IMapper _mapper;
+        public LocationController(ILocationService locationService, IMapper mapper)
         {
-            LocationService = locationService;
+            _locationService = locationService;
+            _mapper = mapper;
         }
 
         [HttpGet]
         public IEnumerable<LocationViewModel> Get()
         {
-            IEnumerable<LocationDTO> locationDTOs = LocationService.GetLocations();
-            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<LocationDTO, LocationViewModel>()).CreateMapper();
-            var locations = mapper.Map<IEnumerable<LocationDTO>, List<LocationViewModel>>(locationDTOs);
+            IEnumerable<LocationDTO> locationDTOs = _locationService.GetLocations();
+
+            var locations = _mapper.Map<IEnumerable<LocationDTO>, List<LocationViewModel>>(locationDTOs);
             
             return locations;
         }
 
         [HttpGet("{id}")]
-        public LocationViewModel Get(int? id)
+        public IActionResult Get(int? id)
         {
             try
             {
-                LocationDTO locationDTO = LocationService.GetLocation(id);
-                var locationViewModel = new LocationViewModel { Id = locationDTO.Id, Title = locationDTO.Title, 
-                    Chief = locationDTO.Chief, WorkingStart = locationDTO.WorkingStart, WorkingEnd = locationDTO.WorkingEnd }; ;
+                LocationDTO locationDto = _locationService.GetLocation(id);
 
-                return locationViewModel;
+                var locationViewModel = _mapper.Map<LocationDTO, LocationViewModel>(locationDto);
+
+                return Ok(locationViewModel);
             }
-            catch (ValidationException ex)
+            catch (ValidationException e)
             {
-                return new LocationViewModel();
-                // TODO: зробити відображення помилки 
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpPost]
+        public IActionResult Post(LocationViewModel model)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(model);
+
+            try
+            {
+                var locationDto = _mapper.Map<LocationViewModel, LocationDTO>(model);
+
+                _locationService.PostLocation(locationDto);
+
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
             }
         }
     }

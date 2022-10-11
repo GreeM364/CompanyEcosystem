@@ -30,11 +30,13 @@ namespace CompanyEcosystem.DAL.Repositories
         public void Create(Employee item)
         {
             db.Employees.Add(item);
+            db.SaveChanges();
         }
 
         public void Update(Employee item)
         {
             db.Entry(item).State = EntityState.Modified;
+            db.SaveChanges();
         }
 
         public void Delete(int id)
@@ -43,6 +45,8 @@ namespace CompanyEcosystem.DAL.Repositories
 
             if (user != null)
                 db.Locations.Remove(user);
+
+            db.SaveChanges();
         }
     }
 }

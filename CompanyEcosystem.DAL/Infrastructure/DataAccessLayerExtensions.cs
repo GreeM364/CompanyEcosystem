@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CompanyEcosystem.DAL.EF;
+﻿using CompanyEcosystem.DAL.EF;
 using CompanyEcosystem.DAL.Entities;
 using CompanyEcosystem.DAL.Interfaces;
 using CompanyEcosystem.DAL.Repositories;

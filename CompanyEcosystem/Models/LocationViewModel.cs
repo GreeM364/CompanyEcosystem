@@ -1,8 +1,7 @@
 ﻿namespace CompanyEcosystem.PL.Models
 {
-    public class LocationViewModel
+    public class LocationViewModel : BaseViewModel
     {
-        public int Id { get; set; }
         public string Title { get; set; }
         public int Chief { get; set; }
         public DateTime WorkingStart { get; set; }

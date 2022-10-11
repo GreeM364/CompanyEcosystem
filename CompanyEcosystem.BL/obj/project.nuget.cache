@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "aeFYUdDHY+3a1mvYWJ7yKQfwFTnnI/EqEhL2/L/a/63zZYfZhu34LhHLFKklide6qLTncXRrQu4LShqOnqoxww==",
+  "dgSpecHash": "K8eaxZI+DLbgjbzz5bLDeakAx6vFMqfHg3ABkpO5mxFTu5wkngZ/HGXF9ErPtXWHrvzD84LqiJ9Wp9ziEoSqxA==",
   "success": true,
   "projectFilePath": "D:\\Visual Studio\\CompanyEcosystem\\CompanyEcosystem.BL\\CompanyEcosystem.BL.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\DENYS\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
+    "C:\\Users\\DENYS\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",
     "C:\\Users\\DENYS\\.nuget\\packages\\microsoft.aspnetcore.http.abstractions\\2.2.0\\microsoft.aspnetcore.http.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\DENYS\\.nuget\\packages\\microsoft.aspnetcore.http.features\\2.2.0\\microsoft.aspnetcore.http.features.2.2.0.nupkg.sha512",
     "C:\\Users\\DENYS\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",

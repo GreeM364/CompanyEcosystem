@@ -14,8 +14,8 @@ namespace CompanyEcosystem.DAL.Entities
         public string Role { get; set; }
         public string Position { get; set; }
 
-        public int LocationId { get; set; }
-        public Location Location { get; set; }
+        public int? LocationId { get; set; }
+        public Location? Location { get; set; }
 
     }
 }

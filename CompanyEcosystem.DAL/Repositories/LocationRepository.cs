@@ -13,37 +13,41 @@ namespace CompanyEcosystem.DAL.Repositories
 {
     public class LocationRepository : IRepository<Location>
     {
-        private CompanyEcosystemContext db;
+        private CompanyEcosystemContext _db;
         public LocationRepository(CompanyEcosystemContext context)
         {
-            db = context;
+            _db = context;
         }
         public IEnumerable<Location> GetAll()
         {
-            return db.Locations;
+            return _db.Locations;
         }
 
         public Location Get(int id)
         {
-            return db.Locations.Find(id);
+            return _db.Locations.Find(id);
         }
 
         public void Create(Location item)
         {
-            db.Locations.Add(item);
+            _db.Locations.Add(item);
+            _db.SaveChanges();
         }
 
         public void Update(Location item)
         {
-            db.Entry(item).State = EntityState.Modified;
+            _db.Entry(item).State = EntityState.Modified;
+            _db.SaveChanges();
         }
 
         public void Delete(int id)
         {
-            var location = db.Locations.Find(id);
+            var location = _db.Locations.Find(id);
             
             if (location != null)
-                db.Locations.Remove(location);
+                _db.Locations.Remove(location);
+
+            _db.SaveChanges();
         }
     }
 }

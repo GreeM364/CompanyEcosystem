@@ -1,6 +1,6 @@
 ﻿using Microsoft.OpenApi.Models;
 using CompanyEcosystem.BL.Infrastructure;
-using Microsoft.AspNetCore.Http;
+using AutoMapper;
 
 namespace CompanyEcosystem.PL
 {
@@ -18,7 +18,9 @@ namespace CompanyEcosystem.PL
 
             service.AddControllers();
             service.AddBusinessLogicLayer(connectionString);
-            
+
+            service.AddAutoMapper(typeof(AutomapperWebProfile));
+
             service.AddSwaggerGen(c => c.SwaggerDoc("v1", new OpenApiInfo { Title = "My Api", Version = "v1" }));
         }
 
@@ -40,6 +42,7 @@ namespace CompanyEcosystem.PL
             app.UseAuthorization();
 
             app.UseMiddleware<JwtMiddleware>();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
