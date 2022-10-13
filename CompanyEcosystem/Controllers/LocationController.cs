@@ -20,13 +20,20 @@ namespace CompanyEcosystem.PL.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<LocationViewModel> Get()
+        public IActionResult Get()
         {
-            IEnumerable<LocationDTO> locationDTOs = _locationService.GetLocations();
+            try
+            {
+                IEnumerable<LocationDTO> locationDtos = _locationService.GetLocations();
 
-            var locations = _mapper.Map<IEnumerable<LocationDTO>, List<LocationViewModel>>(locationDTOs);
-            
-            return locations;
+                var locations = _mapper.Map<IEnumerable<LocationDTO>, List<LocationViewModel>>(locationDtos);
+
+                return Ok(locations);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
         [HttpGet("{id}")]
@@ -56,7 +63,42 @@ namespace CompanyEcosystem.PL.Controllers
             {
                 var locationDto = _mapper.Map<LocationViewModel, LocationDTO>(model);
 
-                _locationService.PostLocation(locationDto);
+                _locationService.CreateLocation(locationDto);
+
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpPut]
+        public IActionResult Put(LocationViewModel model)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(model);
+
+            try
+            {
+                var locationDto = _mapper.Map<LocationViewModel, LocationDTO>(model);
+
+                _locationService.UpdateLocation(locationDto);
+
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpDelete]
+        public IActionResult Delete(int? id)
+        {
+            try
+            {
+                _locationService.DeleteLocation(id);
 
                 return Ok();
             }

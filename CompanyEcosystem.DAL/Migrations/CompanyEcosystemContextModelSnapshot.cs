@@ -82,6 +82,56 @@ namespace CompanyEcosystem.DAL.Migrations
                     b.ToTable("Locations");
                 });
 
+            modelBuilder.Entity("CompanyEcosystem.DAL.Entities.Questionnaire", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("AboutMyself")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Birthday")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LinkToLinkedIn")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MiddleName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Photo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EmployeeId")
+                        .IsUnique();
+
+                    b.ToTable("Questionnaires");
+                });
+
             modelBuilder.Entity("CompanyEcosystem.DAL.Entities.Employee", b =>
                 {
                     b.HasOne("CompanyEcosystem.DAL.Entities.Location", "Location")
@@ -91,6 +141,22 @@ namespace CompanyEcosystem.DAL.Migrations
                         .IsRequired();
 
                     b.Navigation("Location");
+                });
+
+            modelBuilder.Entity("CompanyEcosystem.DAL.Entities.Questionnaire", b =>
+                {
+                    b.HasOne("CompanyEcosystem.DAL.Entities.Employee", "Employee")
+                        .WithOne("Questionnaires")
+                        .HasForeignKey("CompanyEcosystem.DAL.Entities.Questionnaire", "EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Employee");
+                });
+
+            modelBuilder.Entity("CompanyEcosystem.DAL.Entities.Employee", b =>
+                {
+                    b.Navigation("Questionnaires");
                 });
 
             modelBuilder.Entity("CompanyEcosystem.DAL.Entities.Location", b =>

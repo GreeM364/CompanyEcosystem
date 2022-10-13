@@ -9,6 +9,7 @@ namespace CompanyEcosystem.BL.Infrastructure
         public AutomapperBLProfile()
         {
             CreateMap<LocationDTO, Location>().ReverseMap();
+            CreateMap<QuestionnaireDTO, Questionnaire>().ReverseMap();
         }
     }
 }

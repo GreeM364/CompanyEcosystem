@@ -1,4 +1,6 @@
-﻿namespace CompanyEcosystem.PL.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace CompanyEcosystem.PL.Models
 {
     public class BaseViewModel
     {

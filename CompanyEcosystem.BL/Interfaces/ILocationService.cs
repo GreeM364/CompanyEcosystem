@@ -11,6 +11,8 @@ namespace CompanyEcosystem.BL.Interfaces
     {
         LocationDTO GetLocation(int? id);
         IEnumerable<LocationDTO> GetLocations();
-        void PostLocation(LocationDTO locationDto);
+        void CreateLocation(LocationDTO locationDto);
+        void UpdateLocation(LocationDTO locationDto);
+        void DeleteLocation(int? id);
     }
 }

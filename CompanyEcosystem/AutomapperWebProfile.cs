@@ -9,6 +9,7 @@ namespace CompanyEcosystem.PL
         public AutomapperWebProfile()
         {
             CreateMap<LocationViewModel, LocationDTO>().ReverseMap();
+            CreateMap<QuestionnaireViewModel, QuestionnaireDTO>().ReverseMap();
         }
     }
 }

@@ -12,7 +12,7 @@ namespace CompanyEcosystem.DAL.Repositories
 {
     public class EmployeeRepository : IRepository<Employee>
     {
-        private CompanyEcosystemContext db;
+        private readonly CompanyEcosystemContext db;
         public EmployeeRepository(CompanyEcosystemContext context)
         {
             db = context;
@@ -42,9 +42,7 @@ namespace CompanyEcosystem.DAL.Repositories
         public void Delete(int id)
         {
             var user = db.Locations.Find(id);
-
-            if (user != null)
-                db.Locations.Remove(user);
+            db.Locations.Remove(user);
 
             db.SaveChanges();
         }

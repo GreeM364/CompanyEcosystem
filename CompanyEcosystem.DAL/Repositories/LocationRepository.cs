@@ -43,9 +43,7 @@ namespace CompanyEcosystem.DAL.Repositories
         public void Delete(int id)
         {
             var location = _db.Locations.Find(id);
-            
-            if (location != null)
-                _db.Locations.Remove(location);
+            _db.Locations.Remove(location);
 
             _db.SaveChanges();
         }
