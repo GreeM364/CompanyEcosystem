@@ -32,7 +32,7 @@ namespace CompanyEcosystem.BL.Infrastructure
             await _next(context);
         }
 
-        public void AttachUserToContext(HttpContext context, IAccountService userService, string token)
+        public void AttachUserToContext(HttpContext context, IAccountService accountService, string token)
         {
             try
             {
@@ -51,7 +51,7 @@ namespace CompanyEcosystem.BL.Infrastructure
                 var jwtToken = (JwtSecurityToken)validatedToken;
                 var userId = int.Parse(jwtToken.Claims.First(x => x.Type == "id").Value);
 
-                context.Items["User"] = userService.GetById(userId);
+                context.Items["User"] = accountService.GetById(userId);
             }
             catch(Exception e)
             {

@@ -15,5 +15,7 @@ namespace CompanyEcosystem.PL.Models
 
         [Required(ErrorMessage = "Enter the end time")]
         public DateTime WorkingEnd { get; set; }
+
+        public IEnumerable<AuthenticateResponse>? AuthenticateResponse { get; set; }
     }
 }

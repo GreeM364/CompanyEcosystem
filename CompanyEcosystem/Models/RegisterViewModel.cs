@@ -4,20 +4,23 @@ namespace CompanyEcosystem.PL.Models
 {
     public class RegisterViewModel
     {
-        [Required(ErrorMessage = "Вкажіть електрону адресу")]
+        [EmailAddress]
+        [Required(ErrorMessage = "Enter an email address")]
         public string Email { get; set; }
 
         [DataType(DataType.Password)]
-        [Required(ErrorMessage = "Вкажіть пароль")]
-        [MinLength(6, ErrorMessage = "Пароль повинен мати довжину не менше 8 символів")]
+        [Required(ErrorMessage = "Enter a password")]
+        [MinLength(6, ErrorMessage = "The password must be at least 8 characters long")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Required(ErrorMessage = "Підтвердіть пароль")]
-        [Compare("Password", ErrorMessage = "Паролі не збігаються")]
+        [Required(ErrorMessage = "Confirm password")]
+        [Compare("Password", ErrorMessage = "Passwords do not match")]
         public string PasswordConfirm { get; set; }
 
-        [Required(ErrorMessage = "Вкажіть посаду")]
+        [Required(ErrorMessage = "Specify the position")]
         public string Position { get; set; }
+
+        public int LocationId { get; set; }
     }
 }

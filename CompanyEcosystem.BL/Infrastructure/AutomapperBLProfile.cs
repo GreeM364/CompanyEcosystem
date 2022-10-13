@@ -10,6 +10,11 @@ namespace CompanyEcosystem.BL.Infrastructure
         {
             CreateMap<LocationDTO, Location>().ReverseMap();
             CreateMap<QuestionnaireDTO, Questionnaire>().ReverseMap();
+            CreateMap<EmployeeDTO, Employee>().
+                ForMember(dest => dest.Password,
+                    opt => opt.MapFrom(src => HashPassword.HashPas(src.Password)))
+                .ForMember(dest => dest.Role,
+                    opt => opt.MapFrom(src => "User")).ReverseMap();
         }
     }
 }

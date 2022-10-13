@@ -2,7 +2,10 @@
 using CompanyEcosystem.BL.Data_Transfer_Object;
 using CompanyEcosystem.BL.Infrastructure;
 using CompanyEcosystem.BL.Interfaces;
+using CompanyEcosystem.DAL.Entities;
+using CompanyEcosystem.DAL.Interfaces;
 using CompanyEcosystem.PL.Models;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CompanyEcosystem.PL.Controllers
@@ -12,11 +15,13 @@ namespace CompanyEcosystem.PL.Controllers
     public class LocationController : ControllerBase
     {
         private readonly ILocationService _locationService;
+        private readonly IAccountService _accountService;
         private readonly IMapper _mapper;
-        public LocationController(ILocationService locationService, IMapper mapper)
+        public LocationController(ILocationService locationService, IMapper mapper, IAccountService accountService)
         {
             _locationService = locationService;
             _mapper = mapper;
+            _accountService = accountService;
         }
 
         [HttpGet]
@@ -41,9 +46,17 @@ namespace CompanyEcosystem.PL.Controllers
         {
             try
             {
-                LocationDTO locationDto = _locationService.GetLocation(id);
+                var source = _mapper.Map<LocationDTO, LocationViewModel>(_locationService.GetLocation(id));
 
-                var locationViewModel = _mapper.Map<LocationDTO, LocationViewModel>(locationDto);
+                var locationViewModel = new LocationViewModel
+                {
+                    Id = source.Id,
+                    Title = source.Title,
+                    Chief = source.Chief,
+                    WorkingStart = source.WorkingStart,
+                    WorkingEnd = source.WorkingEnd,
+                    AuthenticateResponse = _mapper.Map<IEnumerable<EmployeeDTO>, List<AuthenticateResponse>>(_accountService.GetAll())
+                }; // TODO: ????????????????????
 
                 return Ok(locationViewModel);
             }

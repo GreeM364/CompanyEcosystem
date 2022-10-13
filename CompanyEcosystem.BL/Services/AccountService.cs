@@ -13,11 +13,13 @@ namespace CompanyEcosystem.BL.Services
     {
         private readonly IRepository<Employee> _repository;
         private readonly IConfiguration _configuration;
+        private readonly IMapper _mapper;
 
-        public AccountService(IRepository<Employee> repository, IConfiguration configuration)
+        public AccountService(IRepository<Employee> repository, IConfiguration configuration, IMapper mapper)
         {
             _repository = repository;
             _configuration = configuration;
+            _mapper = mapper;
         }
 
         public EmployeeDTO Register(EmployeeDTO employeeDto)
@@ -27,14 +29,8 @@ namespace CompanyEcosystem.BL.Services
             if (employee != null)
                 throw new ValidationException("The employee is already registered", "");
 
-            _repository.Create(new Employee
-            {
-                Email = employeeDto.Email,
-                Password = HashPassword.HashPas(employeeDto.Password),
-                Role = "User",
-                Position = employeeDto.Position,
-                LocationId = 1 // TODO: додати вибір відділу 
-            });
+            var result = _mapper.Map<EmployeeDTO, Employee>(employeeDto);
+            _repository.Create(result);
 
             var response = Authenticate(new EmployeeDTO()
             {
@@ -55,17 +51,16 @@ namespace CompanyEcosystem.BL.Services
 
             var token = _configuration.GenerateJwtToken(user);
 
-            return new EmployeeDTO {Email = user.Email, Role = user.Role, Position = user.Position, Token = token};
+            return new EmployeeDTO { Email = user.Email, Role = user.Role, Position = user.Position, Token = token };
         }
 
         public IEnumerable<EmployeeDTO> GetAll()
         {
-            var mapper = new MapperConfiguration(configure => configure.CreateMap<Employee,EmployeeDTO>()).CreateMapper();
-            return mapper.Map<IEnumerable<Employee>, List<EmployeeDTO>>(_repository.GetAll());
+            return _mapper.Map<IEnumerable<Employee>, List<EmployeeDTO>>(_repository.GetAll());
         }
 
         public EmployeeDTO GetById(int id)
-        {
+        { 
            var employee =  _repository.Get(id);
            return new EmployeeDTO { Email = employee.Email, Role = employee.Role, Position = employee.Position};
         }

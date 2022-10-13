@@ -5,8 +5,9 @@ using CompanyEcosystem.BL.Interfaces;
 using CompanyEcosystem.PL.Models;
 using Microsoft.AspNetCore.Mvc;
 
-//TODO: правельне відображення вивода всіх 
-//TODO: правельне розміщення мідлвере
+//TODO: чи потрібно стільки моделей ?
+//TODO: правельне розміщення мідлваре
+//TODO: робота с фото
 namespace CompanyEcosystem.PL.Controllers
 {
     [ApiController]
@@ -14,9 +15,11 @@ namespace CompanyEcosystem.PL.Controllers
     public class AccountController : ControllerBase
     {
         private readonly IAccountService _accountService;
-        public AccountController(IAccountService accountService)
+        private readonly IMapper _mapper;
+        public AccountController(IAccountService accountService, IMapper mapper)
         {
             _accountService = accountService;
+            _mapper = mapper;
         }
 
         [HttpPost("register")]
@@ -27,17 +30,15 @@ namespace CompanyEcosystem.PL.Controllers
             
             try
             {
-                EmployeeDTO employeetDTO = new EmployeeDTO
-                    { Email = model.Email, Password = model.Password, Position = model.Position };
+                var employeeDto = _mapper.Map<RegisterViewModel, EmployeeDTO>(model);
 
-                var response =  _accountService.Register(employeetDTO);
+                var response =  _accountService.Register(employeeDto);
 
-                return Ok(new AuthenticateResponse {Email = response.Email, Position = response.Position, 
-                    Role = response.Role, Token = response.Token});
+                return Ok(_mapper.Map<EmployeeDTO, AuthenticateResponse>(response));
             }
             catch (ValidationException e)
             {
-                return BadRequest(e);
+                return BadRequest(e.Message);
             }
         }
 
@@ -49,28 +50,22 @@ namespace CompanyEcosystem.PL.Controllers
 
             try
             {
-                EmployeeDTO employeetDTO = new EmployeeDTO
-                    { Email = model.Email, Password = model.Password };
+                var employeeDto = _mapper.Map<AuthenticateViewModel, EmployeeDTO>(model);
 
-                var response = _accountService.Authenticate(employeetDTO);
+                var response = _accountService.Authenticate(employeeDto);
 
-                return Ok(new AuthenticateResponse {Email = response.Email, Position = response.Position, 
-                    Role = response.Role, Token = response.Token});
+                return Ok(_mapper.Map<EmployeeDTO, AuthenticateResponse>(response));
             }
             catch (ValidationException e)
             {
-                return BadRequest(e);
+                return BadRequest(e.Message);
             }
         }
 
         [HttpGet]
         public IEnumerable<AuthenticateResponse> GetAll()
         {
-            IEnumerable<EmployeeDTO> employeeDtos = _accountService.GetAll();
-            var mapper = new MapperConfiguration(configure => configure.CreateMap<EmployeeDTO, AuthenticateResponse>()).CreateMapper();
-            var locations = mapper.Map<IEnumerable<EmployeeDTO>, List<AuthenticateResponse>>(employeeDtos);
-
-            return locations;
+            return _mapper.Map<IEnumerable<EmployeeDTO>, List<AuthenticateResponse>>(_accountService.GetAll());
         }
     }
 }
