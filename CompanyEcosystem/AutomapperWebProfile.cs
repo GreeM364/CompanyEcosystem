@@ -12,7 +12,8 @@ namespace CompanyEcosystem.PL
             CreateMap<QuestionnaireViewModel, QuestionnaireDTO>().ReverseMap();
             CreateMap<RegisterViewModel, EmployeeDTO>().ReverseMap();
             CreateMap<AuthenticateViewModel, EmployeeDTO>().ReverseMap();
-            CreateMap<AuthenticateResponse, EmployeeDTO>().ReverseMap();
+            CreateMap<AuthenticateResponseViewModel, EmployeeDTO>().ReverseMap();
+            CreateMap<ThingViewModel, ThingDTO>().ReverseMap();
         }
     }
 }

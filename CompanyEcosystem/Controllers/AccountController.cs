@@ -34,7 +34,7 @@ namespace CompanyEcosystem.PL.Controllers
 
                 var response =  _accountService.Register(employeeDto);
 
-                return Ok(_mapper.Map<EmployeeDTO, AuthenticateResponse>(response));
+                return Ok(_mapper.Map<EmployeeDTO, AuthenticateResponseViewModel>(response));
             }
             catch (ValidationException e)
             {
@@ -54,7 +54,7 @@ namespace CompanyEcosystem.PL.Controllers
 
                 var response = _accountService.Authenticate(employeeDto);
 
-                return Ok(_mapper.Map<EmployeeDTO, AuthenticateResponse>(response));
+                return Ok(_mapper.Map<EmployeeDTO, AuthenticateResponseViewModel>(response));
             }
             catch (ValidationException e)
             {
@@ -63,9 +63,9 @@ namespace CompanyEcosystem.PL.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<AuthenticateResponse> GetAll()
+        public IEnumerable<AuthenticateResponseViewModel> GetAll()
         {
-            return _mapper.Map<IEnumerable<EmployeeDTO>, List<AuthenticateResponse>>(_accountService.GetAll());
+            return _mapper.Map<IEnumerable<EmployeeDTO>, List<AuthenticateResponseViewModel>>(_accountService.GetAll());
         }
     }
 }

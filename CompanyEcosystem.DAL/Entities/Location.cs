@@ -15,5 +15,6 @@ namespace CompanyEcosystem.DAL.Entities
         public DateTime WorkingEnd { get; set; }
 
         public List<Employee> Employees { get; set; }
+        public List<Thing> Things { get; set; }
     }
 }

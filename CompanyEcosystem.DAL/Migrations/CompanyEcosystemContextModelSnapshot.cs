@@ -132,6 +132,36 @@ namespace CompanyEcosystem.DAL.Migrations
                     b.ToTable("Questionnaires");
                 });
 
+            modelBuilder.Entity("CompanyEcosystem.DAL.Entities.Thing", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Characteristic")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Instruction")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("LocationId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LocationId");
+
+                    b.ToTable("Things");
+                });
+
             modelBuilder.Entity("CompanyEcosystem.DAL.Entities.Employee", b =>
                 {
                     b.HasOne("CompanyEcosystem.DAL.Entities.Location", "Location")
@@ -154,6 +184,17 @@ namespace CompanyEcosystem.DAL.Migrations
                     b.Navigation("Employee");
                 });
 
+            modelBuilder.Entity("CompanyEcosystem.DAL.Entities.Thing", b =>
+                {
+                    b.HasOne("CompanyEcosystem.DAL.Entities.Location", "Location")
+                        .WithMany("Things")
+                        .HasForeignKey("LocationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Location");
+                });
+
             modelBuilder.Entity("CompanyEcosystem.DAL.Entities.Employee", b =>
                 {
                     b.Navigation("Questionnaires");
@@ -162,6 +203,8 @@ namespace CompanyEcosystem.DAL.Migrations
             modelBuilder.Entity("CompanyEcosystem.DAL.Entities.Location", b =>
                 {
                     b.Navigation("Employees");
+
+                    b.Navigation("Things");
                 });
 #pragma warning restore 612, 618
         }

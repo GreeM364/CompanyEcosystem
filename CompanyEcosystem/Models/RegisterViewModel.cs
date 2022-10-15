@@ -10,7 +10,7 @@ namespace CompanyEcosystem.PL.Models
 
         [DataType(DataType.Password)]
         [Required(ErrorMessage = "Enter a password")]
-        [MinLength(6, ErrorMessage = "The password must be at least 8 characters long")]
+        [MinLength(6, ErrorMessage = "The password must be at least 6 characters long")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]

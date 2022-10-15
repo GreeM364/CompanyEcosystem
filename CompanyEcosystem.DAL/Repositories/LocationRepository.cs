@@ -13,7 +13,7 @@ namespace CompanyEcosystem.DAL.Repositories
 {
     public class LocationRepository : IRepository<Location>
     {
-        private CompanyEcosystemContext _db;
+        private readonly CompanyEcosystemContext _db;
         public LocationRepository(CompanyEcosystemContext context)
         {
             _db = context;

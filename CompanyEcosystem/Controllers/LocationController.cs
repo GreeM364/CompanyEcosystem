@@ -2,10 +2,7 @@
 using CompanyEcosystem.BL.Data_Transfer_Object;
 using CompanyEcosystem.BL.Infrastructure;
 using CompanyEcosystem.BL.Interfaces;
-using CompanyEcosystem.DAL.Entities;
-using CompanyEcosystem.DAL.Interfaces;
 using CompanyEcosystem.PL.Models;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CompanyEcosystem.PL.Controllers
@@ -29,13 +26,13 @@ namespace CompanyEcosystem.PL.Controllers
         {
             try
             {
-                IEnumerable<LocationDTO> locationDtos = _locationService.GetLocations();
+                IEnumerable<LocationDTO> locationsDtos = _locationService.GetLocations();
 
-                var locations = _mapper.Map<IEnumerable<LocationDTO>, List<LocationViewModel>>(locationDtos);
+                var locations = _mapper.Map<IEnumerable<LocationDTO>, List<LocationViewModel>>(locationsDtos);
 
                 return Ok(locations);
             }
-            catch (Exception e)
+            catch (ValidationException e)
             {
                 return BadRequest(e.Message);
             }
@@ -55,7 +52,7 @@ namespace CompanyEcosystem.PL.Controllers
                     Chief = source.Chief,
                     WorkingStart = source.WorkingStart,
                     WorkingEnd = source.WorkingEnd,
-                    AuthenticateResponse = _mapper.Map<IEnumerable<EmployeeDTO>, List<AuthenticateResponse>>(_accountService.GetAll())
+                    AuthenticateResponse = _mapper.Map<IEnumerable<EmployeeDTO>, List<AuthenticateResponseViewModel>>(_accountService.GetAll())
                 }; // TODO: ????????????????????
 
                 return Ok(locationViewModel);
@@ -80,7 +77,7 @@ namespace CompanyEcosystem.PL.Controllers
 
                 return Ok();
             }
-            catch (Exception e)
+            catch (ValidationException e)
             {
                 return BadRequest(e.Message);
             }
@@ -100,7 +97,7 @@ namespace CompanyEcosystem.PL.Controllers
 
                 return Ok();
             }
-            catch (Exception e)
+            catch (ValidationException e)
             {
                 return BadRequest(e.Message);
             }
@@ -115,7 +112,7 @@ namespace CompanyEcosystem.PL.Controllers
 
                 return Ok();
             }
-            catch (Exception e)
+            catch (ValidationException e)
             {
                 return BadRequest(e.Message);
             }
