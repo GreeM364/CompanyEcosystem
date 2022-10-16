@@ -16,6 +16,7 @@ namespace CompanyEcosystem.BL.Infrastructure
                 .ForMember(dest => dest.Role,
                     opt => opt.MapFrom(src => "User")).ReverseMap();
             CreateMap<ThingDTO, Thing>().ReverseMap();
+            CreateMap<PhotoThingDTO, PhotoThing>().ReverseMap();
         }
     }
 }

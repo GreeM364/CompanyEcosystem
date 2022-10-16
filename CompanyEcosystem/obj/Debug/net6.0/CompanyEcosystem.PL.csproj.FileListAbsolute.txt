@@ -65,3 +65,4 @@ D:\Visual Studio\CompanyEcosystem\CompanyEcosystem\bin\Debug\net6.0\CompanyEcosy
 D:\Visual Studio\CompanyEcosystem\CompanyEcosystem\bin\Debug\net6.0\CompanyEcosystem.BL.pdb
 D:\Visual Studio\CompanyEcosystem\CompanyEcosystem\bin\Debug\net6.0\CompanyEcosystem.DAL.pdb
 D:\Visual Studio\CompanyEcosystem\CompanyEcosystem\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+D:\Visual Studio\CompanyEcosystem\CompanyEcosystem\bin\Debug\net6.0\CompanyEcosystem.PL.staticwebassets.runtime.json

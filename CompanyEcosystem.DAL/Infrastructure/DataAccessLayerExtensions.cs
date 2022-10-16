@@ -18,6 +18,7 @@ namespace CompanyEcosystem.DAL.Infrastructure
             services.AddScoped<IRepository<Employee>, EmployeeRepository>();
             services.AddScoped<IRepository<Questionnaire>, QuestionnaireRepository>();
             services.AddScoped<IRepository<Thing>, ThingRepository>();
+            services.AddScoped<IRepository<PhotoThing>, PhotoThingRepository>();
 
             return services;
         }

@@ -21,4 +21,8 @@
     <ProjectReference Include="..\CompanyEcosystem.BL\CompanyEcosystem.BL.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\img\things\" />
+  </ItemGroup>
+
 </Project>

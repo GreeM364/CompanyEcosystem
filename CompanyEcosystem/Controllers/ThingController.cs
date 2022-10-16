@@ -13,10 +13,12 @@ namespace CompanyEcosystem.PL.Controllers
     {
         private readonly IThingService _thingService;
         private readonly IMapper _mapper;
-        public ThingController(IThingService service, IMapper mapper)
+        private readonly IWebHostEnvironment _appEnvironment;
+        public ThingController(IThingService service, IMapper mapper, IWebHostEnvironment appEnvironment)
         {
             _thingService = service;
             _mapper = mapper;
+            _appEnvironment = appEnvironment;
         }
 
         [HttpGet]
@@ -54,16 +56,18 @@ namespace CompanyEcosystem.PL.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post(ThingViewModel model)
+        public IActionResult Post(CreateThingViewModel model, IFormFile file)
         {
             if (!ModelState.IsValid)
                 return BadRequest(model);
 
             try
             {
-                var thingDto = _mapper.Map<ThingViewModel, ThingDTO>(model);
+                var thingDto = _mapper.Map<CreateThingViewModel, ThingDTO>(model);
 
-                _thingService.CreateThing(thingDto);
+                var directoryPath = Path.Combine(_appEnvironment.WebRootPath, "img", "things");
+
+               // _thingService.CreateThing(thingDto, file, directoryPath);
 
                 return Ok();
             }

@@ -82,6 +82,28 @@ namespace CompanyEcosystem.DAL.Migrations
                     b.ToTable("Locations");
                 });
 
+            modelBuilder.Entity("CompanyEcosystem.DAL.Entities.PhotoThing", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Path")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ThingId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ThingId");
+
+                    b.ToTable("PhotoThings");
+                });
+
             modelBuilder.Entity("CompanyEcosystem.DAL.Entities.Questionnaire", b =>
                 {
                     b.Property<int>("Id")
@@ -173,6 +195,17 @@ namespace CompanyEcosystem.DAL.Migrations
                     b.Navigation("Location");
                 });
 
+            modelBuilder.Entity("CompanyEcosystem.DAL.Entities.PhotoThing", b =>
+                {
+                    b.HasOne("CompanyEcosystem.DAL.Entities.Thing", "Thing")
+                        .WithMany("PhotoThings")
+                        .HasForeignKey("ThingId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Thing");
+                });
+
             modelBuilder.Entity("CompanyEcosystem.DAL.Entities.Questionnaire", b =>
                 {
                     b.HasOne("CompanyEcosystem.DAL.Entities.Employee", "Employee")
@@ -205,6 +238,11 @@ namespace CompanyEcosystem.DAL.Migrations
                     b.Navigation("Employees");
 
                     b.Navigation("Things");
+                });
+
+            modelBuilder.Entity("CompanyEcosystem.DAL.Entities.Thing", b =>
+                {
+                    b.Navigation("PhotoThings");
                 });
 #pragma warning restore 612, 618
         }

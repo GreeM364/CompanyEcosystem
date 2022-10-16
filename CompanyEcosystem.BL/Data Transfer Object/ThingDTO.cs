@@ -14,5 +14,8 @@ namespace CompanyEcosystem.BL.Data_Transfer_Object
         public string Characteristic { get; set; }
 
         public int LocationId { get; set; }
+        public LocationDTO? Location { get; set; }
+        public List<PhotoThingDTO> PhotoThings { get; set; }
     }
 }
+
