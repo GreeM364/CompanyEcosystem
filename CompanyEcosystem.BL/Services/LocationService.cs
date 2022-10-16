@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using CompanyEcosystem.BL.Data_Transfer_Object;
+using CompanyEcosystem.BL.DataTransferObjects;
 using CompanyEcosystem.BL.Interfaces;
 using CompanyEcosystem.DAL.Entities;
 using CompanyEcosystem.DAL.Interfaces;
@@ -18,16 +18,16 @@ namespace CompanyEcosystem.BL.Services
             _mapper = mapper;
         }
 
-        public IEnumerable<LocationDTO> GetLocations()
+        public IEnumerable<LocationDto> GetLocations()
         {
             var locations = _repository.GetAll();
             if(locations.Count() == 0)
                 throw new ValidationException("Locations not found", "");
 
-            return _mapper.Map<IEnumerable<Location>, List<LocationDTO>>(_repository.GetAll());
+            return _mapper.Map<IEnumerable<Location>, List<LocationDto>>(_repository.GetAll());
         }
 
-        public LocationDTO GetLocation(int? id)
+        public LocationDto GetLocation(int? id)
         {
             if (id == null)
                 throw new ValidationException("Location ID not set", "");
@@ -35,19 +35,19 @@ namespace CompanyEcosystem.BL.Services
             if (location == null)
                 throw new ValidationException("Location not found", "");
 
-            return _mapper.Map<Location, LocationDTO>(location);
+            return _mapper.Map<Location, LocationDto>(location);
         }
 
-        public void CreateLocation(LocationDTO locationDto)
+        public void CreateLocation(LocationDto locationDto)
         {
-            var location = _mapper.Map<LocationDTO, Location>(locationDto);
+            var location = _mapper.Map<LocationDto, Location>(locationDto);
 
             _repository.Create(location);
         }
 
-        public void UpdateLocation(LocationDTO locationDto)
+        public void UpdateLocation(LocationDto locationDto)
         {
-            var location = _mapper.Map<LocationDTO, Location>(locationDto);
+            var location = _mapper.Map<LocationDto, Location>(locationDto);
 
             _repository.Update(location);
         }

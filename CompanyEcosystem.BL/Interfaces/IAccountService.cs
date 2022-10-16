@@ -6,17 +6,17 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using CompanyEcosystem.BL.BusinessModels;
-using CompanyEcosystem.BL.Data_Transfer_Object;
+using CompanyEcosystem.BL.DataTransferObjects;
 using CompanyEcosystem.DAL.Entities;
 
 namespace CompanyEcosystem.BL.Interfaces
 {
     public interface IAccountService
     {
-        EmployeeDTO Authenticate(EmployeeDTO employeeDto);
-        EmployeeDTO Register(EmployeeDTO employeeDto);
-        IEnumerable<EmployeeDTO> GetAll();
-        EmployeeDTO GetById(int id);
+        EmployeeDto Authenticate(EmployeeDto employeeDto);
+        EmployeeDto Register(EmployeeDto employeeDto);
+        IEnumerable<EmployeeDto> GetAll();
+        EmployeeDto GetById(int id);
     }
 
 }

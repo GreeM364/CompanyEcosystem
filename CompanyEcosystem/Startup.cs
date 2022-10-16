@@ -1,6 +1,7 @@
 ﻿using Microsoft.OpenApi.Models;
 using CompanyEcosystem.BL.Infrastructure;
 using AutoMapper;
+using CompanyEcosystem.PL.Middlewares;
 
 namespace CompanyEcosystem.PL
 {

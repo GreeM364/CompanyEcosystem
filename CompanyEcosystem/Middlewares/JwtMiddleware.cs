@@ -1,44 +1,36 @@
-﻿using System;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
+﻿using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using CompanyEcosystem.BL.Interfaces;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 
-namespace CompanyEcosystem.BL.Infrastructure
+namespace CompanyEcosystem.PL.Middlewares
 {
     public class JwtMiddleware
     {
         private readonly RequestDelegate _next;
-        private readonly IConfiguration _configuration;
-        private readonly ILogger<JwtMiddleware> _logger;
 
-        public JwtMiddleware(RequestDelegate next, IConfiguration configuration)
+        public JwtMiddleware(RequestDelegate next)
         {
             _next = next;
-            _configuration = configuration;
         }
 
-        public async Task Invoke(HttpContext context, IAccountService userService)
+        public async Task Invoke(HttpContext context, IAccountService userService, IConfiguration configuration, ILogger<JwtMiddleware> logger)
         {
             var token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
 
             if (token != null)
-                AttachUserToContext(context, userService, token);
+                AttachUserToContext(context, userService, configuration, logger, token);
 
             await _next(context);
         }
 
-        public void AttachUserToContext(HttpContext context, IAccountService accountService, string token)
+        private void AttachUserToContext(HttpContext context, IAccountService accountService,IConfiguration configuration, ILogger<JwtMiddleware> logger, string token)
         {
             try
             {
                 var tokenHandler = new JwtSecurityTokenHandler();
                 
-                var key = Encoding.ASCII.GetBytes(_configuration["Secret"]);
+                var key = Encoding.ASCII.GetBytes(configuration["Secret"]);
                 tokenHandler.ValidateToken(token, new TokenValidationParameters
                 {
                     ValidateIssuerSigningKey = true,
@@ -55,7 +47,7 @@ namespace CompanyEcosystem.BL.Infrastructure
             }
             catch(Exception e)
             {
-                _logger.LogInformation(e.Message);
+                logger.LogInformation(e.Message);
             }
         }
     }

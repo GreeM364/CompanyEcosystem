@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using CompanyEcosystem.BL.Data_Transfer_Object;
+using CompanyEcosystem.BL.DataTransferObjects;
 using CompanyEcosystem.BL.Infrastructure;
 using CompanyEcosystem.BL.Interfaces;
 using CompanyEcosystem.DAL.Entities;
@@ -18,16 +18,16 @@ namespace CompanyEcosystem.BL.Services
             _mapper = mapper;
         }
 
-        public IEnumerable<QuestionnaireDTO> GetQuestionnaires()
+        public IEnumerable<QuestionnaireDto> GetQuestionnaires()
         {
             var questionnaires = _repository.GetAll();
             if (questionnaires.Count() == 0)
                 throw new ValidationException("Questionnaires not found", "");
 
-            return _mapper.Map<IEnumerable<Questionnaire>, List<QuestionnaireDTO>>(_repository.GetAll());
+            return _mapper.Map<IEnumerable<Questionnaire>, List<QuestionnaireDto>>(_repository.GetAll());
         }
 
-        public QuestionnaireDTO GetQuestionnaire(int? id)
+        public QuestionnaireDto GetQuestionnaire(int? id)
         {
             if (id == null)
                 throw new ValidationException("Questionnaire ID not set", "");
@@ -35,19 +35,19 @@ namespace CompanyEcosystem.BL.Services
             if (questionnaire == null)
                 throw new ValidationException("Questionnaire not found", "");
 
-            return _mapper.Map<Questionnaire, QuestionnaireDTO>(questionnaire);
+            return _mapper.Map<Questionnaire, QuestionnaireDto>(questionnaire);
         }
 
-        public void CreateQuestionnaire(QuestionnaireDTO questionnaireDto)
+        public void CreateQuestionnaire(QuestionnaireDto questionnaireDto)
         {
-            var questionnaire = _mapper.Map<QuestionnaireDTO, Questionnaire>(questionnaireDto);
+            var questionnaire = _mapper.Map<QuestionnaireDto, Questionnaire>(questionnaireDto);
 
             _repository.Create(questionnaire);
         }
 
-        public void UpdateQuestionnaire(QuestionnaireDTO questionnaireDto)
+        public void UpdateQuestionnaire(QuestionnaireDto questionnaireDto)
         {
-            var questionnaire = _mapper.Map<QuestionnaireDTO, Questionnaire>(questionnaireDto);
+            var questionnaire = _mapper.Map<QuestionnaireDto, Questionnaire>(questionnaireDto);
 
             _repository.Update(questionnaire);
         }

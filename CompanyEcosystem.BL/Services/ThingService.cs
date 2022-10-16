@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using CompanyEcosystem.BL.Data_Transfer_Object;
+using CompanyEcosystem.BL.DataTransferObjects;
 using CompanyEcosystem.BL.Infrastructure;
 using CompanyEcosystem.BL.Interfaces;
 using CompanyEcosystem.DAL.Entities;
@@ -17,16 +17,16 @@ namespace CompanyEcosystem.BL.Services
             _mapper = mapper;
         }
 
-        public IEnumerable<ThingDTO> GetThings()
+        public IEnumerable<ThingDto> GetThings()
         {
             var things = _repository.GetAll();
             if (things.Count() == 0)
                 throw new ValidationException("Things not found", "");
 
-            return _mapper.Map<IEnumerable<Thing>, List<ThingDTO>>(_repository.GetAll());
+            return _mapper.Map<IEnumerable<Thing>, List<ThingDto>>(_repository.GetAll());
         }
 
-        public ThingDTO GetThing(int? id)
+        public ThingDto GetThing(int? id)
         {
             if (id == null)
                 throw new ValidationException("Thing ID not set", "");
@@ -34,19 +34,19 @@ namespace CompanyEcosystem.BL.Services
             if (thing == null)
                 throw new ValidationException("Thing not found", "");
 
-            return _mapper.Map<Thing, ThingDTO>(thing);
+            return _mapper.Map<Thing, ThingDto>(thing);
         }
 
-        public void CreateThing(ThingDTO thingDto)
+        public void CreateThing(ThingDto thingDto)
         {
-            var thing = _mapper.Map<ThingDTO, Thing>(thingDto);
+            var thing = _mapper.Map<ThingDto, Thing>(thingDto);
 
             _repository.Create(thing);
         }
 
-        public void UpdateThing(ThingDTO thingDto)
+        public void UpdateThing(ThingDto thingDto)
         {
-            var thing = _mapper.Map<ThingDTO, Thing>(thingDto);
+            var thing = _mapper.Map<ThingDto, Thing>(thingDto);
 
             _repository.Update(thing);
         }

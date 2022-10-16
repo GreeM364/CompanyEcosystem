@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using CompanyEcosystem.BL.Data_Transfer_Object;
+using CompanyEcosystem.BL.DataTransferObjects;
 using CompanyEcosystem.BL.Infrastructure;
 using CompanyEcosystem.BL.Interfaces;
 using CompanyEcosystem.PL.Models;
@@ -26,9 +26,9 @@ namespace CompanyEcosystem.PL.Controllers
         {
             try
             {
-                IEnumerable<LocationDTO> locationsDtos = _locationService.GetLocations();
+                IEnumerable<LocationDto> locationsDtos = _locationService.GetLocations();
 
-                var locations = _mapper.Map<IEnumerable<LocationDTO>, List<LocationViewModel>>(locationsDtos);
+                var locations = _mapper.Map<IEnumerable<LocationDto>, List<LocationViewModel>>(locationsDtos);
 
                 return Ok(locations);
             }
@@ -43,7 +43,7 @@ namespace CompanyEcosystem.PL.Controllers
         {
             try
             {
-                var source = _mapper.Map<LocationDTO, LocationViewModel>(_locationService.GetLocation(id));
+                var source = _mapper.Map<LocationDto, LocationViewModel>(_locationService.GetLocation(id));
 
                 var locationViewModel = new LocationViewModel
                 {
@@ -52,7 +52,7 @@ namespace CompanyEcosystem.PL.Controllers
                     Chief = source.Chief,
                     WorkingStart = source.WorkingStart,
                     WorkingEnd = source.WorkingEnd,
-                    AuthenticateResponse = _mapper.Map<IEnumerable<EmployeeDTO>, List<AuthenticateResponseViewModel>>(_accountService.GetAll())
+                    AuthenticateResponse = _mapper.Map<IEnumerable<EmployeeDto>, List<AuthenticateResponseViewModel>>(_accountService.GetAll())
                 }; // TODO: ????????????????????
 
                 return Ok(locationViewModel);
@@ -71,7 +71,7 @@ namespace CompanyEcosystem.PL.Controllers
 
             try
             {
-                var locationDto = _mapper.Map<LocationViewModel, LocationDTO>(model);
+                var locationDto = _mapper.Map<LocationViewModel, LocationDto>(model);
 
                 _locationService.CreateLocation(locationDto);
 
@@ -91,7 +91,7 @@ namespace CompanyEcosystem.PL.Controllers
 
             try
             {
-                var locationDto = _mapper.Map<LocationViewModel, LocationDTO>(model);
+                var locationDto = _mapper.Map<LocationViewModel, LocationDto>(model);
 
                 _locationService.UpdateLocation(locationDto);
 

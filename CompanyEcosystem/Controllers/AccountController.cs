@@ -1,12 +1,11 @@
 ﻿using AutoMapper;
-using CompanyEcosystem.BL.Data_Transfer_Object;
+using CompanyEcosystem.BL.DataTransferObjects;
 using CompanyEcosystem.BL.Infrastructure;
 using CompanyEcosystem.BL.Interfaces;
 using CompanyEcosystem.PL.Models;
 using Microsoft.AspNetCore.Mvc;
 
 //TODO: чи потрібно стільки моделей ?
-//TODO: правельне розміщення мідлваре
 //TODO: робота с фото
 namespace CompanyEcosystem.PL.Controllers
 {
@@ -30,11 +29,11 @@ namespace CompanyEcosystem.PL.Controllers
             
             try
             {
-                var employeeDto = _mapper.Map<RegisterViewModel, EmployeeDTO>(model);
+                var employeeDto = _mapper.Map<RegisterViewModel, EmployeeDto>(model);
 
                 var response =  _accountService.Register(employeeDto);
 
-                return Ok(_mapper.Map<EmployeeDTO, AuthenticateResponseViewModel>(response));
+                return Ok(_mapper.Map<EmployeeDto, AuthenticateResponseViewModel>(response));
             }
             catch (ValidationException e)
             {
@@ -50,11 +49,11 @@ namespace CompanyEcosystem.PL.Controllers
 
             try
             {
-                var employeeDto = _mapper.Map<AuthenticateViewModel, EmployeeDTO>(model);
+                var employeeDto = _mapper.Map<AuthenticateViewModel, EmployeeDto>(model);
 
                 var response = _accountService.Authenticate(employeeDto);
 
-                return Ok(_mapper.Map<EmployeeDTO, AuthenticateResponseViewModel>(response));
+                return Ok(_mapper.Map<EmployeeDto, AuthenticateResponseViewModel>(response));
             }
             catch (ValidationException e)
             {
@@ -65,7 +64,7 @@ namespace CompanyEcosystem.PL.Controllers
         [HttpGet]
         public IEnumerable<AuthenticateResponseViewModel> GetAll()
         {
-            return _mapper.Map<IEnumerable<EmployeeDTO>, List<AuthenticateResponseViewModel>>(_accountService.GetAll());
+            return _mapper.Map<IEnumerable<EmployeeDto>, List<AuthenticateResponseViewModel>>(_accountService.GetAll());
         }
     }
 }

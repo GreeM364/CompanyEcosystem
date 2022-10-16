@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CompanyEcosystem.BL.Data_Transfer_Object
+﻿namespace CompanyEcosystem.BL.DataTransferObjects
 {
-    public class QuestionnaireDTO
+    public class QuestionnaireDto
     {
         public int Id { get; set; }
         public string FirstName { get; set; }

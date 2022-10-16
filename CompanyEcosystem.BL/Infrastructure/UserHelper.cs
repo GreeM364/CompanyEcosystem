@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
+﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
 using CompanyEcosystem.DAL.Entities;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -13,7 +9,7 @@ namespace CompanyEcosystem.BL.Infrastructure
 {
     public static class UserHelper
     {
-        public static string GenerateJwtToken(this IConfiguration configuration, Employee employee)
+        public static string GenerateJwtToken(IConfiguration configuration, Employee employee)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(configuration["Secret"]);

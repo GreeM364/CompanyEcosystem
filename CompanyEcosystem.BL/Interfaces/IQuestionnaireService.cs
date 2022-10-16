@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CompanyEcosystem.BL.Data_Transfer_Object;
+using CompanyEcosystem.BL.DataTransferObjects;
 
 namespace CompanyEcosystem.BL.Interfaces
 {
     public interface IQuestionnaireService
     {
-        QuestionnaireDTO GetQuestionnaire(int? id);
-        IEnumerable<QuestionnaireDTO> GetQuestionnaires();
-        void CreateQuestionnaire(QuestionnaireDTO questionnaireDto);
-        void UpdateQuestionnaire(QuestionnaireDTO questionnaireDto);
+        QuestionnaireDto GetQuestionnaire(int? id);
+        IEnumerable<QuestionnaireDto> GetQuestionnaires();
+        void CreateQuestionnaire(QuestionnaireDto questionnaireDto);
+        void UpdateQuestionnaire(QuestionnaireDto questionnaireDto);
         void DeleteQuestionnaire(int? id);
     }
 }

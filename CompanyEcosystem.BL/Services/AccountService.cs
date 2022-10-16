@@ -1,6 +1,6 @@
 ﻿using System;
 using AutoMapper;
-using CompanyEcosystem.BL.Data_Transfer_Object;
+using CompanyEcosystem.BL.DataTransferObjects;
 using CompanyEcosystem.BL.Interfaces;
 using CompanyEcosystem.BL.Infrastructure;
 using CompanyEcosystem.DAL.Entities;
@@ -22,17 +22,17 @@ namespace CompanyEcosystem.BL.Services
             _mapper = mapper;
         }
 
-        public EmployeeDTO Register(EmployeeDTO employeeDto)
+        public EmployeeDto Register(EmployeeDto employeeDto)
         {
             var employee = _repository.GetAll().FirstOrDefault(e => e.Email == employeeDto.Email);
 
             if (employee != null)
                 throw new ValidationException("The employee is already registered", "");
 
-            var result = _mapper.Map<EmployeeDTO, Employee>(employeeDto);
+            var result = _mapper.Map<EmployeeDto, Employee>(employeeDto);
             _repository.Create(result);
 
-            var response = Authenticate(new EmployeeDTO()
+            var response = Authenticate(new EmployeeDto()
             {
                 Email = employeeDto.Email,
                 Password = employeeDto.Password
@@ -41,28 +41,29 @@ namespace CompanyEcosystem.BL.Services
             return response;
         }
 
-        public EmployeeDTO Authenticate(EmployeeDTO employeeDto)
+        public EmployeeDto Authenticate(EmployeeDto employeeDto)
         {
-            var user = _repository.GetAll().FirstOrDefault(x => x.Email == employeeDto.Email 
-                                                                && x.Password == HashPassword.HashPas(employeeDto.Password));
+            var user = _repository.GetAll()
+                .FirstOrDefault(x => x.Email == employeeDto.Email 
+                                     && x.Password == HashPassword.HashPas(employeeDto.Password));
 
             if (user == null)
                 throw new ValidationException("Username or password is incorrect", "");
+                
+            var token = UserHelper.GenerateJwtToken(_configuration, user);
 
-            var token = _configuration.GenerateJwtToken(user);
-
-            return new EmployeeDTO { Email = user.Email, Role = user.Role, Position = user.Position, Token = token };
+            return new EmployeeDto { Email = user.Email, Role = user.Role, Position = user.Position, Token = token };
         }
 
-        public IEnumerable<EmployeeDTO> GetAll()
+        public IEnumerable<EmployeeDto> GetAll()
         {
-            return _mapper.Map<IEnumerable<Employee>, List<EmployeeDTO>>(_repository.GetAll());
+            return _mapper.Map<IEnumerable<Employee>, List<EmployeeDto>>(_repository.GetAll());
         }
 
-        public EmployeeDTO GetById(int id)
+        public EmployeeDto GetById(int id)
         { 
            var employee =  _repository.Get(id);
-           return new EmployeeDTO { Email = employee.Email, Role = employee.Role, Position = employee.Position};
+           return new EmployeeDto { Email = employee.Email, Role = employee.Role, Position = employee.Position};
         }
     }
 }

@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using CompanyEcosystem.BL.Data_Transfer_Object;
+using CompanyEcosystem.BL.DataTransferObjects;
 
 namespace CompanyEcosystem.BL.Interfaces
 {
     public interface ILocationService
     {
-        LocationDTO GetLocation(int? id);
-        IEnumerable<LocationDTO> GetLocations();
-        void CreateLocation(LocationDTO locationDto);
-        void UpdateLocation(LocationDTO locationDto);
+        LocationDto GetLocation(int? id);
+        IEnumerable<LocationDto> GetLocations();
+        void CreateLocation(LocationDto locationDto);
+        void UpdateLocation(LocationDto locationDto);
         void DeleteLocation(int? id);
     }
 }

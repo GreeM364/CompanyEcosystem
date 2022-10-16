@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using CompanyEcosystem.BL.Data_Transfer_Object;
+using CompanyEcosystem.BL.DataTransferObjects;
 using CompanyEcosystem.BL.Infrastructure;
 using CompanyEcosystem.BL.Interfaces;
 using CompanyEcosystem.PL.Models;
@@ -25,9 +25,9 @@ namespace CompanyEcosystem.PL.Controllers
         {
             try
             {
-                IEnumerable<QuestionnaireDTO> questionnaireDtos = _questionnaireService.GetQuestionnaires();
+                IEnumerable<QuestionnaireDto> questionnaireDtos = _questionnaireService.GetQuestionnaires();
 
-                var questionnaires = _mapper.Map<IEnumerable<QuestionnaireDTO>, List<QuestionnaireViewModel>>(questionnaireDtos);
+                var questionnaires = _mapper.Map<IEnumerable<QuestionnaireDto>, List<QuestionnaireViewModel>>(questionnaireDtos);
 
                 return Ok(questionnaires);
             }
@@ -42,9 +42,9 @@ namespace CompanyEcosystem.PL.Controllers
         {
             try
             {
-                QuestionnaireDTO questionnaireDto = _questionnaireService.GetQuestionnaire(id);
+                QuestionnaireDto questionnaireDto = _questionnaireService.GetQuestionnaire(id);
 
-                var questionnaireViewModel = _mapper.Map<QuestionnaireDTO, QuestionnaireViewModel>(questionnaireDto);
+                var questionnaireViewModel = _mapper.Map<QuestionnaireDto, QuestionnaireViewModel>(questionnaireDto);
 
                 return Ok(questionnaireViewModel);
             }
@@ -62,7 +62,7 @@ namespace CompanyEcosystem.PL.Controllers
 
             try
             {
-                var questionnaireDto = _mapper.Map<QuestionnaireViewModel, QuestionnaireDTO>(model);
+                var questionnaireDto = _mapper.Map<QuestionnaireViewModel, QuestionnaireDto>(model);
 
                 _questionnaireService.CreateQuestionnaire(questionnaireDto);
 
@@ -82,7 +82,7 @@ namespace CompanyEcosystem.PL.Controllers
 
             try
             {
-                var questionnaireDto = _mapper.Map<QuestionnaireViewModel, QuestionnaireDTO>(model);
+                var questionnaireDto = _mapper.Map<QuestionnaireViewModel, QuestionnaireDto>(model);
 
                 _questionnaireService.UpdateQuestionnaire(questionnaireDto);
 

@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using CompanyEcosystem.BL.Data_Transfer_Object;
+using CompanyEcosystem.BL.DataTransferObjects;
 using CompanyEcosystem.BL.Infrastructure;
 using CompanyEcosystem.BL.Interfaces;
 using CompanyEcosystem.PL.Models;
@@ -24,9 +24,9 @@ namespace CompanyEcosystem.PL.Controllers
         {
             try
             {
-                IEnumerable<ThingDTO> thingsDtos = _thingService.GetThings();
+                IEnumerable<ThingDto> thingsDtos = _thingService.GetThings();
 
-                var things = _mapper.Map<IEnumerable<ThingDTO>, List<ThingViewModel>>(thingsDtos);
+                var things = _mapper.Map<IEnumerable<ThingDto>, List<ThingViewModel>>(thingsDtos);
 
                 return Ok(things);
             }
@@ -43,7 +43,7 @@ namespace CompanyEcosystem.PL.Controllers
             {
                 var source = _thingService.GetThing(id);
 
-                var thing = _mapper.Map<ThingDTO, ThingViewModel>(source);
+                var thing = _mapper.Map<ThingDto, ThingViewModel>(source);
 
                 return Ok(thing);
             }
@@ -61,7 +61,7 @@ namespace CompanyEcosystem.PL.Controllers
 
             try
             {
-                var thingDto = _mapper.Map<ThingViewModel, ThingDTO>(model);
+                var thingDto = _mapper.Map<ThingViewModel, ThingDto>(model);
 
                 _thingService.CreateThing(thingDto);
 
@@ -81,7 +81,7 @@ namespace CompanyEcosystem.PL.Controllers
 
             try
             {
-                var thingDto = _mapper.Map<ThingViewModel, ThingDTO>(model);
+                var thingDto = _mapper.Map<ThingViewModel, ThingDto>(model);
 
                 _thingService.UpdateThing(thingDto);
 

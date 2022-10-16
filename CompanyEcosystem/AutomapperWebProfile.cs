@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using CompanyEcosystem.BL.Data_Transfer_Object;
+using CompanyEcosystem.BL.DataTransferObjects;
 using CompanyEcosystem.PL.Models;
 
 namespace CompanyEcosystem.PL
@@ -8,12 +8,12 @@ namespace CompanyEcosystem.PL
     {
         public AutomapperWebProfile()
         {
-            CreateMap<LocationViewModel, LocationDTO>().ReverseMap();
-            CreateMap<QuestionnaireViewModel, QuestionnaireDTO>().ReverseMap();
-            CreateMap<RegisterViewModel, EmployeeDTO>().ReverseMap();
-            CreateMap<AuthenticateViewModel, EmployeeDTO>().ReverseMap();
-            CreateMap<AuthenticateResponseViewModel, EmployeeDTO>().ReverseMap();
-            CreateMap<ThingViewModel, ThingDTO>().ReverseMap();
+            CreateMap<LocationViewModel, LocationDto>().ReverseMap();
+            CreateMap<QuestionnaireViewModel, QuestionnaireDto>().ReverseMap();
+            CreateMap<RegisterViewModel, EmployeeDto>().ReverseMap();
+            CreateMap<AuthenticateViewModel, EmployeeDto>().ReverseMap();
+            CreateMap<AuthenticateResponseViewModel, EmployeeDto>().ReverseMap();
+            CreateMap<ThingViewModel, ThingDto>().ReverseMap();
         }
     }
 }
