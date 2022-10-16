@@ -18,6 +18,6 @@ namespace CompanyEcosystem.PL.Models
 
         public string Test => AuthenticateResponse.FirstOrDefault(e => (e.Id == Chief)).Email;
 
-        public IEnumerable<AuthenticateResponseViewModel>? AuthenticateResponse { get; set; }
+        public IEnumerable<EmployeeViewModel>? AuthenticateResponse { get; set; }
     }
 }

@@ -13,8 +13,7 @@ namespace CompanyEcosystem.BL.Services
         private readonly IRepository<Thing> _repositoryThing;
         private readonly IRepository<PhotoThing> _repositoryPhoto;
         private readonly IMapper _mapper;
-        
-        public ThingService(IRepository<Thing> repositoryThing, IRepository<PhotoThing> repositoryPhoto,IMapper mapper)
+        public ThingService(IRepository<Thing> repositoryThing, IRepository<PhotoThing> repositoryPhoto, IMapper mapper)
         {
             _repositoryThing = repositoryThing;
             _repositoryPhoto = repositoryPhoto;
@@ -27,11 +26,7 @@ namespace CompanyEcosystem.BL.Services
             if (things.Count() == 0)
                 throw new ValidationException("Things not found", "");
 
-<<<<<<< HEAD
-            return _mapper.Map<IEnumerable<Thing>, List<ThingDto>>(_repository.GetAll());
-=======
-            return _mapper.Map<IEnumerable<Thing>, List<ThingDTO>>(_repositoryThing.GetAll());
->>>>>>> Test
+            return _mapper.Map<IEnumerable<Thing>, List<ThingDto>>(_repositoryThing.GetAll());
         }
 
         public ThingDto GetThing(int? id)
@@ -45,16 +40,10 @@ namespace CompanyEcosystem.BL.Services
             return _mapper.Map<Thing, ThingDto>(thing);
         }
 
-<<<<<<< HEAD
-        public void CreateThing(ThingDto thingDto)
+        public void CreateThing(ThingDto thingDto, IFormFileCollection formFileCollection, string directoryPath)
         {
             var thing = _mapper.Map<ThingDto, Thing>(thingDto);
-=======
-        public void CreateThing(ThingDTO thingDto, IFormFileCollection formFileCollection, string directoryPath)
-        {
-            var thing = _mapper.Map<ThingDTO, Thing>(thingDto);
             _repositoryThing.Create(thing);
->>>>>>> Test
 
             if (formFileCollection != null && formFileCollection.Any() && !string.IsNullOrWhiteSpace(directoryPath))
             {
@@ -71,7 +60,7 @@ namespace CompanyEcosystem.BL.Services
                     uploadedImage.CopyToAsync(fileStream);
                 }
 
-                var photo = _mapper.Map<PhotoThingDTO, PhotoThing>(new PhotoThingDTO { ThingId = thing.Id, Path = path });
+                var photo = _mapper.Map<PhotoThingDto, PhotoThing>(new PhotoThingDto { ThingId = thing.Id, Path = path });
                 _repositoryPhoto.Create(photo);
             }
         }

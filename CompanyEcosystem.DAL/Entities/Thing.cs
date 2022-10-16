@@ -15,6 +15,5 @@ namespace CompanyEcosystem.DAL.Entities
 
         public int LocationId { get; set; }
         public Location? Location { get; set; }
-        public List<PhotoThing> PhotoThings { get; set; }
     }
 }

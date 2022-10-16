@@ -52,7 +52,7 @@ namespace CompanyEcosystem.PL.Controllers
                     Chief = source.Chief,
                     WorkingStart = source.WorkingStart,
                     WorkingEnd = source.WorkingEnd,
-                    AuthenticateResponse = _mapper.Map<IEnumerable<EmployeeDto>, List<AuthenticateResponseViewModel>>(_accountService.GetAll())
+                    AuthenticateResponse = _mapper.Map<IEnumerable<EmployeeDto>, List<EmployeeViewModel>>(_accountService.GetAll())
                 }; // TODO: ????????????????????
 
                 return Ok(locationViewModel);

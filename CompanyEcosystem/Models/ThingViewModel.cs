@@ -7,7 +7,6 @@
         public string Characteristic { get; set; }
 
         public int LocationId { get; set; }
-        public LocationViewModel? Location { get; set; }
-        public List<PhotoThingViewModel> PhotoThings { get; set; }
+        public LocationViewModel Location { get; set; }
     }
 }

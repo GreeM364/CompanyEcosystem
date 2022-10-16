@@ -198,7 +198,7 @@ namespace CompanyEcosystem.DAL.Migrations
             modelBuilder.Entity("CompanyEcosystem.DAL.Entities.PhotoThing", b =>
                 {
                     b.HasOne("CompanyEcosystem.DAL.Entities.Thing", "Thing")
-                        .WithMany("PhotoThings")
+                        .WithMany()
                         .HasForeignKey("ThingId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -238,11 +238,6 @@ namespace CompanyEcosystem.DAL.Migrations
                     b.Navigation("Employees");
 
                     b.Navigation("Things");
-                });
-
-            modelBuilder.Entity("CompanyEcosystem.DAL.Entities.Thing", b =>
-                {
-                    b.Navigation("PhotoThings");
                 });
 #pragma warning restore 612, 618
         }

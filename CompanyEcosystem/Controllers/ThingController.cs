@@ -56,22 +56,18 @@ namespace CompanyEcosystem.PL.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post(CreateThingViewModel model, IFormFile file)
+        public IActionResult Post(CreateThingViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(model);
 
             try
             {
-<<<<<<< HEAD
-                var thingDto = _mapper.Map<ThingViewModel, ThingDto>(model);
-=======
-                var thingDto = _mapper.Map<CreateThingViewModel, ThingDTO>(model);
->>>>>>> Test
+                var thingDto = _mapper.Map<CreateThingViewModel, ThingDto>(model);
 
                 var directoryPath = Path.Combine(_appEnvironment.WebRootPath, "img", "things");
 
-               // _thingService.CreateThing(thingDto, file, directoryPath);
+                _thingService.CreateThing(thingDto, model.Images, directoryPath);
 
                 return Ok();
             }
