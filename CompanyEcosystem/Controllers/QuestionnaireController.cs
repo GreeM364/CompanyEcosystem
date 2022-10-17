@@ -27,7 +27,7 @@ namespace CompanyEcosystem.PL.Controllers
             {
                 IEnumerable<QuestionnaireDto> questionnaireDtos = _questionnaireService.GetQuestionnaires();
 
-                var questionnaires = _mapper.Map<IEnumerable<QuestionnaireDto>, List<QuestionnaireViewModel>>(questionnaireDtos);
+                var questionnaires = _mapper.Map<IEnumerable<QuestionnaireDto>, List<QuestionnaireCreateUpdateViewModel>>(questionnaireDtos);
 
                 return Ok(questionnaires);
             }
@@ -44,7 +44,7 @@ namespace CompanyEcosystem.PL.Controllers
             {
                 QuestionnaireDto questionnaireDto = _questionnaireService.GetQuestionnaire(id);
 
-                var questionnaireViewModel = _mapper.Map<QuestionnaireDto, QuestionnaireViewModel>(questionnaireDto);
+                var questionnaireViewModel = _mapper.Map<QuestionnaireDto, QuestionnaireCreateUpdateViewModel>(questionnaireDto);
 
                 return Ok(questionnaireViewModel);
             }
@@ -55,14 +55,14 @@ namespace CompanyEcosystem.PL.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post(QuestionnaireViewModel model)
+        public IActionResult Post(QuestionnaireCreateUpdateViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(model);
 
             try
             {
-                var questionnaireDto = _mapper.Map<QuestionnaireViewModel, QuestionnaireDto>(model);
+                var questionnaireDto = _mapper.Map<QuestionnaireCreateUpdateViewModel, QuestionnaireDto>(model);
 
                 _questionnaireService.CreateQuestionnaire(questionnaireDto);
 
@@ -75,14 +75,14 @@ namespace CompanyEcosystem.PL.Controllers
         }
 
         [HttpPut]
-        public IActionResult Put(QuestionnaireViewModel model)
+        public IActionResult Put(QuestionnaireCreateUpdateViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(model);
 
             try
             {
-                var questionnaireDto = _mapper.Map<QuestionnaireViewModel, QuestionnaireDto>(model);
+                var questionnaireDto = _mapper.Map<QuestionnaireCreateUpdateViewModel, QuestionnaireDto>(model);
 
                 _questionnaireService.UpdateQuestionnaire(questionnaireDto);
 

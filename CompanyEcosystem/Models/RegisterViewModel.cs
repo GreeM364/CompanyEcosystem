@@ -21,6 +21,7 @@ namespace CompanyEcosystem.PL.Models
         [Required(ErrorMessage = "Specify the position")]
         public string Position { get; set; }
 
+        [Required(ErrorMessage = "Enter a location")]
         public int LocationId { get; set; }
     }
 }

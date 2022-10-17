@@ -1,11 +1,19 @@
 {
   "Version": 1,
-  "Hash": "KkeXv8QDvwuvdmQotcpEHcXQe9pmKUoeC+cTH+/zUZQ=",
+  "Hash": "nm+5K50C/7QlwSrtmsnYqQI27QsMxx2/9p+drCitNBo=",
   "Source": "CompanyEcosystem.PL",
   "BasePath": "_content/CompanyEcosystem.PL",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "CompanyEcosystem.PL\\wwwroot",
+      "Source": "CompanyEcosystem.PL",
+      "ContentRoot": "D:\\Visual Studio\\CompanyEcosystem\\CompanyEcosystem\\wwwroot\\",
+      "BasePath": "_content/CompanyEcosystem.PL",
+      "Pattern": "**"
+    }
+  ],
   "Assets": []
 }

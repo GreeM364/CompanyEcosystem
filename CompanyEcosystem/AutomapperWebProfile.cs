@@ -8,13 +8,13 @@ namespace CompanyEcosystem.PL
     {
         public AutomapperWebProfile()
         {
-            CreateMap<LocationViewModel, LocationDto>().ReverseMap();
-            CreateMap<QuestionnaireViewModel, QuestionnaireDto>().ReverseMap();
+            CreateMap<LocationCreateUpdateViewModel, LocationDto>().ReverseMap();
+            CreateMap<QuestionnaireCreateUpdateViewModel, QuestionnaireDto>().ReverseMap();
             CreateMap<RegisterViewModel, EmployeeDto>().ReverseMap();
             CreateMap<AuthenticateViewModel, EmployeeDto>().ReverseMap();
             CreateMap<EmployeeViewModel, EmployeeDto>().ReverseMap();
             CreateMap<ThingViewModel, ThingDto>().ReverseMap();
-            CreateMap<CreateThingViewModel, ThingDto>().ReverseMap();
+            CreateMap<ThingCreateUpdateViewModel, ThingDto>().ReverseMap();
             CreateMap<PhotoThingViewModel, PhotoThingDto>().ReverseMap();
         }
     }

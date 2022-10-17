@@ -6,7 +6,6 @@
         public string Instruction { get; set; }
         public string Characteristic { get; set; }
 
-        public int LocationId { get; set; }
-        public LocationViewModel Location { get; set; }
+        public IEnumerable<PhotoThingViewModel> PhotoThing { get; set; }
     }
 }

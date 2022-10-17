@@ -2,7 +2,7 @@
 
 namespace CompanyEcosystem.PL.Models
 {
-    public class BaseViewModel
+    public abstract class BaseViewModel
     {
         public int Id { get; set; }
     }

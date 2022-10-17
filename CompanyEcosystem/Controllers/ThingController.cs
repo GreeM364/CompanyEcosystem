@@ -56,14 +56,14 @@ namespace CompanyEcosystem.PL.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post(CreateThingViewModel model)
+        public IActionResult Post(ThingCreateUpdateViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(model);
 
             try
             {
-                var thingDto = _mapper.Map<CreateThingViewModel, ThingDto>(model);
+                var thingDto = _mapper.Map<ThingCreateUpdateViewModel, ThingDto>(model);
 
                 var directoryPath = Path.Combine(_appEnvironment.WebRootPath, "img", "things");
 

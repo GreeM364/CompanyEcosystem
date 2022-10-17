@@ -28,7 +28,7 @@ namespace CompanyEcosystem.PL.Controllers
             {
                 IEnumerable<LocationDto> locationsDtos = _locationService.GetLocations();
 
-                var locations = _mapper.Map<IEnumerable<LocationDto>, List<LocationViewModel>>(locationsDtos);
+                var locations = _mapper.Map<IEnumerable<LocationDto>, List<LocationCreateUpdateViewModel>>(locationsDtos);
 
                 return Ok(locations);
             }
@@ -43,16 +43,16 @@ namespace CompanyEcosystem.PL.Controllers
         {
             try
             {
-                var source = _mapper.Map<LocationDto, LocationViewModel>(_locationService.GetLocation(id));
+                var source = _mapper.Map<LocationDto, LocationCreateUpdateViewModel>(_locationService.GetLocation(id));
 
-                var locationViewModel = new LocationViewModel
+                var locationViewModel = new LocationCreateUpdateViewModel
                 {
                     Id = source.Id,
                     Title = source.Title,
                     Chief = source.Chief,
                     WorkingStart = source.WorkingStart,
                     WorkingEnd = source.WorkingEnd,
-                    AuthenticateResponse = _mapper.Map<IEnumerable<EmployeeDto>, List<EmployeeViewModel>>(_accountService.GetAll())
+                    //AuthenticateResponse = _mapper.Map<IEnumerable<EmployeeDto>, List<EmployeeViewModel>>(_accountService.GetAll())
                 }; // TODO: ????????????????????
 
                 return Ok(locationViewModel);
@@ -64,14 +64,14 @@ namespace CompanyEcosystem.PL.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post(LocationViewModel model)
+        public IActionResult Post(LocationCreateUpdateViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(model);
 
             try
             {
-                var locationDto = _mapper.Map<LocationViewModel, LocationDto>(model);
+                var locationDto = _mapper.Map<LocationCreateUpdateViewModel, LocationDto>(model);
 
                 _locationService.CreateLocation(locationDto);
 
@@ -84,14 +84,14 @@ namespace CompanyEcosystem.PL.Controllers
         }
 
         [HttpPut]
-        public IActionResult Put(LocationViewModel model)
+        public IActionResult Put(LocationCreateUpdateViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(model);
 
             try
             {
-                var locationDto = _mapper.Map<LocationViewModel, LocationDto>(model);
+                var locationDto = _mapper.Map<LocationCreateUpdateViewModel, LocationDto>(model);
 
                 _locationService.UpdateLocation(locationDto);
 
