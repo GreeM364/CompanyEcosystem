@@ -52,18 +52,38 @@ namespace CompanyEcosystem.BL.Services
                 
             var token = UserHelper.GenerateJwtToken(_configuration, user);
 
-            return new EmployeeDto { Email = user.Email, Role = user.Role, Position = user.Position, Token = token };
+            return new EmployeeDto
+            {
+                Email = user.Email, 
+                Role = user.Role, 
+                Position = user.Position, 
+                Token = token
+            };
         }
 
         public IEnumerable<EmployeeDto> GetAll()
         {
-            return _mapper.Map<IEnumerable<Employee>, List<EmployeeDto>>(_repository.GetAll());
+            var employees = _mapper.Map<IEnumerable<Employee>, List<EmployeeDto>>(_repository.GetAll());
+
+            //if (employees == null)
+            //    throw new ValidationException("Employees not found", "");
+
+            return employees;
         }
 
         public EmployeeDto GetById(int id)
         { 
            var employee =  _repository.Get(id);
-           return new EmployeeDto { Email = employee.Email, Role = employee.Role, Position = employee.Position};
+
+           if (employee == null)
+               throw new ValidationException("Employee not found", "");
+
+           return new EmployeeDto 
+           { 
+               Email = employee.Email, 
+               Role = employee.Role, 
+               Position = employee.Position
+           };
         }
     }
 }

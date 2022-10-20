@@ -20,8 +20,8 @@ namespace CompanyEcosystem.PL.Models
         [Required(ErrorMessage = "Enter your birthday")]
         public DateTime Birthday { get; set; }
 
-        //[Required(ErrorMessage = "Upload your photo")]
-        //public string Photo { get; set; }
+        [Required(ErrorMessage = "Upload your photo")]
+        public string Photo { get; set; }
 
         [Required(ErrorMessage = "Enter information about yourself")]
         public string AboutMyself { get; set; }

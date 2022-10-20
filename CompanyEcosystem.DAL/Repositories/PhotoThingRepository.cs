@@ -18,7 +18,7 @@ namespace CompanyEcosystem.DAL.Repositories
             return _db.PhotoThings;
         }
 
-        public PhotoThing Get(int id)
+        public PhotoThing Get(int? id)
         {
             return _db.PhotoThings.Find(id);
         }

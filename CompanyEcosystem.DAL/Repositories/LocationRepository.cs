@@ -23,7 +23,7 @@ namespace CompanyEcosystem.DAL.Repositories
             return _db.Locations;
         }
 
-        public Location Get(int id)
+        public Location Get(int? id)
         {
             return _db.Locations.Find(id);
         }

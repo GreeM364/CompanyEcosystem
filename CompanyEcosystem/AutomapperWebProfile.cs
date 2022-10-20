@@ -9,7 +9,10 @@ namespace CompanyEcosystem.PL
         public AutomapperWebProfile()
         {
             CreateMap<LocationCreateUpdateViewModel, LocationDto>().ReverseMap();
+            CreateMap<LocationViewModel, LocationDto>().ForMember(dest => dest.Employees,
+                    opt => opt.MapFrom(src => src.Employees)).ReverseMap();
             CreateMap<QuestionnaireCreateUpdateViewModel, QuestionnaireDto>().ReverseMap();
+            CreateMap<QuestionnaireViewModel, QuestionnaireDto>().ReverseMap();
             CreateMap<RegisterViewModel, EmployeeDto>().ReverseMap();
             CreateMap<AuthenticateViewModel, EmployeeDto>().ReverseMap();
             CreateMap<EmployeeViewModel, EmployeeDto>().ReverseMap();

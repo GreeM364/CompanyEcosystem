@@ -25,13 +25,13 @@ namespace CompanyEcosystem.PL.Controllers
         {
             try
             {
-                IEnumerable<QuestionnaireDto> questionnaireDtos = _questionnaireService.GetQuestionnaires();
+                var questionnaireDtos = _questionnaireService.GetQuestionnaires();
 
-                var questionnaires = _mapper.Map<IEnumerable<QuestionnaireDto>, List<QuestionnaireCreateUpdateViewModel>>(questionnaireDtos);
+                var questionnaires = _mapper.Map<IEnumerable<QuestionnaireDto>, List<QuestionnaireViewModel>>(questionnaireDtos);
 
                 return Ok(questionnaires);
             }
-            catch (Exception e)
+            catch (ValidationException e)
             {
                 return BadRequest(e.Message);
             }
@@ -44,7 +44,7 @@ namespace CompanyEcosystem.PL.Controllers
             {
                 QuestionnaireDto questionnaireDto = _questionnaireService.GetQuestionnaire(id);
 
-                var questionnaireViewModel = _mapper.Map<QuestionnaireDto, QuestionnaireCreateUpdateViewModel>(questionnaireDto);
+                var questionnaireViewModel = _mapper.Map<QuestionnaireDto, QuestionnaireViewModel>(questionnaireDto);
 
                 return Ok(questionnaireViewModel);
             }
@@ -68,7 +68,7 @@ namespace CompanyEcosystem.PL.Controllers
 
                 return Ok();
             }
-            catch (Exception e)
+            catch (ValidationException e)
             {
                 return BadRequest(e.Message);
             }
@@ -88,7 +88,7 @@ namespace CompanyEcosystem.PL.Controllers
 
                 return Ok();
             }
-            catch (Exception e)
+            catch (ValidationException e)
             {
                 return BadRequest(e.Message);
             }
@@ -103,7 +103,7 @@ namespace CompanyEcosystem.PL.Controllers
 
                 return Ok();
             }
-            catch (Exception e)
+            catch (ValidationException e)
             {
                 return BadRequest(e.Message);
             }

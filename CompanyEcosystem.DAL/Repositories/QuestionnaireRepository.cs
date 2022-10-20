@@ -17,7 +17,7 @@ namespace CompanyEcosystem.DAL.Repositories
             return _db.Questionnaires;
         }
 
-        public Questionnaire Get(int id)
+        public Questionnaire Get(int? id)
         {
             return _db.Questionnaires.Find(id);
         }

@@ -18,7 +18,7 @@ namespace CompanyEcosystem.DAL.Repositories
             return _db.Things;
         }
 
-        public Thing Get(int id)
+        public Thing Get(int? id)
         {
             return _db.Things.Find(id);
         }

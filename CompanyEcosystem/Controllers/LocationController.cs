@@ -12,13 +12,11 @@ namespace CompanyEcosystem.PL.Controllers
     public class LocationController : ControllerBase
     {
         private readonly ILocationService _locationService;
-        private readonly IAccountService _accountService;
         private readonly IMapper _mapper;
         public LocationController(ILocationService locationService, IMapper mapper, IAccountService accountService)
         {
             _locationService = locationService;
             _mapper = mapper;
-            _accountService = accountService;
         }
 
         [HttpGet]
@@ -28,7 +26,7 @@ namespace CompanyEcosystem.PL.Controllers
             {
                 IEnumerable<LocationDto> locationsDtos = _locationService.GetLocations();
 
-                var locations = _mapper.Map<IEnumerable<LocationDto>, List<LocationCreateUpdateViewModel>>(locationsDtos);
+                var locations = _mapper.Map<IEnumerable<LocationDto>, List<LocationViewModel>>(locationsDtos);
 
                 return Ok(locations);
             }
@@ -43,19 +41,11 @@ namespace CompanyEcosystem.PL.Controllers
         {
             try
             {
-                var source = _mapper.Map<LocationDto, LocationCreateUpdateViewModel>(_locationService.GetLocation(id));
+                var source = _locationService.GetLocation(id);
 
-                var locationViewModel = new LocationCreateUpdateViewModel
-                {
-                    Id = source.Id,
-                    Title = source.Title,
-                    Chief = source.Chief,
-                    WorkingStart = source.WorkingStart,
-                    WorkingEnd = source.WorkingEnd,
-                    //AuthenticateResponse = _mapper.Map<IEnumerable<EmployeeDto>, List<EmployeeViewModel>>(_accountService.GetAll())
-                }; // TODO: ????????????????????
+                var location = _mapper.Map<LocationDto, LocationViewModel>(source);
 
-                return Ok(locationViewModel);
+                return Ok(location);
             }
             catch (ValidationException e)
             {

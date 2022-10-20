@@ -22,7 +22,7 @@ namespace CompanyEcosystem.DAL.Repositories
             return db.Employees;
         }
 
-        public Employee Get(int id)
+        public Employee Get(int? id)
         {
             return db.Employees.Find(id);
         }

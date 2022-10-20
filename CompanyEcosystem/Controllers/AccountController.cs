@@ -6,7 +6,6 @@ using CompanyEcosystem.PL.Models;
 using Microsoft.AspNetCore.Mvc;
 
 //TODO: робота с фото
-//TODO: переробити контролери та сервіси
 namespace CompanyEcosystem.PL.Controllers
 {
     [ApiController]

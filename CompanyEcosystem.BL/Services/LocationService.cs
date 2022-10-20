@@ -9,47 +9,82 @@ namespace CompanyEcosystem.BL.Services
 {
     public class LocationService : ILocationService
     {
-        private readonly IRepository<Location> _repository;
+        private readonly IRepository<Location> _dbLocation;
+        private readonly IRepository<Employee> _dbEmployee;
+        private readonly IAccountService _accountService;
         private readonly IMapper _mapper;
 
-        public LocationService(IRepository<Location> repository, IMapper mapper)
+        public LocationService(IRepository<Location> dbLocation, IRepository<Employee> dbEmployee, IAccountService accountService, IMapper mapper)
         {
-            _repository = repository;
+            _dbLocation = dbLocation;
+            _dbEmployee = dbEmployee;
+            _accountService = accountService;
             _mapper = mapper;
         }
 
         public IEnumerable<LocationDto> GetLocations()
         {
-            var locations = _repository.GetAll();
-            if(locations.Count() == 0)
+            var employees = _accountService.GetAll();
+
+            var locations = _dbLocation.GetAll().Select(c => new LocationDto()
+            {
+                Id = c.Id,
+                Title = c.Title,
+                ChiefEmail = employees.FirstOrDefault(e => e.Id == c.Chief).Email, 
+                WorkingStart = c.WorkingStart,
+                WorkingEnd = c.WorkingEnd,
+                Employees = employees.Where(e => e.LocationId == c.Id)
+            }); //TODO: шо це в загалі за помилка
+
+            if (locations == null)
                 throw new ValidationException("Locations not found", "");
 
-            return _mapper.Map<IEnumerable<Location>, List<LocationDto>>(_repository.GetAll());
+            return locations;
         }
 
         public LocationDto GetLocation(int? id)
         {
             if (id == null)
                 throw new ValidationException("Location ID not set", "");
-            var location = _repository.Get(id.Value);
+
+            var location = _dbLocation.Get(id.Value);
+
             if (location == null)
                 throw new ValidationException("Location not found", "");
 
-            return _mapper.Map<Location, LocationDto>(location);
+            var locationDto = new LocationDto() 
+            {
+                Id = location.Id,
+                Title = location.Title,
+                ChiefEmail = _accountService.GetById(location.Chief).Email,
+                WorkingStart = location.WorkingStart,
+                WorkingEnd = location.WorkingEnd,
+                Employees = _accountService.GetAll().Where(e => e.LocationId == location.Id)
+            };
+
+            return locationDto;
         }
 
         public void CreateLocation(LocationDto locationDto)
         {
+            var chief = _dbEmployee.Get(locationDto.Chief);
+            if (chief == null)
+                throw new ValidationException("Chief not found", "");
+
             var location = _mapper.Map<LocationDto, Location>(locationDto);
 
-            _repository.Create(location);
+            _dbLocation.Create(location);
         }
 
         public void UpdateLocation(LocationDto locationDto)
         {
+            var chief = _dbEmployee.Get(locationDto.Chief);
+            if (chief == null)
+                throw new ValidationException("Chief not found", "");
+
             var location = _mapper.Map<LocationDto, Location>(locationDto);
 
-            _repository.Update(location);
+            _dbLocation.Update(location);
         }
 
         public void DeleteLocation(int? id)
@@ -57,7 +92,7 @@ namespace CompanyEcosystem.BL.Services
             if (id == null)
                 throw new ValidationException("Location ID not set", "");
 
-            _repository.Delete(id.Value);
+            _dbLocation.Delete(id.Value);
         }
     }
 }
