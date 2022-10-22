@@ -6,6 +6,5 @@
         public string Path { get; set; }
 
         public int ThingId { get; set; }
-        public ThingDto Thing { get; set; }
     }
 }

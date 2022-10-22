@@ -10,7 +10,8 @@ public class ExceptionHandlingMiddleware {
         _next = next;
     }
 
-    public async Task InvokeAsync(HttpContext context, ILogger logger) {
+    public async Task InvokeAsync(HttpContext context, ILogger logger) 
+    {
         try
         {
             await _next(context);
@@ -26,7 +27,8 @@ public class ExceptionHandlingMiddleware {
         }
     }
 
-    private void HandleException(HttpContext context, Exception exception, ILogger logger) {
+    private void HandleException(HttpContext context, Exception exception, ILogger logger) 
+    {
 
         logger.LogError(exception, "An exception was thrown as a result of the request");
         context.Response.StatusCode = StatusCodes.Status500InternalServerError;

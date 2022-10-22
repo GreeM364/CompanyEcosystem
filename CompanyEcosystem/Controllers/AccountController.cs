@@ -5,7 +5,6 @@ using CompanyEcosystem.BL.Interfaces;
 using CompanyEcosystem.PL.Models;
 using Microsoft.AspNetCore.Mvc;
 
-//TODO: робота с фото
 namespace CompanyEcosystem.PL.Controllers
 {
     [ApiController]

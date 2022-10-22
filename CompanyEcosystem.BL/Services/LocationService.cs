@@ -11,20 +11,18 @@ namespace CompanyEcosystem.BL.Services
     {
         private readonly IRepository<Location> _dbLocation;
         private readonly IRepository<Employee> _dbEmployee;
-        private readonly IAccountService _accountService;
         private readonly IMapper _mapper;
 
         public LocationService(IRepository<Location> dbLocation, IRepository<Employee> dbEmployee, IAccountService accountService, IMapper mapper)
         {
             _dbLocation = dbLocation;
             _dbEmployee = dbEmployee;
-            _accountService = accountService;
             _mapper = mapper;
         }
 
         public IEnumerable<LocationDto> GetLocations()
         {
-            var employees = _accountService.GetAll();
+            var employees = _mapper.Map<IEnumerable<Employee>, List<EmployeeDto>>(_dbEmployee.GetAll());
 
             var locations = _dbLocation.GetAll().Select(c => new LocationDto()
             {
@@ -34,7 +32,7 @@ namespace CompanyEcosystem.BL.Services
                 WorkingStart = c.WorkingStart,
                 WorkingEnd = c.WorkingEnd,
                 Employees = employees.Where(e => e.LocationId == c.Id)
-            }); //TODO: шо це в загалі за помилка
+            }); 
 
             if (locations == null)
                 throw new ValidationException("Locations not found", "");
@@ -52,14 +50,17 @@ namespace CompanyEcosystem.BL.Services
             if (location == null)
                 throw new ValidationException("Location not found", "");
 
+            var employees = _mapper.Map<IEnumerable<Employee>, List<EmployeeDto>>
+                (_dbEmployee.GetAll().Where(e => e.LocationId == location.Id));
+
             var locationDto = new LocationDto() 
             {
                 Id = location.Id,
                 Title = location.Title,
-                ChiefEmail = _accountService.GetById(location.Chief).Email,
+                ChiefEmail = employees.FirstOrDefault(e => e.Id == location.Chief).Email,
                 WorkingStart = location.WorkingStart,
                 WorkingEnd = location.WorkingEnd,
-                Employees = _accountService.GetAll().Where(e => e.LocationId == location.Id)
+                Employees = employees
             };
 
             return locationDto;

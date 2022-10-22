@@ -13,3 +13,5 @@ D:\Visual Studio\CompanyEcosystem\CompanyEcosystem.BL\obj\Debug\net6.0\CompanyEc
 D:\Visual Studio\CompanyEcosystem\CompanyEcosystem.BL\obj\Debug\net6.0\refint\CompanyEcosystem.BL.dll
 D:\Visual Studio\CompanyEcosystem\CompanyEcosystem.BL\obj\Debug\net6.0\CompanyEcosystem.BL.pdb
 D:\Visual Studio\CompanyEcosystem\CompanyEcosystem.BL\obj\Debug\net6.0\ref\CompanyEcosystem.BL.dll
+D:\Visual Studio\CompanyEcosystem\CompanyEcosystem.BL\bin\Debug\net6.0\CompanyEcosystem.Enum.dll
+D:\Visual Studio\CompanyEcosystem\CompanyEcosystem.BL\bin\Debug\net6.0\CompanyEcosystem.Enum.pdb

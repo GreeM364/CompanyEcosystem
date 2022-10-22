@@ -5,6 +5,7 @@ using CompanyEcosystem.BL.Interfaces;
 using CompanyEcosystem.BL.Infrastructure;
 using CompanyEcosystem.DAL.Entities;
 using CompanyEcosystem.DAL.Interfaces;
+using CompanyEcosystem.Enum;
 using Microsoft.Extensions.Configuration;
 
 namespace CompanyEcosystem.BL.Services

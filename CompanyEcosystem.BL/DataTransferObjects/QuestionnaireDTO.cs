@@ -1,4 +1,6 @@
-﻿namespace CompanyEcosystem.BL.DataTransferObjects
+﻿using CompanyEcosystem.Enum;
+
+namespace CompanyEcosystem.BL.DataTransferObjects
 {
     public class QuestionnaireDto
     {
@@ -14,6 +16,6 @@
 
         public int EmployeeId { get; set; }
         public string Email { get; set; }
-        public string Position { get; set; }
+        public Position Position { get; set; }
     }
 }

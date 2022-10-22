@@ -8,6 +8,6 @@
         public string Characteristic { get; set; }
 
         public int LocationId { get; set; }
-        public LocationDto LocationDto { get; set; }
+        public IEnumerable<PhotoThingDto> PhotoThing { get; set; }
     }
 }

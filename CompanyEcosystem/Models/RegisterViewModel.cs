@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using CompanyEcosystem.Enum;
 
 namespace CompanyEcosystem.PL.Models
 {
@@ -19,7 +20,7 @@ namespace CompanyEcosystem.PL.Models
         public string PasswordConfirm { get; set; }
 
         [Required(ErrorMessage = "Specify the position")]
-        public string Position { get; set; }
+        public Position Position { get; set; }
 
         [Required(ErrorMessage = "Enter a location")]
         public int LocationId { get; set; }

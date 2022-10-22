@@ -5,7 +5,6 @@ using System.Net;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using CompanyEcosystem.BL.BusinessModels;
 using CompanyEcosystem.BL.DataTransferObjects;
 using CompanyEcosystem.DAL.Entities;
 

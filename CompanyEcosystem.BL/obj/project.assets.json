@@ -661,6 +661,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
+          "CompanyEcosystem.Enum": "1.0.0",
           "Microsoft.EntityFrameworkCore": "6.0.9",
           "Microsoft.EntityFrameworkCore.SqlServer": "6.0.9"
         },
@@ -669,6 +670,16 @@
         },
         "runtime": {
           "bin/placeholder/CompanyEcosystem.DAL.dll": {}
+        }
+      },
+      "CompanyEcosystem.Enum/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/CompanyEcosystem.Enum.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/CompanyEcosystem.Enum.dll": {}
         }
       }
     }
@@ -1915,6 +1926,11 @@
       "type": "project",
       "path": "../CompanyEcosystem.DAL/CompanyEcosystem.DAL.csproj",
       "msbuildProject": "../CompanyEcosystem.DAL/CompanyEcosystem.DAL.csproj"
+    },
+    "CompanyEcosystem.Enum/1.0.0": {
+      "type": "project",
+      "path": "../CompanyEcosystem.Enum/CompanyEcosystem.Enum.csproj",
+      "msbuildProject": "../CompanyEcosystem.Enum/CompanyEcosystem.Enum.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -1922,6 +1938,7 @@
       "AutoMapper >= 12.0.0",
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 12.0.0",
       "CompanyEcosystem.DAL >= 1.0.0",
+      "CompanyEcosystem.Enum >= 1.0.0",
       "Microsoft.AspNetCore.Http.Abstractions >= 2.2.0"
     ]
   },
@@ -1959,6 +1976,9 @@
           "projectReferences": {
             "D:\\Visual Studio\\CompanyEcosystem\\CompanyEcosystem.DAL\\CompanyEcosystem.DAL.csproj": {
               "projectPath": "D:\\Visual Studio\\CompanyEcosystem\\CompanyEcosystem.DAL\\CompanyEcosystem.DAL.csproj"
+            },
+            "D:\\Visual Studio\\CompanyEcosystem\\CompanyEcosystem.Enum\\CompanyEcosystem.Enum.csproj": {
+              "projectPath": "D:\\Visual Studio\\CompanyEcosystem\\CompanyEcosystem.Enum\\CompanyEcosystem.Enum.csproj"
             }
           }
         }

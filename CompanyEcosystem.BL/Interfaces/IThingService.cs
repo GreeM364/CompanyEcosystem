@@ -13,7 +13,7 @@ namespace CompanyEcosystem.BL.Interfaces
         ThingDto GetThing(int? id);
         IEnumerable<ThingDto> GetThings();
         void CreateThing(ThingDto thingDto, IFormFileCollection formFileCollection, string directoryPath);
-        void UpdateThing(ThingDto thingDto);
+        void UpdateThing(ThingDto thingDto, IFormFileCollection formFileCollection, string directoryPath);
         void DeleteThing(int? id);
     }
 }

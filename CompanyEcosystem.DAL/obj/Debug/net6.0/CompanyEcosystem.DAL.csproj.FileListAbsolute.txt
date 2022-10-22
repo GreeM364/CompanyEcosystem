@@ -12,3 +12,6 @@ D:\Visual Studio\CompanyEcosystem\CompanyEcosystem.DAL\obj\Debug\net6.0\refint\C
 D:\Visual Studio\CompanyEcosystem\CompanyEcosystem.DAL\obj\Debug\net6.0\CompanyEcosystem.DAL.pdb
 D:\Visual Studio\CompanyEcosystem\CompanyEcosystem.DAL\obj\Debug\net6.0\CompanyEcosystem.DAL.genruntimeconfig.cache
 D:\Visual Studio\CompanyEcosystem\CompanyEcosystem.DAL\obj\Debug\net6.0\ref\CompanyEcosystem.DAL.dll
+D:\Visual Studio\CompanyEcosystem\CompanyEcosystem.DAL\bin\Debug\net6.0\CompanyEcosystem.Enum.dll
+D:\Visual Studio\CompanyEcosystem\CompanyEcosystem.DAL\bin\Debug\net6.0\CompanyEcosystem.Enum.pdb
+D:\Visual Studio\CompanyEcosystem\CompanyEcosystem.DAL\obj\Debug\net6.0\CompanyEcosystem.DAL.csproj.CopyComplete

@@ -8,12 +8,17 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CompanyEcosystem.DAL\CompanyEcosystem.DAL.csproj" />
+    <ProjectReference Include="..\CompanyEcosystem.Enum\CompanyEcosystem.Enum.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="12.0.0" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="BusinessModels\" />
   </ItemGroup>
 
 </Project>

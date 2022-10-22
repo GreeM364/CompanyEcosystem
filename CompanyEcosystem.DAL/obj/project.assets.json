@@ -634,6 +634,16 @@
             "rid": "win"
           }
         }
+      },
+      "CompanyEcosystem.Enum/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/CompanyEcosystem.Enum.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/CompanyEcosystem.Enum.dll": {}
+        }
       }
     }
   },
@@ -1855,10 +1865,16 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
+    },
+    "CompanyEcosystem.Enum/1.0.0": {
+      "type": "project",
+      "path": "../CompanyEcosystem.Enum/CompanyEcosystem.Enum.csproj",
+      "msbuildProject": "../CompanyEcosystem.Enum/CompanyEcosystem.Enum.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "CompanyEcosystem.Enum >= 1.0.0",
       "Microsoft.EntityFrameworkCore >= 6.0.9",
       "Microsoft.EntityFrameworkCore.SqlServer >= 6.0.9",
       "Microsoft.EntityFrameworkCore.Tools >= 6.0.9"
@@ -1895,7 +1911,11 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\Visual Studio\\CompanyEcosystem\\CompanyEcosystem.Enum\\CompanyEcosystem.Enum.csproj": {
+              "projectPath": "D:\\Visual Studio\\CompanyEcosystem\\CompanyEcosystem.Enum\\CompanyEcosystem.Enum.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

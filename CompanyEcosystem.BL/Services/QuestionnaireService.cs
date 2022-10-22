@@ -38,7 +38,7 @@ namespace CompanyEcosystem.BL.Services
                 Position = employee.FirstOrDefault(e => e.Id == q.EmployeeId).Position
             });
 
-            if (questionnaires == null)
+            if (questionnaires.Count() == 0)
                 throw new ValidationException("Questionnaires not found", "");
 
             return questionnaires;

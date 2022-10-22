@@ -12,13 +12,14 @@ namespace CompanyEcosystem.PL.Controllers
     public class ThingController : ControllerBase
     {
         private readonly IThingService _thingService;
-        private readonly IMapper _mapper;
         private readonly IWebHostEnvironment _appEnvironment;
-        public ThingController(IThingService service, IMapper mapper, IWebHostEnvironment appEnvironment)
+        private readonly IMapper _mapper;
+        
+        public ThingController(IThingService service, IWebHostEnvironment appEnvironment, IMapper mapper)
         {
             _thingService = service;
-            _mapper = mapper;
             _appEnvironment = appEnvironment;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -26,9 +27,9 @@ namespace CompanyEcosystem.PL.Controllers
         {
             try
             {
-                IEnumerable<ThingDto> thingsDtos = _thingService.GetThings();
+                var source = _thingService.GetThings();
 
-                var things = _mapper.Map<IEnumerable<ThingDto>, List<ThingViewModel>>(thingsDtos);
+                var things = _mapper.Map<IEnumerable<ThingDto>, List<ThingViewModel>>(source);
 
                 return Ok(things);
             }
@@ -78,16 +79,18 @@ namespace CompanyEcosystem.PL.Controllers
         }
 
         [HttpPut]
-        public IActionResult Put(ThingViewModel model)
+        public IActionResult Put(ThingCreateUpdateViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(model);
 
             try
             {
-                var thingDto = _mapper.Map<ThingViewModel, ThingDto>(model);
+                var thingDto = _mapper.Map<ThingCreateUpdateViewModel, ThingDto>(model);
 
-                _thingService.UpdateThing(thingDto);
+                var directoryPath = Path.Combine(_appEnvironment.WebRootPath, "img", "things");
+
+                _thingService.UpdateThing(thingDto, model.Images, directoryPath);
 
                 return Ok();
             }

@@ -6,6 +6,5 @@ namespace CompanyEcosystem.PL.Models
         public string Path { get; set; }
 
         public int ThingId { get; set; }
-        public ThingViewModel Thing { get; set; }
     }
 }
