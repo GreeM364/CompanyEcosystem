@@ -9,7 +9,7 @@ namespace CompanyEcosystem.BL.Infrastructure
 {
     public static class UserHelper
     {
-        public static string GenerateJwtToken(IConfiguration configuration, Employee employee)
+        public static string GenerateJwtToken(IConfiguration configuration, Employee? employee)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(configuration["Secret"]);

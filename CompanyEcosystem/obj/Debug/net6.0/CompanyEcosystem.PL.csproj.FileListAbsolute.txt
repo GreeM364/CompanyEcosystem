@@ -68,3 +68,10 @@ D:\Visual Studio\CompanyEcosystem\CompanyEcosystem\bin\Debug\net6.0\AutoMapper.E
 D:\Visual Studio\CompanyEcosystem\CompanyEcosystem\bin\Debug\net6.0\CompanyEcosystem.PL.staticwebassets.runtime.json
 D:\Visual Studio\CompanyEcosystem\CompanyEcosystem\bin\Debug\net6.0\CompanyEcosystem.Enum.dll
 D:\Visual Studio\CompanyEcosystem\CompanyEcosystem\bin\Debug\net6.0\CompanyEcosystem.Enum.pdb
+D:\Visual Studio\CompanyEcosystem\CompanyEcosystem\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
+D:\Visual Studio\CompanyEcosystem\CompanyEcosystem\bin\Debug\net6.0\System.Web.Cors.dll
+D:\Visual Studio\CompanyEcosystem\CompanyEcosystem\bin\Debug\net6.0\System.Net.Http.Formatting.dll
+D:\Visual Studio\CompanyEcosystem\CompanyEcosystem\bin\Debug\net6.0\System.Web.Http.dll
+D:\Visual Studio\CompanyEcosystem\CompanyEcosystem\bin\Debug\net6.0\System.Web.Http.Cors.dll
+D:\Visual Studio\CompanyEcosystem\CompanyEcosystem\bin\Debug\net6.0\Newtonsoft.Json.dll
+D:\Visual Studio\CompanyEcosystem\CompanyEcosystem\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll

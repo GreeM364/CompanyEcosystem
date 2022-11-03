@@ -24,7 +24,7 @@ namespace CompanyEcosystem.PL.Controllers
         {
             try
             {
-                IEnumerable<LocationDto> locationsDtos = _locationService.GetLocations();
+                IEnumerable<LocationDto> locationsDtos = _locationService.GetLocationsAsync();
 
                 var locations = _mapper.Map<IEnumerable<LocationDto>, List<LocationViewModel>>(locationsDtos);
 

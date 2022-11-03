@@ -20,6 +20,7 @@ namespace CompanyEcosystem.PL.Infrastructure
             service.AddBusinessLogicLayer(connectionString);
 
             service.AddAutoMapper(typeof(AutomapperWebProfile));
+            service.AddCors();
 
             service.AddSwaggerGen(c => c.SwaggerDoc("v1", new OpenApiInfo { Title = "My Api", Version = "v1" }));
         }
@@ -38,6 +39,8 @@ namespace CompanyEcosystem.PL.Infrastructure
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRouting();
+
+            app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
             app.UseAuthentication();
             app.UseAuthorization();

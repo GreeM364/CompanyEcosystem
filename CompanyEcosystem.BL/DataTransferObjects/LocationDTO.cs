@@ -1,4 +1,6 @@
-﻿namespace CompanyEcosystem.BL.DataTransferObjects
+﻿using CompanyEcosystem.DAL.Entities;
+
+namespace CompanyEcosystem.BL.DataTransferObjects
 {
     public class LocationDto
     {
@@ -9,6 +11,6 @@
         public DateTime WorkingStart { get; set; }
         public DateTime WorkingEnd { get; set; }
 
-        public IEnumerable<EmployeeDto> Employees { get; set; }
+        public List<Employee> Employees { get; set; }
     }
 }

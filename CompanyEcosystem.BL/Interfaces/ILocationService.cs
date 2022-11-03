@@ -7,7 +7,7 @@ namespace CompanyEcosystem.BL.Interfaces
     public interface ILocationService
     {
         LocationDto GetLocation(int? id);
-        IEnumerable<LocationDto> GetLocations();
+        Task<IEnumerable<LocationDto>> GetLocationsAsync();
         void CreateLocation(LocationDto locationDto);
         void UpdateLocation(LocationDto locationDto);
         void DeleteLocation(int? id);
