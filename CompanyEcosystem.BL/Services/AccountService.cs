@@ -10,26 +10,26 @@ namespace CompanyEcosystem.BL.Services
 {
     public class AccountService : IAccountService
     {
-        private readonly IRepository<Employee?> _repository;
+        private readonly IRepository<Employee> _repository;
         private readonly IConfiguration _configuration;
         private readonly IMapper _mapper;
 
-        public AccountService(IRepository<Employee?> repository, IConfiguration configuration, IMapper mapper)
+        public AccountService(IRepository<Employee> repository, IConfiguration configuration, IMapper mapper)
         {
             _repository = repository;
             _configuration = configuration;
             _mapper = mapper;
         }
 
-        public EmployeeDto Register(EmployeeDto employeeDto)
+        public async Task<EmployeeDto> RegisterAsync(EmployeeDto employeeDto)
         {
-            var employee = _repository.GetAsync(e => e.Email == employeeDto.Email);
+            var employee = await _repository.GetAsync(e => e.Email == employeeDto.Email);
 
             if (employee != null)
                 throw new ValidationException("The employee is already registered", "");
 
             var result = _mapper.Map<EmployeeDto, Employee>(employeeDto);
-            _repository.CreateAsync(result);
+            await _repository.CreateAsync(result);
 
             var response = Authenticate(new EmployeeDto()
             {
@@ -70,18 +70,18 @@ namespace CompanyEcosystem.BL.Services
             return employees;
         }
 
-        public EmployeeDto GetById(int id)
+        public async Task<EmployeeDto> GetByIdAsync(int id)
         { 
-           var employee =  _repository.GetByIdAsync(id);
+           var employee = await _repository.GetByIdAsync(id);
 
            if (employee == null)
                throw new ValidationException("Employee not found", "");
 
            return new EmployeeDto 
            { 
-               Email = employee.Result.Email, 
-               Role = employee.Result.Role, 
-               Position = employee.Result.Position
+               Email = employee.Email, 
+               Role = employee.Role, 
+               Position = employee.Position
            };
         }
     }

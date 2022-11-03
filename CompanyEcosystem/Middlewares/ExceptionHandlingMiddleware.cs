@@ -1,4 +1,8 @@
-﻿using CompanyEcosystem.BL.Infrastructure;
+﻿using System;
+using System.Threading.Tasks;
+using CompanyEcosystem.BL.Infrastructure;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
 
 namespace CompanyEcosystem.PL.Middlewares;
 

@@ -1,6 +1,12 @@
-﻿using System.IdentityModel.Tokens.Jwt;
+﻿using System;
+using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using CompanyEcosystem.BL.Interfaces;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 
 namespace CompanyEcosystem.PL.Middlewares
@@ -43,7 +49,7 @@ namespace CompanyEcosystem.PL.Middlewares
                 var jwtToken = (JwtSecurityToken)validatedToken;
                 var userId = int.Parse(jwtToken.Claims.First(x => x.Type == "id").Value);
 
-                context.Items["User"] = accountService.GetById(userId);
+                context.Items["User"] = accountService.GetByIdAsync(userId);
             }
             catch(Exception e)
             {

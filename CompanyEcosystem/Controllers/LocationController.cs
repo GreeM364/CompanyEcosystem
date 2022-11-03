@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Collections.Generic;
+using AutoMapper;
 using CompanyEcosystem.BL.DataTransferObjects;
 using CompanyEcosystem.BL.Infrastructure;
 using CompanyEcosystem.BL.Interfaces;
@@ -63,7 +64,7 @@ namespace CompanyEcosystem.PL.Controllers
             {
                 var locationDto = _mapper.Map<LocationCreateUpdateViewModel, LocationDto>(model);
 
-                _locationService.CreateLocation(locationDto);
+                _locationService.CreateLocationAsync(locationDto);
 
                 return Ok();
             }
@@ -83,7 +84,7 @@ namespace CompanyEcosystem.PL.Controllers
             {
                 var locationDto = _mapper.Map<LocationCreateUpdateViewModel, LocationDto>(model);
 
-                _locationService.UpdateLocation(locationDto);
+                _locationService.UpdateLocationAsync(locationDto);
 
                 return Ok();
             }
@@ -98,7 +99,7 @@ namespace CompanyEcosystem.PL.Controllers
         {
             try
             {
-                _locationService.DeleteLocation(id);
+                _locationService.DeleteLocationAsync(id);
 
                 return Ok();
             }

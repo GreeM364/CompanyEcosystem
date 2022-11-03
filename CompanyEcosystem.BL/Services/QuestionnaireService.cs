@@ -61,11 +61,11 @@ namespace CompanyEcosystem.BL.Services
                 MiddleName = questionnaire.MiddleName,
                 LastName = questionnaire.LastName,
                 Phone = questionnaire.Phone,
-                Email = _accountService.GetById(questionnaire.EmployeeId).Email,
+                Email = _accountService.GetByIdAsync(questionnaire.EmployeeId).Email,
                 Birthday = questionnaire.Birthday,
                 AboutMyself = questionnaire.AboutMyself,
                 LinkToLinkedIn = questionnaire.LinkToLinkedIn,
-                Position = _accountService.GetById(questionnaire.EmployeeId).Position
+                Position = _accountService.GetByIdAsync(questionnaire.EmployeeId).Position
             };
 
             return questionnaireDto;
@@ -73,7 +73,7 @@ namespace CompanyEcosystem.BL.Services
 
         public void CreateQuestionnaire(QuestionnaireDto questionnaireDto)
         {
-            var employee = _accountService.GetById(questionnaireDto.EmployeeId);
+            var employee = _accountService.GetByIdAsync(questionnaireDto.EmployeeId);
             if (employee == null)
                 throw new ValidationException("Employee not found", "");
 
@@ -84,7 +84,7 @@ namespace CompanyEcosystem.BL.Services
 
         public void UpdateQuestionnaire(QuestionnaireDto questionnaireDto)
         {
-            var employee = _accountService.GetById(questionnaireDto.EmployeeId);
+            var employee = _accountService.GetByIdAsync(questionnaireDto.EmployeeId);
             if (employee == null)
                 throw new ValidationException("Employee not found", "");
 

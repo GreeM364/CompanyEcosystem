@@ -11,6 +11,6 @@ namespace CompanyEcosystem.BL.DataTransferObjects
         public DateTime WorkingStart { get; set; }
         public DateTime WorkingEnd { get; set; }
 
-        public List<Employee> Employees { get; set; }
+        public List<EmployeeDto> Employees { get; set; }
     }
 }

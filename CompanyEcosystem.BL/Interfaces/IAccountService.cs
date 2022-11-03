@@ -13,9 +13,9 @@ namespace CompanyEcosystem.BL.Interfaces
     public interface IAccountService
     {
         EmployeeDto Authenticate(EmployeeDto employeeDto);
-        EmployeeDto Register(EmployeeDto employeeDto);
+        Task<EmployeeDto> RegisterAsync(EmployeeDto employeeDto);
         IEnumerable<EmployeeDto> GetAll();
-        EmployeeDto GetById(int id);
+        Task<EmployeeDto> GetByIdAsync(int id);
     }
 
 }

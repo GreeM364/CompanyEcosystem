@@ -1,4 +1,6 @@
-﻿namespace CompanyEcosystem.PL.Models
+﻿using System.Collections.Generic;
+
+namespace CompanyEcosystem.PL.Models
 {
     public class ThingViewModel : BaseViewModel
     {

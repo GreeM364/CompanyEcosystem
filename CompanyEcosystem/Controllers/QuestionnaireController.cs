@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Collections.Generic;
+using AutoMapper;
 using CompanyEcosystem.BL.DataTransferObjects;
 using CompanyEcosystem.BL.Infrastructure;
 using CompanyEcosystem.BL.Interfaces;

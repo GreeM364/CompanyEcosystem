@@ -1,4 +1,6 @@
-﻿namespace CompanyEcosystem.PL.Models
+﻿using System;
+
+namespace CompanyEcosystem.PL.Models
 {
     public class QuestionnaireViewModel : BaseViewModel
     {

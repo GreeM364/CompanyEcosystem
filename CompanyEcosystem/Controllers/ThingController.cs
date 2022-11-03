@@ -1,8 +1,11 @@
-﻿using AutoMapper;
+﻿using System.Collections.Generic;
+using System.IO;
+using AutoMapper;
 using CompanyEcosystem.BL.DataTransferObjects;
 using CompanyEcosystem.BL.Infrastructure;
 using CompanyEcosystem.BL.Interfaces;
 using CompanyEcosystem.PL.Models;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CompanyEcosystem.PL.Controllers

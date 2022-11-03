@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Linq.Expressions;
+using AutoMapper;
 using CompanyEcosystem.BL.DataTransferObjects;
 using CompanyEcosystem.BL.Interfaces;
 using CompanyEcosystem.DAL.Entities;
@@ -22,18 +23,20 @@ namespace CompanyEcosystem.BL.Services
 
         public async Task<IEnumerable<LocationDto>> GetLocationsAsync()
         {
-            var locations = (await _dbLocation.GetAllAsync()).Select(async c => new LocationDto()
+            var source = await _dbLocation.GetAsync(includes: new List<Expression<Func<Location, object>>>()
             {
-                Id = c.Id,
-                Title = c.Title,
-                ChiefEmail = (await _dbEmployee.GetByIdAsync(c.Chief)).Email, 
-                WorkingStart = c.WorkingStart,
-                WorkingEnd = c.WorkingEnd,
-                Employees = await _dbEmployee.GetAsync(e => e.LocationId == c.Id)
+                x => x.Employees,
             });
-
-            if (locations == null)
+            
+            if (source == null || !source.Any())
                 throw new ValidationException("Locations not found", "");
+
+            var locations = _mapper.Map<List<Location>, List<LocationDto>>(source);
+
+            foreach (var location in locations)
+            {
+                location.ChiefEmail = (await _dbEmployee.GetByIdAsync(location.Chief)).Email;
+            }
 
             return locations;
         }
@@ -51,17 +54,28 @@ namespace CompanyEcosystem.BL.Services
             var locationDto = new LocationDto() 
             {
                 Id = location.Id,
-                Title = location.Result.Title,
-                ChiefEmail = _dbEmployee.GetByIdAsync(location.Result.Chief).Result.Email,
-                WorkingStart = location.Result.WorkingStart,
-                WorkingEnd = location.Result.WorkingEnd,
-                Employees = _dbEmployee.GetAsync(l => l.Id == location.Result.Id).Result
+                Title = location.Title,
+                ChiefEmail = _dbEmployee.GetByIdAsync(location.Result.Chief).Email,
+                WorkingStart = location.WorkingStart,
+                WorkingEnd = location.WorkingEnd,
+                Employees = _dbEmployee.GetAsync(l => l.Id == location.Result.Id)
             };
 
             return locationDto;
         }
 
-        public void CreateLocation(LocationDto locationDto)
+        public async Task CreateLocationAsync(LocationDto locationDto)
+        {
+            var chief = await _dbEmployee.GetByIdAsync(locationDto.Chief);
+            if (chief == null)
+                throw new ValidationException("Chief not found", "");
+
+            var location = _mapper.Map<LocationDto, Location>(locationDto);
+
+            await _dbLocation.CreateAsync(location);
+        }
+
+        public Task UpdateLocationAsync(LocationDto locationDto)
         {
             var chief = _dbEmployee.GetByIdAsync(locationDto.Chief);
             if (chief == null)
@@ -69,26 +83,15 @@ namespace CompanyEcosystem.BL.Services
 
             var location = _mapper.Map<LocationDto, Location>(locationDto);
 
-            _dbLocation.CreateAsync(location);
+            return _dbLocation.UpdateAsync(location);
         }
 
-        public void UpdateLocation(LocationDto locationDto)
-        {
-            var chief = _dbEmployee.GetByIdAsync(locationDto.Chief);
-            if (chief == null)
-                throw new ValidationException("Chief not found", "");
-
-            var location = _mapper.Map<LocationDto, Location>(locationDto);
-
-            _dbLocation.UpdateAsync(location);
-        }
-
-        public void DeleteLocation(int? id)
+        public Task DeleteLocationAsync(int? id)
         {
             if (id == null)
                 throw new ValidationException("Location ID not set", "");
 
-            _dbLocation.DeleteAsync(id.Value);
+            return _dbLocation.DeleteAsync(id.Value);
         }
     }
 }

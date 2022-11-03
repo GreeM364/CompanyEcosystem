@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using CompanyEcosystem.BL.DataTransferObjects;
+using CompanyEcosystem.DAL.Entities;
 
 namespace CompanyEcosystem.BL.Interfaces
 {
@@ -8,8 +9,8 @@ namespace CompanyEcosystem.BL.Interfaces
     {
         LocationDto GetLocation(int? id);
         Task<IEnumerable<LocationDto>> GetLocationsAsync();
-        void CreateLocation(LocationDto locationDto);
-        void UpdateLocation(LocationDto locationDto);
-        void DeleteLocation(int? id);
+        Task CreateLocationAsync(LocationDto locationDto);
+        Task UpdateLocationAsync(LocationDto locationDto);
+        Task DeleteLocationAsync(int? id);
     }
 }
