@@ -1,4 +1,6 @@
-﻿namespace CompanyEcosystem.BL.DataTransferObjects
+﻿using CompanyEcosystem.DAL.Entities;
+
+namespace CompanyEcosystem.BL.DataTransferObjects
 {
     public class ThingDto
     {
@@ -8,6 +10,6 @@
         public string Characteristic { get; set; }
 
         public int LocationId { get; set; }
-        public IEnumerable<PhotoThingDto> PhotoThing { get; set; }
+        public List<PhotoThingDto> Photos { get; set; }
     }
 }

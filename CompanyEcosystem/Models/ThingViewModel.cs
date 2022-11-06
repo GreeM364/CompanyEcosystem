@@ -8,6 +8,6 @@ namespace CompanyEcosystem.PL.Models
         public string Instruction { get; set; }
         public string Characteristic { get; set; }
 
-        public IEnumerable<PhotoThingViewModel> PhotoThing { get; set; }
+        public IEnumerable<PhotoThingViewModel> Photos { get; set; }
     }
 }

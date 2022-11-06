@@ -26,11 +26,11 @@ namespace CompanyEcosystem.PL.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
             try
             {
-                var source = _thingService.GetThings();
+                var source = await _thingService.GetThings();
 
                 var things = _mapper.Map<IEnumerable<ThingDto>, List<ThingViewModel>>(source);
 
@@ -43,11 +43,11 @@ namespace CompanyEcosystem.PL.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult Get(int? id)
+        public async Task<IActionResult> Get(int? id)
         {
             try
             {
-                var source = _thingService.GetThing(id);
+                var source = await _thingService.GetThing(id);
 
                 var thing = _mapper.Map<ThingDto, ThingViewModel>(source);
 
@@ -60,7 +60,7 @@ namespace CompanyEcosystem.PL.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post(ThingCreateUpdateViewModel model)
+        public async Task<IActionResult> Post(ThingCreateUpdateViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(model);
@@ -71,7 +71,7 @@ namespace CompanyEcosystem.PL.Controllers
 
                 var directoryPath = Path.Combine(_appEnvironment.WebRootPath, "img", "things");
 
-                _thingService.CreateThing(thingDto, model.Images, directoryPath);
+                await _thingService.CreateThingAsync(thingDto, model.Images, directoryPath);
 
                 return Ok();
             }
@@ -82,7 +82,7 @@ namespace CompanyEcosystem.PL.Controllers
         }
 
         [HttpPut]
-        public IActionResult Put(ThingCreateUpdateViewModel model)
+        public async Task<IActionResult> Put(ThingCreateUpdateViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(model);
@@ -93,7 +93,7 @@ namespace CompanyEcosystem.PL.Controllers
 
                 var directoryPath = Path.Combine(_appEnvironment.WebRootPath, "img", "things");
 
-                _thingService.UpdateThing(thingDto, model.Images, directoryPath);
+                await _thingService.UpdateThingAsync(thingDto, model.Images, directoryPath);
 
                 return Ok();
             }
@@ -104,11 +104,11 @@ namespace CompanyEcosystem.PL.Controllers
         }
 
         [HttpDelete]
-        public IActionResult Delete(int? id)
+        public async Task<IActionResult> Delete(int? id)
         {
             try
             {
-                _thingService.DeleteThing(id);
+                await _thingService.DeleteThingAsync(id);
 
                 return Ok();
             }

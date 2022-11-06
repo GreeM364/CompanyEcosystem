@@ -22,13 +22,13 @@ namespace CompanyEcosystem.PL.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
             try
             {
-                var questionnaireDtos = _questionnaireService.GetQuestionnaires();
+                var source = await _questionnaireService.GetQuestionnairesAsync();
 
-                var questionnaires = _mapper.Map<IEnumerable<QuestionnaireDto>, List<QuestionnaireViewModel>>(questionnaireDtos);
+                var questionnaires = _mapper.Map<IEnumerable<QuestionnaireDto>, List<QuestionnaireViewModel>>(source);
 
                 return Ok(questionnaires);
             }
@@ -39,13 +39,13 @@ namespace CompanyEcosystem.PL.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult Get(int? id)
+        public async Task<IActionResult> Get(int? id)
         {
             try
             {
-                QuestionnaireDto questionnaireDto = _questionnaireService.GetQuestionnaire(id);
+                var source = await _questionnaireService.GetQuestionnaireAsync(id);
 
-                var questionnaireViewModel = _mapper.Map<QuestionnaireDto, QuestionnaireViewModel>(questionnaireDto);
+                var questionnaireViewModel = _mapper.Map<QuestionnaireDto, QuestionnaireViewModel>(source);
 
                 return Ok(questionnaireViewModel);
             }
@@ -56,7 +56,7 @@ namespace CompanyEcosystem.PL.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post(QuestionnaireCreateUpdateViewModel model)
+        public async Task<IActionResult> Post(QuestionnaireCreateUpdateViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(model);
@@ -65,7 +65,7 @@ namespace CompanyEcosystem.PL.Controllers
             {
                 var questionnaireDto = _mapper.Map<QuestionnaireCreateUpdateViewModel, QuestionnaireDto>(model);
 
-                _questionnaireService.CreateQuestionnaire(questionnaireDto);
+                await _questionnaireService.CreateQuestionnaireAsync(questionnaireDto);
 
                 return Ok();
             }
@@ -76,7 +76,7 @@ namespace CompanyEcosystem.PL.Controllers
         }
 
         [HttpPut]
-        public IActionResult Put(QuestionnaireCreateUpdateViewModel model)
+        public async Task<IActionResult> Put(QuestionnaireCreateUpdateViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(model);
@@ -85,7 +85,7 @@ namespace CompanyEcosystem.PL.Controllers
             {
                 var questionnaireDto = _mapper.Map<QuestionnaireCreateUpdateViewModel, QuestionnaireDto>(model);
 
-                _questionnaireService.UpdateQuestionnaire(questionnaireDto);
+                await _questionnaireService.UpdateQuestionnaireAsync(questionnaireDto);
 
                 return Ok();
             }
@@ -96,11 +96,11 @@ namespace CompanyEcosystem.PL.Controllers
         }
 
         [HttpDelete]
-        public IActionResult Delete(int? id)
+        public async Task<IActionResult> Delete(int? id)
         {
             try
             {
-                _questionnaireService.DeleteQuestionnaire(id);
+                await _questionnaireService.DeleteQuestionnaireAsync(id);
 
                 return Ok();
             }

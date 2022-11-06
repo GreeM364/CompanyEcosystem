@@ -21,13 +21,13 @@ namespace CompanyEcosystem.PL.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
             try
             {
-                IEnumerable<LocationDto> locationsDtos = _locationService.GetLocationsAsync();
+                var source = await _locationService.GetLocationsAsync();
 
-                var locations = _mapper.Map<IEnumerable<LocationDto>, List<LocationViewModel>>(locationsDtos);
+                var locations = _mapper.Map<List<LocationDto>, List<LocationViewModel>>(source);
 
                 return Ok(locations);
             }
@@ -38,11 +38,11 @@ namespace CompanyEcosystem.PL.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult Get(int? id)
+        public async Task<IActionResult> Get(int? id)
         {
             try
             {
-                var source = _locationService.GetLocation(id);
+                var source = await _locationService.GetLocationAsync(id);
 
                 var location = _mapper.Map<LocationDto, LocationViewModel>(source);
 
@@ -55,7 +55,7 @@ namespace CompanyEcosystem.PL.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post(LocationCreateUpdateViewModel model)
+        public async Task<IActionResult> Post(LocationCreateUpdateViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(model);
@@ -64,7 +64,7 @@ namespace CompanyEcosystem.PL.Controllers
             {
                 var locationDto = _mapper.Map<LocationCreateUpdateViewModel, LocationDto>(model);
 
-                _locationService.CreateLocationAsync(locationDto);
+                await _locationService.CreateLocationAsync(locationDto);
 
                 return Ok();
             }
@@ -75,7 +75,7 @@ namespace CompanyEcosystem.PL.Controllers
         }
 
         [HttpPut]
-        public IActionResult Put(LocationCreateUpdateViewModel model)
+        public async Task<IActionResult> Put(LocationCreateUpdateViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(model);
@@ -84,7 +84,7 @@ namespace CompanyEcosystem.PL.Controllers
             {
                 var locationDto = _mapper.Map<LocationCreateUpdateViewModel, LocationDto>(model);
 
-                _locationService.UpdateLocationAsync(locationDto);
+                await _locationService.UpdateLocationAsync(locationDto);
 
                 return Ok();
             }
@@ -95,11 +95,11 @@ namespace CompanyEcosystem.PL.Controllers
         }
 
         [HttpDelete]
-        public IActionResult Delete(int? id)
+        public async Task<IActionResult> Delete(int? id)
         {
             try
             {
-                _locationService.DeleteLocationAsync(id);
+                await _locationService.DeleteLocationAsync(id);
 
                 return Ok();
             }

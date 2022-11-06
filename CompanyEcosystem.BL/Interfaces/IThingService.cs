@@ -10,10 +10,10 @@ namespace CompanyEcosystem.BL.Interfaces
 {
     public interface IThingService
     {
-        ThingDto GetThing(int? id);
-        IEnumerable<ThingDto> GetThings();
-        void CreateThing(ThingDto thingDto, IFormFileCollection formFileCollection, string directoryPath);
-        void UpdateThing(ThingDto thingDto, IFormFileCollection formFileCollection, string directoryPath);
-        void DeleteThing(int? id);
+        Task<ThingDto> GetThing(int? id);
+        Task<IEnumerable<ThingDto>> GetThings();
+        Task CreateThingAsync(ThingDto thingDto, IFormFileCollection formFileCollection, string directoryPath);
+        Task UpdateThingAsync(ThingDto thingDto, IFormFileCollection formFileCollection, string directoryPath);
+        Task DeleteThingAsync(int? id);
     }
 }

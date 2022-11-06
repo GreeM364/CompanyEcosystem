@@ -21,7 +21,7 @@ namespace CompanyEcosystem.BL.Services
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<LocationDto>> GetLocationsAsync()
+        public async Task<List<LocationDto>> GetLocationsAsync()
         {
             var source = await _dbLocation.GetAsync(includes: new List<Expression<Func<Location, object>>>()
             {
@@ -41,25 +41,22 @@ namespace CompanyEcosystem.BL.Services
             return locations;
         }
 
-        public LocationDto GetLocation(int? id)
+        public async Task<LocationDto> GetLocationAsync(int? id)
         {
             if (id == null)
                 throw new ValidationException("Location ID not set", "");
 
-            var location = _dbLocation.GetByIdAsync(id.Value);
+            var source = await _dbLocation.GetByIdAsync(id.Value);
+            var employes = await _dbEmployee.GetAsync(employee => employee.LocationId == source.Id);
 
-            if (location == null)
-                throw new ValidationException("Location not found", "");
+            if (source == null)
+                throw new ValidationException("Locations not found", "");
 
-            var locationDto = new LocationDto() 
-            {
-                Id = location.Id,
-                Title = location.Title,
-                ChiefEmail = _dbEmployee.GetByIdAsync(location.Result.Chief).Email,
-                WorkingStart = location.WorkingStart,
-                WorkingEnd = location.WorkingEnd,
-                Employees = _dbEmployee.GetAsync(l => l.Id == location.Result.Id)
-            };
+            var locationDto = _mapper.Map<Location, LocationDto>(source);
+            var employesDto = _mapper.Map<List<Employee>, List<EmployeeDto>>(employes);
+
+            locationDto.ChiefEmail = (await _dbEmployee.GetByIdAsync(locationDto.Chief))!.Email;
+            locationDto.Employees = employesDto;
 
             return locationDto;
         }

@@ -31,38 +31,39 @@ namespace CompanyEcosystem.BL.Services
             var result = _mapper.Map<EmployeeDto, Employee>(employeeDto);
             await _repository.CreateAsync(result);
 
-            var response = Authenticate(new EmployeeDto()
+            var response = AuthenticateAsync(new EmployeeDto()
             {
                 Email = employeeDto.Email,
                 Password = employeeDto.Password
             });
 
-            return response;
+            return await response;
         }
 
-        public EmployeeDto Authenticate(EmployeeDto employeeDto)
+        public async Task<EmployeeDto> AuthenticateAsync(EmployeeDto employeeDto)
         {
-            var user = _repository.GetFirstAsync(x => x.Email == employeeDto.Email
+            var user = await _repository.GetFirstAsync(x => x.Email == employeeDto.Email
                                                       && x.Password == HashPassword.HashPas(employeeDto.Password));
 
             
             if (user == null)
                 throw new ValidationException("Username or password is incorrect", "");
                 
-            var token = UserHelper.GenerateJwtToken(_configuration, user.Result);
+            var token = UserHelper.GenerateJwtToken(_configuration, user);
 
             return new EmployeeDto
             {
-                Email = user.Result.Email, 
-                Role = user.Result.Role, 
-                Position = user.Result.Position, 
+                Email = user.Email, 
+                Role = user.Role, 
+                Position = user.Position, 
                 Token = token
             };
         }
 
-        public IEnumerable<EmployeeDto> GetAll()
+        public async Task<List<EmployeeDto>> GetAllAsync()
         {
-            var employees = _mapper.Map<List<Employee>, List<EmployeeDto>>(_repository.GetAllAsync().Result!);
+            var source = await _repository.GetAllAsync();
+            var employees =_mapper.Map<List<Employee>, List<EmployeeDto>>(source);
 
             //if (employees == null)
             //    throw new ValidationException("Employees not found", "");

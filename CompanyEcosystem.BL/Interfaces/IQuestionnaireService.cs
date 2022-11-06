@@ -9,10 +9,10 @@ namespace CompanyEcosystem.BL.Interfaces
 {
     public interface IQuestionnaireService
     {
-        QuestionnaireDto GetQuestionnaire(int? id);
-        IEnumerable<QuestionnaireDto> GetQuestionnaires();
-        void CreateQuestionnaire(QuestionnaireDto questionnaireDto);
-        void UpdateQuestionnaire(QuestionnaireDto questionnaireDto);
-        void DeleteQuestionnaire(int? id);
+        Task<QuestionnaireDto> GetQuestionnaireAsync(int? id);
+        Task<IEnumerable<QuestionnaireDto>> GetQuestionnairesAsync();
+        Task CreateQuestionnaireAsync(QuestionnaireDto questionnaireDto);
+        Task UpdateQuestionnaireAsync(QuestionnaireDto questionnaireDto);
+        Task DeleteQuestionnaireAsync(int? id);
     }
 }

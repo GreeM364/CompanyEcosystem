@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using AutoMapper;
+﻿using AutoMapper;
 using CompanyEcosystem.BL.DataTransferObjects;
 using CompanyEcosystem.BL.Infrastructure;
 using CompanyEcosystem.BL.Interfaces;
@@ -21,7 +20,7 @@ namespace CompanyEcosystem.PL.Controllers
         }
 
         [HttpPost("register")]
-        public IActionResult Register(RegisterViewModel model)
+        public async Task<IActionResult> Register(RegisterViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -30,7 +29,7 @@ namespace CompanyEcosystem.PL.Controllers
             {
                 var employeeDto = _mapper.Map<RegisterViewModel, EmployeeDto>(model);
 
-                var response =  _accountService.RegisterAsync(employeeDto);
+                var response = await _accountService.RegisterAsync(employeeDto);
 
                 return Ok(_mapper.Map<EmployeeDto, EmployeeViewModel>(response));
             }
@@ -41,7 +40,7 @@ namespace CompanyEcosystem.PL.Controllers
         }
 
         [HttpPost("authenticate")]
-        public IActionResult Authenticate(AuthenticateViewModel model)
+        public async Task<IActionResult> Authenticate(AuthenticateViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -50,7 +49,7 @@ namespace CompanyEcosystem.PL.Controllers
             {
                 var employeeDto = _mapper.Map<AuthenticateViewModel, EmployeeDto>(model);
 
-                var response = _accountService.Authenticate(employeeDto);
+                var response = await _accountService.AuthenticateAsync(employeeDto);
 
                 return Ok(_mapper.Map<EmployeeDto, EmployeeViewModel>(response));
             }
@@ -61,9 +60,11 @@ namespace CompanyEcosystem.PL.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<EmployeeViewModel> GetAll()
+        public async Task<IEnumerable<EmployeeViewModel>> GetAll()
         {
-            return _mapper.Map<IEnumerable<EmployeeDto>, List<EmployeeViewModel>>(_accountService.GetAll());
+            var source = await _accountService.GetAllAsync();
+
+            return _mapper.Map<IEnumerable<EmployeeDto>, List<EmployeeViewModel>>(source);
         }
     }
 }

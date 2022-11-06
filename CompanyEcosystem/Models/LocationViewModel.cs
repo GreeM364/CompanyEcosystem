@@ -10,6 +10,6 @@ namespace CompanyEcosystem.PL.Models
         public DateTime WorkingStart { get; set; }
         public DateTime WorkingEnd { get; set; }
 
-        public IEnumerable<EmployeeViewModel> Employees { get; set; }
+        public List<EmployeeViewModel> Employees { get; set; }
     }
 }
