@@ -15,6 +15,7 @@ namespace CompanyEcosystem.DAL.EF
         public DbSet<Questionnaire> Questionnaires { get; set; }
         public DbSet<Thing> Things { get; set; }
         public DbSet<PhotoThing> PhotoThings { get; set; }
+        public DbSet<Post> Posts { get; set; }
 
         public CompanyEcosystemContext(DbContextOptions<CompanyEcosystemContext> connectionString)
             : base(connectionString)

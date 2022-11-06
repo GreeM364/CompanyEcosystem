@@ -23,6 +23,7 @@ namespace CompanyEcosystem.BL.Infrastructure
             service.AddScoped<IAccountService, AccountService>();
             service.AddScoped<IQuestionnaireService, QuestionnaireService>();
             service.AddScoped<IThingService, ThingService>();
+            service.AddScoped<IPostService, PostService>();
 
 
             return service;

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CompanyEcosystem.Enum;
+﻿using CompanyEcosystem.Enum;
 
 namespace CompanyEcosystem.DAL.Entities
 {
@@ -12,6 +7,7 @@ namespace CompanyEcosystem.DAL.Entities
         public int Id { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
+        public int Place { get; set; }
         public Role Role { get; set; }
         public Position Position { get; set; }
 

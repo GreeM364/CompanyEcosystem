@@ -19,6 +19,8 @@ namespace CompanyEcosystem.PL.Infrastructure
             CreateMap<ThingViewModel, ThingDto>().ReverseMap();
             CreateMap<ThingCreateUpdateViewModel, ThingDto>().ReverseMap();
             CreateMap<PhotoThingViewModel, PhotoThingDto>().ReverseMap();
+            CreateMap<PostCreateUpdateViewModel, PostDto>().ReverseMap();
+            CreateMap<PostViewModel, PostDto>().ReverseMap();
         }
     }
 }

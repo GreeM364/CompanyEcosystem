@@ -14,7 +14,7 @@ namespace CompanyEcosystem.BL.Services
         private readonly IRepository<Employee> _dbEmployee;
         private readonly IMapper _mapper;
 
-        public LocationService(IRepository<Location> dbLocation, IRepository<Employee> dbEmployee, IAccountService accountService, IMapper mapper)
+        public LocationService(IRepository<Location> dbLocation, IRepository<Employee> dbEmployee, IMapper mapper)
         {
             _dbLocation = dbLocation;
             _dbEmployee = dbEmployee;
@@ -72,15 +72,15 @@ namespace CompanyEcosystem.BL.Services
             await _dbLocation.CreateAsync(location);
         }
 
-        public Task UpdateLocationAsync(LocationDto locationDto)
+        public async Task UpdateLocationAsync(LocationDto locationDto)
         {
-            var chief = _dbEmployee.GetByIdAsync(locationDto.Chief);
+            var chief = await _dbEmployee.GetByIdAsync(locationDto.Chief);
             if (chief == null)
                 throw new ValidationException("Chief not found", "");
 
             var location = _mapper.Map<LocationDto, Location>(locationDto);
 
-            return _dbLocation.UpdateAsync(location);
+            await _dbLocation.UpdateAsync(location);
         }
 
         public Task DeleteLocationAsync(int? id)

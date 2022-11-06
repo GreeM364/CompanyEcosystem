@@ -54,26 +54,26 @@ namespace CompanyEcosystem.BL.Services
             return questionnaireDto;
         }
 
-        public Task CreateQuestionnaireAsync(QuestionnaireDto questionnaireDto)
+        public async Task CreateQuestionnaireAsync(QuestionnaireDto questionnaireDto)
         {
-            var employee = _accountService.GetByIdAsync(questionnaireDto.EmployeeId);
+            var employee = await _accountService.GetByIdAsync(questionnaireDto.EmployeeId);
             if (employee == null)
                 throw new ValidationException("Employee not found", "");
 
             var questionnaire = _mapper.Map<QuestionnaireDto, Questionnaire>(questionnaireDto);
 
-            return _dbQuestionnaire.CreateAsync(questionnaire);
+            await _dbQuestionnaire.CreateAsync(questionnaire);
         }
 
-        public Task UpdateQuestionnaireAsync(QuestionnaireDto questionnaireDto)
+        public async Task UpdateQuestionnaireAsync(QuestionnaireDto questionnaireDto)
         {
-            var employee = _accountService.GetByIdAsync(questionnaireDto.EmployeeId);
+            var employee = await _accountService.GetByIdAsync(questionnaireDto.EmployeeId);
             if (employee == null)
                 throw new ValidationException("Employee not found", "");
 
             var questionnaire = _mapper.Map<QuestionnaireDto, Questionnaire>(questionnaireDto);
 
-            return _dbQuestionnaire.UpdateAsync(questionnaire);
+            await _dbQuestionnaire.UpdateAsync(questionnaire);
         }
 
         public Task DeleteQuestionnaireAsync(int? id)

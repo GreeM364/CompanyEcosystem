@@ -18,6 +18,7 @@ namespace CompanyEcosystem.BL.Infrastructure
                 .ReverseMap();
             CreateMap<ThingDto, Thing>().ReverseMap();
             CreateMap<PhotoThingDto, PhotoThing>().ReverseMap();
+            CreateMap<PostDto, Post>().ReverseMap();
         }
     }
 }
