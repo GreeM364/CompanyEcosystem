@@ -1,11 +1,6 @@
 ﻿using Microsoft.OpenApi.Models;
 using CompanyEcosystem.BL.Infrastructure;
 using CompanyEcosystem.PL.Middlewares;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 
 namespace CompanyEcosystem.PL.Infrastructure
 {

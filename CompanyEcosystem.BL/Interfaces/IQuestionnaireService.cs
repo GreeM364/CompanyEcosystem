@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CompanyEcosystem.BL.DataTransferObjects;
+using Microsoft.AspNetCore.Http;
 
 namespace CompanyEcosystem.BL.Interfaces
 {
@@ -11,8 +12,8 @@ namespace CompanyEcosystem.BL.Interfaces
     {
         Task<QuestionnaireDto> GetQuestionnaireAsync(int? id);
         Task<IEnumerable<QuestionnaireDto>> GetQuestionnairesAsync();
-        Task CreateQuestionnaireAsync(QuestionnaireDto questionnaireDto);
-        Task UpdateQuestionnaireAsync(QuestionnaireDto questionnaireDto);
+        Task CreateQuestionnaireAsync(QuestionnaireDto questionnaireDto, IFormFile formFile, string directoryPath);
+        Task UpdateQuestionnaireAsync(QuestionnaireDto questionnaireDto, IFormFile formFile, string directoryPath);
         Task DeleteQuestionnaireAsync(int? id);
     }
 }

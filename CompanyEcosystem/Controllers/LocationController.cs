@@ -14,10 +14,13 @@ namespace CompanyEcosystem.PL.Controllers
     {
         private readonly ILocationService _locationService;
         private readonly IMapper _mapper;
-        public LocationController(ILocationService locationService, IMapper mapper, IAccountService accountService)
+        private readonly IWebHostEnvironment _appEnvironment;
+
+        public LocationController(ILocationService locationService, IMapper mapper, IAccountService accountService, IWebHostEnvironment appEnvironment)
         {
             _locationService = locationService;
             _mapper = mapper;
+            _appEnvironment = appEnvironment;
         }
 
         [HttpGet]
@@ -64,7 +67,9 @@ namespace CompanyEcosystem.PL.Controllers
             {
                 var locationDto = _mapper.Map<LocationCreateUpdateViewModel, LocationDto>(model);
 
-                await _locationService.CreateLocationAsync(locationDto);
+                var directoryPath = Path.Combine(_appEnvironment.WebRootPath, "img", "locations");
+
+                await _locationService.CreateLocationAsync(locationDto, model.Photo, directoryPath);
 
                 return Ok();
             }
@@ -84,7 +89,9 @@ namespace CompanyEcosystem.PL.Controllers
             {
                 var locationDto = _mapper.Map<LocationCreateUpdateViewModel, LocationDto>(model);
 
-                await _locationService.UpdateLocationAsync(locationDto);
+                var directoryPath = Path.Combine(_appEnvironment.WebRootPath, "img", "locations");
+
+                await _locationService.UpdateLocationAsync(locationDto, model.Photo, directoryPath);
 
                 return Ok();
             }

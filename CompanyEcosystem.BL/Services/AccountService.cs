@@ -23,7 +23,7 @@ namespace CompanyEcosystem.BL.Services
 
         public async Task<EmployeeDto> RegisterAsync(EmployeeDto employeeDto)
         {
-            var employee = await _repository.GetAsync(e => e.Email == employeeDto.Email);
+            var employee = await _repository.GetFirstAsync(e => e.Email == employeeDto.Email);
 
             if (employee != null)
                 throw new ValidationException("The employee is already registered", "");

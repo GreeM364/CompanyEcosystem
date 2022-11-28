@@ -9,8 +9,7 @@ namespace CompanyEcosystem.PL.Models
         public string LastName { get; set; }
         public string Phone { get; set; }
         public DateTime Birthday { get; set; }
-
-        //public string Photo { get; set; }
+        public string Photo { get; set; }
         public string AboutMyself { get; set; }
         public string LinkToLinkedIn { get; set; }
 

@@ -14,11 +14,13 @@ namespace CompanyEcosystem.PL.Controllers
     {
         private readonly IQuestionnaireService _questionnaireService;
         private readonly IMapper _mapper;
+        private readonly IWebHostEnvironment _appEnvironment;
 
-        public QuestionnaireController(IQuestionnaireService questionnaireService, IMapper mapper)
+        public QuestionnaireController(IQuestionnaireService questionnaireService, IMapper mapper, IWebHostEnvironment appEnvironment)
         {
             _questionnaireService = questionnaireService;
             _mapper = mapper;
+            _appEnvironment = appEnvironment;
         }
 
         [HttpGet]
@@ -65,7 +67,9 @@ namespace CompanyEcosystem.PL.Controllers
             {
                 var questionnaireDto = _mapper.Map<QuestionnaireCreateUpdateViewModel, QuestionnaireDto>(model);
 
-                await _questionnaireService.CreateQuestionnaireAsync(questionnaireDto);
+                var directoryPath = Path.Combine(_appEnvironment.WebRootPath, "img", "employee");
+
+                await _questionnaireService.CreateQuestionnaireAsync(questionnaireDto, model.Photo, directoryPath);
 
                 return Ok();
             }
@@ -85,7 +89,9 @@ namespace CompanyEcosystem.PL.Controllers
             {
                 var questionnaireDto = _mapper.Map<QuestionnaireCreateUpdateViewModel, QuestionnaireDto>(model);
 
-                await _questionnaireService.UpdateQuestionnaireAsync(questionnaireDto);
+                var directoryPath = Path.Combine(_appEnvironment.WebRootPath, "img", "employee");
+
+                await _questionnaireService.UpdateQuestionnaireAsync(questionnaireDto, model.Photo, directoryPath);
 
                 return Ok();
             }

@@ -4,6 +4,7 @@ using CompanyEcosystem.BL.Infrastructure;
 using CompanyEcosystem.BL.Interfaces;
 using CompanyEcosystem.DAL.Entities;
 using CompanyEcosystem.DAL.Interfaces;
+using Microsoft.AspNetCore.Http;
 using System.Linq.Expressions;
 
 namespace CompanyEcosystem.BL.Services
@@ -54,7 +55,7 @@ namespace CompanyEcosystem.BL.Services
             return questionnaireDto;
         }
 
-        public async Task CreateQuestionnaireAsync(QuestionnaireDto questionnaireDto)
+        public async Task CreateQuestionnaireAsync(QuestionnaireDto questionnaireDto, IFormFile formFile, string directoryPath)
         {
             var employee = await _accountService.GetByIdAsync(questionnaireDto.EmployeeId);
             if (employee == null)
@@ -62,10 +63,23 @@ namespace CompanyEcosystem.BL.Services
 
             var questionnaire = _mapper.Map<QuestionnaireDto, Questionnaire>(questionnaireDto);
 
+            if (formFile != null && !string.IsNullOrWhiteSpace(directoryPath))
+            {
+                directoryPath = Path.Combine(directoryPath, questionnaire.Id.ToString());
+            }
+
+            var path = $"/img/employee/{questionnaireDto.Id}/{formFile.FileName}";
+
+            using (var fileStream = new FileStream(Path.Combine(directoryPath, formFile.FileName), FileMode.Create))
+            {
+                formFile.CopyToAsync(fileStream);
+            }
+
+            questionnaire.Photo = path;
             await _dbQuestionnaire.CreateAsync(questionnaire);
         }
 
-        public async Task UpdateQuestionnaireAsync(QuestionnaireDto questionnaireDto)
+        public async Task UpdateQuestionnaireAsync(QuestionnaireDto questionnaireDto, IFormFile formFile, string directoryPath)
         {
             var employee = await _accountService.GetByIdAsync(questionnaireDto.EmployeeId);
             if (employee == null)
@@ -73,6 +87,19 @@ namespace CompanyEcosystem.BL.Services
 
             var questionnaire = _mapper.Map<QuestionnaireDto, Questionnaire>(questionnaireDto);
 
+            if (formFile != null && !string.IsNullOrWhiteSpace(directoryPath))
+            {
+                directoryPath = Path.Combine(directoryPath, questionnaire.Id.ToString());
+            }
+
+            var path = $"/img/employee/{questionnaireDto.Id}/{formFile.FileName}";
+
+            using (var fileStream = new FileStream(Path.Combine(directoryPath, formFile.FileName), FileMode.Create))
+            {
+                formFile.CopyToAsync(fileStream);
+            }
+
+            questionnaire.Photo = path;
             await _dbQuestionnaire.UpdateAsync(questionnaire);
         }
 

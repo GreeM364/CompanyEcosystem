@@ -11,6 +11,6 @@ namespace CompanyEcosystem.BL.DataTransferObjects
         public Position Position { get; set; }
         public string Token { get; set; }
 
-        public int LocationId { get; set; }
+        public int? LocationId { get; set; }
     }
 }

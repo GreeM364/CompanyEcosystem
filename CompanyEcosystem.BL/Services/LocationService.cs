@@ -5,6 +5,7 @@ using CompanyEcosystem.BL.Interfaces;
 using CompanyEcosystem.DAL.Entities;
 using CompanyEcosystem.DAL.Interfaces;
 using CompanyEcosystem.BL.Infrastructure;
+using Microsoft.AspNetCore.Http;
 
 namespace CompanyEcosystem.BL.Services
 {
@@ -61,7 +62,7 @@ namespace CompanyEcosystem.BL.Services
             return locationDto;
         }
 
-        public async Task CreateLocationAsync(LocationDto locationDto)
+        public async Task CreateLocationAsync(LocationDto locationDto, IFormFile formFile, string directoryPath)
         {
             var chief = await _dbEmployee.GetByIdAsync(locationDto.Chief);
             if (chief == null)
@@ -69,10 +70,23 @@ namespace CompanyEcosystem.BL.Services
 
             var location = _mapper.Map<LocationDto, Location>(locationDto);
 
+            if (formFile != null && !string.IsNullOrWhiteSpace(directoryPath))
+            {
+                directoryPath = Path.Combine(directoryPath, location.Id.ToString());
+            }
+
+            var path = $"/img/locations/{locationDto.Id}/{formFile.FileName}";
+
+            using (var fileStream = new FileStream(Path.Combine(directoryPath, formFile.FileName), FileMode.Create))
+            {
+                formFile.CopyToAsync(fileStream);
+            }
+
+            location.Photo = path;
             await _dbLocation.CreateAsync(location);
         }
 
-        public async Task UpdateLocationAsync(LocationDto locationDto)
+        public async Task UpdateLocationAsync(LocationDto locationDto, IFormFile formFile, string directoryPath)
         {
             var chief = await _dbEmployee.GetByIdAsync(locationDto.Chief);
             if (chief == null)
@@ -80,6 +94,19 @@ namespace CompanyEcosystem.BL.Services
 
             var location = _mapper.Map<LocationDto, Location>(locationDto);
 
+            if (formFile != null && !string.IsNullOrWhiteSpace(directoryPath))
+            {
+                directoryPath = Path.Combine(directoryPath, location.Id.ToString());
+            }
+
+            var path = $"/img/locations/{locationDto.Id}/{formFile.FileName}";
+
+            using (var fileStream = new FileStream(Path.Combine(directoryPath, formFile.FileName), FileMode.Create))
+            {
+                formFile.CopyToAsync(fileStream);
+            }
+
+            location.Photo = path;
             await _dbLocation.UpdateAsync(location);
         }
 

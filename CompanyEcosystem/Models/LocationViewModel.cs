@@ -7,6 +7,7 @@ namespace CompanyEcosystem.PL.Models
     {
         public string Title { get; set; }
         public string ChiefEmail { get; set; }
+        public string Photo { get; set; }
         public DateTime WorkingStart { get; set; }
         public DateTime WorkingEnd { get; set; }
 

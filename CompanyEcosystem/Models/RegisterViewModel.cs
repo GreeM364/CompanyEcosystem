@@ -22,7 +22,9 @@ namespace CompanyEcosystem.PL.Models
         [Required(ErrorMessage = "Specify the position")]
         public Position Position { get; set; }
 
-        [Required(ErrorMessage = "Enter a location")]
-        public int LocationId { get; set; }
+        [Required(ErrorMessage = "Specify the role")]
+        public Role Role { get; set; }
+
+        public int? LocationId { get; set; } = null;
     }
 }
