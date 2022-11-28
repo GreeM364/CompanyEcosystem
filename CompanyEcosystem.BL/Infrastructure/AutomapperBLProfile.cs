@@ -13,8 +13,6 @@ namespace CompanyEcosystem.BL.Infrastructure
             CreateMap<EmployeeDto, Employee>().
                 ForMember(dest => dest.Password,
                     opt => opt.MapFrom(src => HashPassword.HashPas(src.Password)))
-                .ForMember(dest => dest.Role,
-                    opt => opt.MapFrom(src => "User"))
                 .ReverseMap();
             CreateMap<ThingDto, Thing>().ReverseMap();
             CreateMap<PhotoThingDto, PhotoThing>().ReverseMap();
