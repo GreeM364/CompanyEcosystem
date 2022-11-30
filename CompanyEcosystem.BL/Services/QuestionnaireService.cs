@@ -96,6 +96,12 @@ namespace CompanyEcosystem.BL.Services
             if (formFile != null && !string.IsNullOrWhiteSpace(directoryPath))
             {
                 directoryPath = Path.Combine(directoryPath, questionnaire.Id.ToString());
+
+                if (!Directory.Exists(directoryPath))
+                {
+                    var dirInfo = new DirectoryInfo(directoryPath);
+                    dirInfo.Create();
+                }
             }
 
             var path = $"/img/employee/{questionnaireDto.Id}/{formFile.FileName}";
