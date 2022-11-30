@@ -58,7 +58,7 @@ namespace CompanyEcosystem.PL.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(LocationCreateUpdateViewModel model)
+        public async Task<IActionResult> Post([FromBody]LocationCreateUpdateViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(model);

@@ -1,6 +1,7 @@
 ﻿using Microsoft.OpenApi.Models;
 using CompanyEcosystem.BL.Infrastructure;
 using CompanyEcosystem.PL.Middlewares;
+using Microsoft.AspNetCore.Http.Features;
 
 namespace CompanyEcosystem.PL.Infrastructure
 {
@@ -23,6 +24,12 @@ namespace CompanyEcosystem.PL.Infrastructure
             service.AddCors();
 
             service.AddSwaggerGen(c => c.SwaggerDoc("v1", new OpenApiInfo { Title = "My Api", Version = "v1" }));
+
+            service.Configure<FormOptions>(o => {
+                o.ValueLengthLimit = int.MaxValue;
+                o.MultipartBodyLengthLimit = int.MaxValue;
+                o.MemoryBufferThreshold = int.MaxValue;
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

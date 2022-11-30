@@ -63,6 +63,12 @@ namespace CompanyEcosystem.BL.Services
             if (formFileCollection != null && formFileCollection.Any() && !string.IsNullOrWhiteSpace(directoryPath))
             {
                 directoryPath = Path.Combine(directoryPath, thing.Id.ToString());
+
+                if (!Directory.Exists(directoryPath))
+                {
+                    var dirInfo = new DirectoryInfo(directoryPath);
+                    dirInfo.Create();
+                }
             }
 
             foreach (var uploadedImage in formFileCollection)
