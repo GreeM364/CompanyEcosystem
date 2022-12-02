@@ -6,6 +6,7 @@ using CompanyEcosystem.DAL.Entities;
 using CompanyEcosystem.DAL.Interfaces;
 using CompanyEcosystem.BL.Infrastructure;
 using Microsoft.AspNetCore.Http;
+using System;
 
 namespace CompanyEcosystem.BL.Services
 {

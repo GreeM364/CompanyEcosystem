@@ -1,9 +1,8 @@
-﻿
-namespace CompanyEcosystem.PL.Models
+﻿namespace CompanyEcosystem.PL.Models
 {
-    public class PhotoThingViewModel : BaseViewModel
+    public class PhotoThingViewModel
     {
-        public string Path { get; set; }
+        public byte[] Photo { get; set; }
 
         public int ThingId { get; set; }
     }

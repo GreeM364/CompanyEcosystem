@@ -11,6 +11,7 @@ namespace CompanyEcosystem.BL.DataTransferObjects
         public string Phone { get; set; }
         public DateTime Birthday { get; set; }
         public string Photo { get; set; }
+        public byte[] PhotoBytes { get; set; }
         public string AboutMyself { get; set; }
         public string LinkToLinkedIn { get; set; }
 

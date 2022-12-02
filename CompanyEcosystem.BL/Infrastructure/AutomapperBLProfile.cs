@@ -8,14 +8,20 @@ namespace CompanyEcosystem.BL.Infrastructure
     {
         public AutomapperBLProfile()
         {
-            CreateMap<LocationDto, Location>().ReverseMap();
-            CreateMap<QuestionnaireDto, Questionnaire>().ReverseMap();
+            CreateMap<Location, LocationDto>().ForMember(dest => dest.PhotoBytes,
+                opt => opt.MapFrom(src => СonverterImage.ImageToByteArray(src.Photo)))
+                .ReverseMap();
+            CreateMap<Questionnaire, QuestionnaireDto>().ForMember(dest => dest.PhotoBytes,
+                    opt => opt.MapFrom(src => СonverterImage.ImageToByteArray(src.Photo)))
+                .ReverseMap();
             CreateMap<EmployeeDto, Employee>().
                 ForMember(dest => dest.Password,
                     opt => opt.MapFrom(src => HashPassword.HashPas(src.Password)))
                 .ReverseMap();
             CreateMap<ThingDto, Thing>().ReverseMap();
-            CreateMap<PhotoThingDto, PhotoThing>().ReverseMap();
+            CreateMap<PhotoThing, PhotoThingDto>().ForMember(dest => dest.Photo,
+                    opt => opt.MapFrom(src => СonverterImage.ImageToByteArray(src.Path)))
+                .ReverseMap();
             CreateMap<PostDto, Post>().ReverseMap();
         }
     }

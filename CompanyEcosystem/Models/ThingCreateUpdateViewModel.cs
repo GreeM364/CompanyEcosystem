@@ -17,7 +17,6 @@ namespace CompanyEcosystem.PL.Models
         [Required(ErrorMessage = "Add images")]
         public IFormFileCollection Images { get; set; }
 
-        
         public int LocationId { get; set; }
     }
 }
