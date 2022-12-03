@@ -65,6 +65,12 @@ namespace CompanyEcosystem.PL.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(model);
 
+            if (model.Images == null)
+            {
+                BadRequest(model);
+                return BadRequest("Added photographs");
+            }
+
             try
             {
                 var thingDto = _mapper.Map<ThingCreateUpdateViewModel, ThingDto>(model);

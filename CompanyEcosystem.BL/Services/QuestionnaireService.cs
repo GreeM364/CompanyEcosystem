@@ -93,25 +93,29 @@ namespace CompanyEcosystem.BL.Services
 
             var questionnaire = _mapper.Map<QuestionnaireDto, Questionnaire>(questionnaireDto);
 
-            if (formFile != null && !string.IsNullOrWhiteSpace(directoryPath))
+            if (formFile != null)
             {
-                directoryPath = Path.Combine(directoryPath, questionnaire.Id.ToString());
-
-                if (!Directory.Exists(directoryPath))
+                if (!string.IsNullOrWhiteSpace(directoryPath))
                 {
-                    var dirInfo = new DirectoryInfo(directoryPath);
-                    dirInfo.Create();
+                    directoryPath = Path.Combine(directoryPath, questionnaire.Id.ToString());
+
+                    if (!Directory.Exists(directoryPath))
+                    {
+                        var dirInfo = new DirectoryInfo(directoryPath);
+                        dirInfo.Create();
+                    }
                 }
+
+                var path = $"/img/employee/{questionnaireDto.Id}/{formFile.FileName}";
+
+                using (var fileStream = new FileStream(Path.Combine(directoryPath, formFile.FileName), FileMode.Create))
+                {
+                    formFile.CopyToAsync(fileStream);
+                }
+
+                questionnaire.Photo = path;
             }
 
-            var path = $"/img/employee/{questionnaireDto.Id}/{formFile.FileName}";
-
-            using (var fileStream = new FileStream(Path.Combine(directoryPath, formFile.FileName), FileMode.Create))
-            {
-                formFile.CopyToAsync(fileStream);
-            }
-
-            questionnaire.Photo = path;
             await _dbQuestionnaire.UpdateAsync(questionnaire);
         }
 

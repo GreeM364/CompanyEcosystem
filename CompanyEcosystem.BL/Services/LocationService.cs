@@ -6,7 +6,6 @@ using CompanyEcosystem.DAL.Entities;
 using CompanyEcosystem.DAL.Interfaces;
 using CompanyEcosystem.BL.Infrastructure;
 using Microsoft.AspNetCore.Http;
-using System;
 
 namespace CompanyEcosystem.BL.Services
 {
@@ -101,25 +100,29 @@ namespace CompanyEcosystem.BL.Services
 
             var location = _mapper.Map<LocationDto, Location>(locationDto);
 
-            if (formFile != null && !string.IsNullOrWhiteSpace(directoryPath))
+            if (formFile != null)
             {
-                directoryPath = Path.Combine(directoryPath, location.Id.ToString());
-
-                if (!Directory.Exists(directoryPath))
+                if (!string.IsNullOrWhiteSpace(directoryPath))
                 {
-                    var dirInfo = new DirectoryInfo(directoryPath);
-                    dirInfo.Create();
+                    directoryPath = Path.Combine(directoryPath, location.Id.ToString());
+
+                    if (!Directory.Exists(directoryPath))
+                    {
+                        var dirInfo = new DirectoryInfo(directoryPath);
+                        dirInfo.Create();
+                    }
                 }
+
+                var path = $"/img/locations/{locationDto.Id}/{formFile.FileName}";
+
+                using (var fileStream = new FileStream(Path.Combine(directoryPath, formFile.FileName), FileMode.Create))
+                {
+                    formFile.CopyToAsync(fileStream);
+                }
+
+                location.Photo = path;
             }
 
-            var path = $"/img/locations/{locationDto.Id}/{formFile.FileName}";
-
-            using (var fileStream = new FileStream(Path.Combine(directoryPath, formFile.FileName), FileMode.Create))
-            {
-                formFile.CopyToAsync(fileStream);
-            }
-
-            location.Photo = path;
             await _dbLocation.UpdateAsync(location);
         }
 

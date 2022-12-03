@@ -21,8 +21,7 @@ namespace CompanyEcosystem.PL.Models
         [Required(ErrorMessage = "Enter your birthday")]
         public DateTime Birthday { get; set; }
 
-        [Required(ErrorMessage = "Upload your photo")]
-        public IFormFile Photo { get; set; }
+        public IFormFile? Photo { get; set; }
 
         [Required(ErrorMessage = "Enter information about yourself")]
         public string AboutMyself { get; set; }
