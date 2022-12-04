@@ -1,9 +1,8 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace CompanyEcosystem.PL.Models
 {
-    public class QuestionnaireCreateUpdateViewModel : BaseViewModel
+    public class QuestionnaireUpdateViewModel : BaseViewModel
     {
         [Required(ErrorMessage = "Enter your name")]
         public string FirstName { get; set; }
@@ -21,8 +20,8 @@ namespace CompanyEcosystem.PL.Models
         [Required(ErrorMessage = "Enter your birthday")]
         public DateTime Birthday { get; set; }
 
-        [Required(ErrorMessage = "Upload your photo")]
-        public IFormFile Photo { get; set; }
+        public IFormFile? Photo { get; set; }
+        public string Path { get; set; }
 
         [Required(ErrorMessage = "Enter information about yourself")]
         public string AboutMyself { get; set; }

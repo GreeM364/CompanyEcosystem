@@ -99,10 +99,13 @@ namespace CompanyEcosystem.BL.Services
                 throw new ValidationException("Chief not found", "");
 
             var location = _mapper.Map<LocationDto, Location>(locationDto);
-
+            
             if (formFile == null)
+                location.Photo = locationDto.Path;
+
+            if (formFile != null)
             {
-                if (formFile != null && !string.IsNullOrWhiteSpace(directoryPath))
+                if (!string.IsNullOrWhiteSpace(directoryPath))
                 {
                     directoryPath = Path.Combine(directoryPath, location.Id.ToString());
 
@@ -123,7 +126,6 @@ namespace CompanyEcosystem.BL.Services
                 location.Photo = path;
             }
 
-            location.Photo = locationDto.Path;
             await _dbLocation.UpdateAsync(location);
         }
 
