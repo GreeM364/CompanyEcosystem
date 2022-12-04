@@ -56,14 +56,14 @@ namespace CompanyEcosystem.PL.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody]LocationCreateUpdateViewModel model)
+        public async Task<IActionResult> Post(LocationCreateViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(model);
 
             try
             {
-                var locationDto = _mapper.Map<LocationCreateUpdateViewModel, LocationDto>(model);
+                var locationDto = _mapper.Map<LocationCreateViewModel, LocationDto>(model);
 
                 var directoryPath = Path.Combine(Directory.GetCurrentDirectory(), "img", "locations");
 
@@ -78,14 +78,14 @@ namespace CompanyEcosystem.PL.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> Put(LocationCreateUpdateViewModel model)
+        public async Task<IActionResult> Put(LocationUpdateViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(model);
 
             try
             {
-                var locationDto = _mapper.Map<LocationCreateUpdateViewModel, LocationDto>(model);
+                var locationDto = _mapper.Map<LocationUpdateViewModel, LocationDto>(model);
 
                 var directoryPath = Path.Combine(Directory.GetCurrentDirectory(), "img", "locations");
 

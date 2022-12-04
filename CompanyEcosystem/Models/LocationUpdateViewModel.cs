@@ -2,7 +2,7 @@
 
 namespace CompanyEcosystem.PL.Models
 {
-    public class LocationCreateUpdateViewModel : BaseViewModel
+    public class LocationUpdateViewModel : BaseViewModel
     {
         [Required(ErrorMessage = "Enter a title")]
         public string Title { get; set; }
@@ -16,7 +16,8 @@ namespace CompanyEcosystem.PL.Models
         [Required(ErrorMessage = "Enter the end time")]
         public DateTime WorkingEnd { get; set; }
 
-        [Required(ErrorMessage = "Add photo")]
-        public IFormFile Photo { get; set; }
+        public IFormFile? Photo { get; set; }
+
+        public string Path { get; set; }
     }
 }

@@ -8,7 +8,8 @@ namespace CompanyEcosystem.PL.Infrastructure
     {
         public AutomapperWebProfile()
         {
-            CreateMap<LocationCreateUpdateViewModel, LocationDto>().ReverseMap();
+            CreateMap<LocationCreateViewModel, LocationDto>().ReverseMap();
+            CreateMap<LocationUpdateViewModel, LocationDto>().ReverseMap();
             CreateMap<LocationViewModel, LocationDto>().ForMember(dest => dest.Employees,
                     opt => opt.MapFrom(src => src.Employees)).ReverseMap();
             CreateMap<QuestionnaireCreateUpdateViewModel, QuestionnaireDto>().ReverseMap();
