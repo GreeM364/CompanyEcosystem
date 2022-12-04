@@ -17,6 +17,7 @@ namespace CompanyEcosystem.PL.Models
         [Required(ErrorMessage = "Enter the end time")]
         public DateTime WorkingEnd { get; set; }
 
+        public string Path { get; set; }
         public IFormFile? Photo { get; set; }
     }
 }

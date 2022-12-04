@@ -8,8 +8,10 @@ namespace CompanyEcosystem.BL.Infrastructure
     {
         public AutomapperBLProfile()
         {
-            CreateMap<Location, LocationDto>().ForMember(dest => dest.PhotoBytes,
+            CreateMap<Location, LocationDto>().ForMember(dest => dest.Photo,
                 opt => opt.MapFrom(src => СonverterImage.ImageToByteArray(src.Photo)))
+                .ForMember(dest => dest.Path,
+                    opt => opt.MapFrom(src => src.Photo))
                 .ReverseMap();
             CreateMap<Questionnaire, QuestionnaireDto>().ForMember(dest => dest.PhotoBytes,
                     opt => opt.MapFrom(src => СonverterImage.ImageToByteArray(src.Photo)))

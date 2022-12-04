@@ -123,6 +123,7 @@ namespace CompanyEcosystem.BL.Services
                 location.Photo = path;
             }
 
+            location.Photo = locationDto.Path;
             await _dbLocation.UpdateAsync(location);
         }
 
