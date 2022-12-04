@@ -2,6 +2,7 @@
 using CompanyEcosystem.BL.Infrastructure;
 using CompanyEcosystem.PL.Middlewares;
 using Microsoft.AspNetCore.Http.Features;
+using Microsoft.Extensions.FileProviders;
 
 namespace CompanyEcosystem.PL.Infrastructure
 {
@@ -44,7 +45,11 @@ namespace CompanyEcosystem.PL.Infrastructure
             }
 
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"img")),
+                RequestPath = new PathString("/img")
+            });
             app.UseRouting();
 
             app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());

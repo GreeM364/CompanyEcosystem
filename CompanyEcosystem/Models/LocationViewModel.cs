@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
+﻿
 namespace CompanyEcosystem.PL.Models
 {
     public class LocationViewModel : BaseViewModel

@@ -15,13 +15,11 @@ namespace CompanyEcosystem.PL.Controllers
     public class ThingController : ControllerBase
     {
         private readonly IThingService _thingService;
-        private readonly IWebHostEnvironment _appEnvironment;
         private readonly IMapper _mapper;
         
-        public ThingController(IThingService service, IWebHostEnvironment appEnvironment, IMapper mapper)
+        public ThingController(IThingService service, IMapper mapper)
         {
             _thingService = service;
-            _appEnvironment = appEnvironment;
             _mapper = mapper;
         }
 
@@ -69,7 +67,7 @@ namespace CompanyEcosystem.PL.Controllers
             {
                 var thingDto = _mapper.Map<ThingCreateUpdateViewModel, ThingDto>(model);
 
-                var directoryPath = Path.Combine(_appEnvironment.WebRootPath, "img", "things");
+                var directoryPath = Path.Combine(Directory.GetCurrentDirectory(), "img", "things");
 
                 await _thingService.CreateThingAsync(thingDto, model.Images, directoryPath);
 
@@ -91,7 +89,7 @@ namespace CompanyEcosystem.PL.Controllers
             {
                 var thingDto = _mapper.Map<ThingCreateUpdateViewModel, ThingDto>(model);
 
-                var directoryPath = Path.Combine(_appEnvironment.WebRootPath, "img", "things");
+                var directoryPath = Path.Combine(Directory.GetCurrentDirectory(), "img", "things");
 
                 await _thingService.UpdateThingAsync(thingDto, model.Images, directoryPath);
 
