@@ -1,5 +1,4 @@
-﻿using CompanyEcosystem.DAL.Entities;
-
+﻿
 namespace CompanyEcosystem.BL.DataTransferObjects
 {
     public class ThingDto
@@ -8,6 +7,7 @@ namespace CompanyEcosystem.BL.DataTransferObjects
         public string Name { get; set; }
         public string Instruction { get; set; }
         public string Characteristic { get; set; }
+        public string[]? Paths { get; set; }
 
         public int LocationId { get; set; }
         public List<PhotoThingDto> Photos { get; set; }

@@ -1,9 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNetCore.Http;
 
 namespace CompanyEcosystem.PL.Models
 {
-    public class ThingCreateUpdateViewModel : BaseViewModel
+    public class ThingUpdateViewModel : BaseViewModel
     {
         [Required(ErrorMessage = "Enter a name")]
         public string Name { get; set; }
@@ -15,9 +14,10 @@ namespace CompanyEcosystem.PL.Models
         public string Characteristic { get; set; }
 
         [Required(ErrorMessage = "Add images")]
-        public IFormFileCollection Images { get; set; }
+        public IFormFileCollection? Images { get; set; }
 
-        
+        public string[] Paths { get; set; }
+
         public int LocationId { get; set; }
     }
 }

@@ -58,14 +58,14 @@ namespace CompanyEcosystem.PL.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(ThingCreateUpdateViewModel model)
+        public async Task<IActionResult> Post(ThingCreateViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(model);
 
             try
             {
-                var thingDto = _mapper.Map<ThingCreateUpdateViewModel, ThingDto>(model);
+                var thingDto = _mapper.Map<ThingCreateViewModel, ThingDto>(model);
 
                 var directoryPath = Path.Combine(Directory.GetCurrentDirectory(), "img", "things");
 
@@ -80,14 +80,14 @@ namespace CompanyEcosystem.PL.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> Put(ThingCreateUpdateViewModel model)
+        public async Task<IActionResult> Put(ThingUpdateViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(model);
 
             try
             {
-                var thingDto = _mapper.Map<ThingCreateUpdateViewModel, ThingDto>(model);
+                var thingDto = _mapper.Map<ThingUpdateViewModel, ThingDto>(model);
 
                 var directoryPath = Path.Combine(Directory.GetCurrentDirectory(), "img", "things");
 

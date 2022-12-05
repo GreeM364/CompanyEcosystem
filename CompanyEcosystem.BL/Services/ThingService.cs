@@ -5,6 +5,7 @@ using CompanyEcosystem.BL.Interfaces;
 using CompanyEcosystem.DAL.Entities;
 using CompanyEcosystem.DAL.Interfaces;
 using Microsoft.AspNetCore.Http;
+using System.IO;
 using System.Linq.Expressions;
 
 namespace CompanyEcosystem.BL.Services
@@ -91,29 +92,44 @@ namespace CompanyEcosystem.BL.Services
             var thing = _mapper.Map<ThingDto, Thing>(thingDto);
             await _repositoryThing.UpdateAsync(thing);
 
-            if (formFileCollection != null && formFileCollection.Any() && !string.IsNullOrWhiteSpace(directoryPath))
+            if (formFileCollection == null)
             {
-                directoryPath = Path.Combine(directoryPath, thing.Id.ToString());
-
-                if (!Directory.Exists(directoryPath))
+                foreach (var path in thingDto.Paths)
                 {
-                    var dirInfo = new DirectoryInfo(directoryPath);
-                    dirInfo.Create();
+                    var photo = _mapper.Map<PhotoThingDto, PhotoThing>(new PhotoThingDto
+                        { ThingId = thing.Id, Path = path});
+                    await _repositoryPhoto.UpdateAsync(photo);
                 }
             }
 
-            foreach (var uploadedImage in formFileCollection)
+            if (formFileCollection != null)
             {
-
-                var path = $"/img/things/{thingDto.Id}/{uploadedImage.FileName}";
-
-                using (var fileStream = new FileStream(Path.Combine(directoryPath, uploadedImage.FileName), FileMode.Create))
+                if (formFileCollection != null && formFileCollection.Any() && !string.IsNullOrWhiteSpace(directoryPath))
                 {
-                    uploadedImage.CopyToAsync(fileStream);
+                    directoryPath = Path.Combine(directoryPath, thing.Id.ToString());
+
+                    if (!Directory.Exists(directoryPath))
+                    {
+                        var dirInfo = new DirectoryInfo(directoryPath);
+                        dirInfo.Create();
+                    }
                 }
 
-                var photo = _mapper.Map<PhotoThingDto, PhotoThing>(new PhotoThingDto { ThingId = thing.Id, Path = path });
-                await _repositoryPhoto.UpdateAsync(photo);
+                foreach (var uploadedImage in formFileCollection)
+                {
+
+                    var path = $"/img/things/{thingDto.Id}/{uploadedImage.FileName}";
+
+                    using (var fileStream = new FileStream(Path.Combine(directoryPath, uploadedImage.FileName),
+                               FileMode.Create))
+                    {
+                        uploadedImage.CopyToAsync(fileStream);
+                    }
+
+                    var photo = _mapper.Map<PhotoThingDto, PhotoThing>(new PhotoThingDto
+                        {ThingId = thing.Id, Path = path});
+                    await _repositoryPhoto.UpdateAsync(photo);
+                }
             }
         }
 
