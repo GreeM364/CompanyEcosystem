@@ -31,7 +31,7 @@ namespace CompanyEcosystem.BL.Services
 
             if (source == null || !source.Any())
                 throw new ValidationException("Questionnaires not found", "");
-
+            
             var questionnaires = _mapper.Map<List<Questionnaire>, List<QuestionnaireDto>>(source);
 
             return questionnaires;
@@ -42,15 +42,15 @@ namespace CompanyEcosystem.BL.Services
             if (id == null)
                 throw new ValidationException("Questionnaire ID not set", "");
 
-            var sourceQuestionnaire = await _dbQuestionnaire.GetByIdAsync(id.Value);
-            var sourceEmployee = await _accountService.GetByIdAsync(sourceQuestionnaire.EmployeeId);
+            var sourceQuestionnaire = await _dbQuestionnaire.GetAsync(includes: new List<Expression<Func<Questionnaire, object>>>()
+            {
+                x => x.Employee
+            }, predicate: e => e.Id == id.Value);
 
             if (sourceQuestionnaire == null)
                 throw new ValidationException("Questionnaire not found", "");
 
-            var questionnaireDto = _mapper.Map<Questionnaire, QuestionnaireDto>(sourceQuestionnaire);
-            questionnaireDto.Email = sourceEmployee.Email;
-            questionnaireDto.Position = sourceEmployee.Position;
+            var questionnaireDto = _mapper.Map<Questionnaire, QuestionnaireDto>(sourceQuestionnaire.FirstOrDefault()!);
 
             return questionnaireDto;
         }
@@ -62,6 +62,7 @@ namespace CompanyEcosystem.BL.Services
                 throw new ValidationException("Employee not found", "");
 
             var questionnaire = _mapper.Map<QuestionnaireDto, Questionnaire>(questionnaireDto);
+
 
             if (formFile != null && !string.IsNullOrWhiteSpace(directoryPath))
             {

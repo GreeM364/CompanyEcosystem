@@ -104,7 +104,7 @@ namespace CompanyEcosystem.BL.Services
 
             if (formFileCollection != null)
             {
-                if (formFileCollection != null && formFileCollection.Any() && !string.IsNullOrWhiteSpace(directoryPath))
+                if (formFileCollection.Any() && !string.IsNullOrWhiteSpace(directoryPath))
                 {
                     directoryPath = Path.Combine(directoryPath, thing.Id.ToString());
 

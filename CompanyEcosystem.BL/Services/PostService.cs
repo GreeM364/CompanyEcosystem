@@ -66,6 +66,7 @@ namespace CompanyEcosystem.BL.Services
                 throw new ValidationException("Location not found", "");
 
             var post = _mapper.Map<PostDto, Post>(postDto);
+            post.Create = DateTime.Now;
 
             await _dbPost.UpdateAsync(post);
         }

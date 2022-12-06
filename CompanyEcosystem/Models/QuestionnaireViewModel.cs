@@ -13,7 +13,6 @@ namespace CompanyEcosystem.PL.Models
         public string AboutMyself { get; set; }
         public string LinkToLinkedIn { get; set; }
 
-        public string Email { get; set; }
-        public string Position { get; set; }
+        public EmployeeViewModel Employee { get; set; }
     }
 }

@@ -16,7 +16,6 @@ namespace CompanyEcosystem.BL.DataTransferObjects
         public string LinkToLinkedIn { get; set; }
 
         public int EmployeeId { get; set; }
-        public string Email { get; set; }
-        public Position Position { get; set; }
+        public EmployeeDto Employee { get; set; }
     }
 }

@@ -6,5 +6,6 @@
         public string Body { get; set; }
         public long Mark { get; set; }
         public DateTime Create { get; set; }
+        public int LocationId { get; set; }
     }
 }
