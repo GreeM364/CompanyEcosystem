@@ -58,7 +58,7 @@ namespace CompanyEcosystem.PL.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(ThingCreateViewModel model)
+        public async Task<IActionResult> Post([FromForm]ThingCreateViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(model);

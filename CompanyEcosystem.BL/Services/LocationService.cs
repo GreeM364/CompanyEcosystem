@@ -81,7 +81,7 @@ namespace CompanyEcosystem.BL.Services
                 }
             }
 
-            var path = $"/img/locations/{locationDto.Id}/{formFile.FileName}";
+            var path = $"/img/locations/{location.Id}/{formFile.FileName}";
 
             using (var fileStream = new FileStream(Path.Combine(directoryPath, formFile.FileName), FileMode.Create))
             {
@@ -116,7 +116,7 @@ namespace CompanyEcosystem.BL.Services
                     }
                 }
 
-                var path = $"/img/locations/{locationDto.Id}/{formFile.FileName}";
+                var path = $"/img/locations/{location.Id}/{formFile.FileName}";
 
                 using (var fileStream = new FileStream(Path.Combine(directoryPath, formFile.FileName), FileMode.Create))
                 {

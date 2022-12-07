@@ -75,7 +75,7 @@ namespace CompanyEcosystem.BL.Services
                 }
             }
 
-            var path = $"/img/employee/{questionnaireDto.Id}/{formFile.FileName}";
+            var path = $"/img/employee/{questionnaire.Id}/{formFile.FileName}";
 
             using (var fileStream = new FileStream(Path.Combine(directoryPath, formFile.FileName), FileMode.Create))
             {
@@ -110,7 +110,7 @@ namespace CompanyEcosystem.BL.Services
                     }
                 }
 
-                var path = $"/img/employee/{questionnaireDto.Id}/{formFile.FileName}";
+                var path = $"/img/employee/{questionnaire.Id}/{formFile.FileName}";
 
                 using (var fileStream = new FileStream(Path.Combine(directoryPath, formFile.FileName), FileMode.Create))
                 {

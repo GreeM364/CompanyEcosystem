@@ -5,7 +5,6 @@ using CompanyEcosystem.BL.Interfaces;
 using CompanyEcosystem.DAL.Entities;
 using CompanyEcosystem.DAL.Interfaces;
 using Microsoft.AspNetCore.Http;
-using System.IO;
 using System.Linq.Expressions;
 
 namespace CompanyEcosystem.BL.Services
@@ -75,7 +74,7 @@ namespace CompanyEcosystem.BL.Services
             foreach (var uploadedImage in formFileCollection)
             {
 
-                var path = $"/img/things/{thingDto.Id}/{uploadedImage.FileName}";
+                var path = $"/img/things/{thing.Id}/{uploadedImage.FileName}";
 
                 using (var fileStream = new FileStream(Path.Combine(directoryPath, uploadedImage.FileName), FileMode.Create))
                 {
@@ -118,7 +117,7 @@ namespace CompanyEcosystem.BL.Services
                 foreach (var uploadedImage in formFileCollection)
                 {
 
-                    var path = $"/img/things/{thingDto.Id}/{uploadedImage.FileName}";
+                    var path = $"/img/things/{thing.Id}/{uploadedImage.FileName}";
 
                     using (var fileStream = new FileStream(Path.Combine(directoryPath, uploadedImage.FileName),
                                FileMode.Create))
