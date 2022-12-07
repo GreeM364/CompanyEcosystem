@@ -1,11 +1,8 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using AutoMapper;
+﻿using AutoMapper;
 using CompanyEcosystem.BL.DataTransferObjects;
 using CompanyEcosystem.BL.Infrastructure;
 using CompanyEcosystem.BL.Interfaces;
 using CompanyEcosystem.PL.Models;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CompanyEcosystem.PL.Controllers
@@ -80,7 +77,7 @@ namespace CompanyEcosystem.PL.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> Put(ThingUpdateViewModel model)
+        public async Task<IActionResult> Put([FromForm]ThingUpdateViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(model);
@@ -102,7 +99,7 @@ namespace CompanyEcosystem.PL.Controllers
         }
 
         [HttpDelete]
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete([FromHeader] int? id)
         {
             try
             {

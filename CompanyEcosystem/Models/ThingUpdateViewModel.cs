@@ -13,10 +13,10 @@ namespace CompanyEcosystem.PL.Models
         [Required(ErrorMessage = "Enter a characteristic")]
         public string Characteristic { get; set; }
 
-        [Required(ErrorMessage = "Add images")]
+        
         public IFormFileCollection? Images { get; set; }
 
-        public string[] Paths { get; set; }
+        public string[]? Paths { get; set; }
 
         public int LocationId { get; set; }
     }

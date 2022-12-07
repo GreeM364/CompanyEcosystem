@@ -56,7 +56,7 @@ namespace CompanyEcosystem.PL.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(LocationCreateViewModel model)
+        public async Task<IActionResult> Post([FromForm] LocationCreateViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(model);
@@ -78,7 +78,7 @@ namespace CompanyEcosystem.PL.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> Put(LocationUpdateViewModel model)
+        public async Task<IActionResult> Put([FromForm] LocationUpdateViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(model);
@@ -100,7 +100,7 @@ namespace CompanyEcosystem.PL.Controllers
         }
 
         [HttpDelete]
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete([FromHeader] int? id)
         {
             try
             {

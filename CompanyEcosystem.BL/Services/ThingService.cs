@@ -91,13 +91,20 @@ namespace CompanyEcosystem.BL.Services
             var thing = _mapper.Map<ThingDto, Thing>(thingDto);
             await _repositoryThing.UpdateAsync(thing);
 
+            var allPhoto = await _repositoryPhoto.GetAsync(p => p.ThingId == thingDto.Id);
+
+            foreach (var photo in allPhoto)
+            {
+                await _repositoryPhoto.DeleteAsync(photo.Id);
+            }
+
             if (formFileCollection == null)
             {
                 foreach (var path in thingDto.Paths)
                 {
                     var photo = _mapper.Map<PhotoThingDto, PhotoThing>(new PhotoThingDto
                         { ThingId = thing.Id, Path = path});
-                    await _repositoryPhoto.UpdateAsync(photo);
+                    await _repositoryPhoto.CreateAsync(photo);
                 }
             }
 
@@ -127,7 +134,7 @@ namespace CompanyEcosystem.BL.Services
 
                     var photo = _mapper.Map<PhotoThingDto, PhotoThing>(new PhotoThingDto
                         {ThingId = thing.Id, Path = path});
-                    await _repositoryPhoto.UpdateAsync(photo);
+                    await _repositoryPhoto.CreateAsync(photo);
                 }
             }
         }

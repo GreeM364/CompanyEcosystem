@@ -20,7 +20,7 @@ namespace CompanyEcosystem.PL.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> Register(RegisterViewModel model)
+        public async Task<IActionResult> Register([FromForm] RegisterViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -40,7 +40,7 @@ namespace CompanyEcosystem.PL.Controllers
         }
 
         [HttpPost("authenticate")]
-        public async Task<IActionResult> Authenticate(AuthenticateViewModel model)
+        public async Task<IActionResult> Authenticate([FromForm] AuthenticateViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
