@@ -62,6 +62,7 @@ namespace CompanyEcosystem.BL.Services
                 throw new ValidationException("Employee not found", "");
 
             var questionnaire = _mapper.Map<QuestionnaireDto, Questionnaire>(questionnaireDto);
+            await _dbQuestionnaire.CreateAsync(questionnaire);
 
 
             if (formFile != null && !string.IsNullOrWhiteSpace(directoryPath))

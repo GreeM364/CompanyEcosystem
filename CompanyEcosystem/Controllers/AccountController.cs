@@ -40,7 +40,7 @@ namespace CompanyEcosystem.PL.Controllers
         }
 
         [HttpPost("authenticate")]
-        public async Task<IActionResult> Authenticate([FromForm] AuthenticateViewModel model)
+        public async Task<IActionResult> Authenticate(AuthenticateViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);

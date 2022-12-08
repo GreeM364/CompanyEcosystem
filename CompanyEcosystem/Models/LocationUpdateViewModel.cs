@@ -18,6 +18,6 @@ namespace CompanyEcosystem.PL.Models
 
         public IFormFile? Photo { get; set; }
 
-        public string Path { get; set; }
+        public string? Path { get; set; }
     }
 }

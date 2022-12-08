@@ -65,9 +65,6 @@ namespace CompanyEcosystem.BL.Services
             var source = await _repository.GetAllAsync();
             var employees =_mapper.Map<List<Employee>, List<EmployeeDto>>(source);
 
-            //if (employees == null)
-            //    throw new ValidationException("Employees not found", "");
-
             return employees;
         }
 
