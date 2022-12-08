@@ -84,7 +84,7 @@ namespace CompanyEcosystem.BL.Services
             }
 
             questionnaire.Photo = path;
-            await _dbQuestionnaire.CreateAsync(questionnaire);
+            await _dbQuestionnaire.UpdateAsync(questionnaire);
         }
 
         public async Task UpdateQuestionnaireAsync(QuestionnaireDto questionnaireDto, IFormFile formFile, string directoryPath)
