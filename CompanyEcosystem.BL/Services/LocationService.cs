@@ -91,6 +91,11 @@ namespace CompanyEcosystem.BL.Services
 
             location.Photo = path;
             await _dbLocation.UpdateAsync(location);
+
+            var employees = await _dbEmployee.GetAsync(e => e.Id == location.Chief);
+            var employee = employees.FirstOrDefault();
+            employee.LocationId = location.Id;
+            await _dbEmployee.UpdateAsync(employee);
         }
 
         public async Task UpdateLocationAsync(LocationDto locationDto, IFormFile formFile, string directoryPath)
