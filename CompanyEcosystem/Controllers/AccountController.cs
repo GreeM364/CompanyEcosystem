@@ -66,5 +66,26 @@ namespace CompanyEcosystem.PL.Controllers
 
             return _mapper.Map<IEnumerable<EmployeeDto>, List<EmployeeViewModel>>(source);
         }
+
+        [HttpPost("biometric")]
+        public async Task<IActionResult> Biometric([FromForm] BiometricViewModel model)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            try
+            {
+                var employeeDto = _mapper.Map<BiometricViewModel, EmployeeDto>(model);
+
+                await _accountService.Biometric(employeeDto);
+
+                return Ok();
+            }
+            catch (ValidationException e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+        
     }
 }

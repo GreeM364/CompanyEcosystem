@@ -9,6 +9,8 @@ namespace CompanyEcosystem.DAL.Entities
         public string Password { get; set; }
         public Role Role { get; set; }
         public Position Position { get; set; }
+        public string? FingerprintData { get; set; }
+        public string? RetinaScanData { get; set; }
 
         public int? LocationId { get; set; }
         public Location? Location { get; set; }

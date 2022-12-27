@@ -10,6 +10,8 @@ namespace CompanyEcosystem.BL.DataTransferObjects
         public Role Role { get; set; }
         public Position Position { get; set; }
         public string Token { get; set; }
+        public string? FingerprintData { get; set; }
+        public string? RetinaScanData { get; set; }
 
         public int? LocationId { get; set; }
     }

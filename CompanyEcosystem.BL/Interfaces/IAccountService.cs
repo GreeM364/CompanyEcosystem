@@ -9,6 +9,7 @@ namespace CompanyEcosystem.BL.Interfaces
         Task<EmployeeDto> RegisterAsync(EmployeeDto employeeDto);
         Task<List<EmployeeDto>> GetAllAsync();
         Task<EmployeeDto> GetByIdAsync(int id);
+        Task Biometric(EmployeeDto employeeDto);
     }
 
 }

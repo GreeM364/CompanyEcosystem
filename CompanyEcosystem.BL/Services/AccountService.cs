@@ -82,5 +82,19 @@ namespace CompanyEcosystem.BL.Services
                Position = employee.Position
            };
         }
+
+        public async Task Biometric(EmployeeDto employeeDto)
+        {
+            var user = await _repository.GetFirstAsync(x => x.Email == employeeDto.Email
+                                                            && x.Password == HashPassword.HashPas(employeeDto.Password));
+
+            if (user == null)
+                throw new ValidationException("Username or password is incorrect", "");
+
+            user.FingerprintData = employeeDto.FingerprintData;
+            user.RetinaScanData = employeeDto.RetinaScanData;
+
+            await _repository.UpdateAsync(user);
+        }
     }
 }

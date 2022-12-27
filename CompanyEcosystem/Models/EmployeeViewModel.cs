@@ -8,5 +8,7 @@ namespace CompanyEcosystem.PL.Models
         public string Role { get; set; }
         public string Position { get; set; }
         public string Token { get; set; }
+        public string FingerprintData { get; set; }
+        public string RetinaScanData { get; set; }
     }
 }
